@@ -23,7 +23,7 @@ module.exports = {
           secondaryBackground: "#161617",
           primaryText: "#ffffff",
           secondaryText: "#a1a1aa",
-          accentBlue: "#1F22A7",
+          accentBlue: "#427ddc",
           accentGreen: "#0C7B5A",
           accentOrange: "#CC8308",
           accentPurple: "#732BBF",

@@ -82,7 +82,7 @@ const getDepartmentColor = (department: string) => {
 
 export default function ManageEmployee() {
   return (
-    <div className=''>
+    <div className="  ">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-lightMode-primaryText dark:text-darkMode-primaryText">
           Manage Employees
@@ -92,14 +92,14 @@ export default function ManageEmployee() {
             <input
               type="text"
               placeholder="Search keyword..."
-              className="w-64 h-10 pl-10 pr-4 rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText border-2 focus:outline-none focus:border-lightMode-accentBlue dark:focus:border-darkMode-accentBlue"
+              className="w-64 h-10 pl-10 pr-4 rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText border border-borders-primary dark:border-borders-secondary focus:outline-none focus:ring-2 focus:ring-lightMode-accentBlue dark:focus:ring-darkMode-accentBlue transition-all duration-200"
             />
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
           </div>
         </div>
       </div>
-      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary">
-        <div className="grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary">
+      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary dark:border-borders-secondary overflow-hidden">
+        <div className="grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary">
           <div className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText">Employee Name</div>
           <div className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText">Phone Number</div>
           <div className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText">Department</div>
@@ -108,12 +108,10 @@ export default function ManageEmployee() {
           <div className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText">Attendance</div>
           <div className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText"></div>
         </div>
-        {employees.map((employee,index) => (
-          <div key={employee.id} className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary last:border-b-0">
+        {employees.map((employee, index) => (
+          <div key={employee.id} className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200">
             <div className="flex items-center gap-3">
-              <img src={`
-              https://avatar.iran.liara.run/public/${index}
-                `} alt="" className="w-10 h-10 rounded-full" />
+              <img src={`https://avatar.iran.liara.run/public/${index}`} alt="" className="w-10 h-10 rounded-full" />
               <div>
                 <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.name}</div>
                 <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">{employee.email}</div>
@@ -121,15 +119,15 @@ export default function ManageEmployee() {
             </div>
             <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.phone}</div>
             <div className="flex items-center">
-              <span className={`px-3 py-1 rounded-full text-sm ${getDepartmentColor(employee.department)}`}>
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${getDepartmentColor(employee.department)}`}>
                 {employee.department}
               </span>
             </div>
             <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.jobTitle}</div>
             <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.contractType}</div>
             <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.attendance}</div>
-            <div className="flex items-center justify-end gap-2">
-              <button className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground rounded">
+            <div className="flex items-center justify-end">
+              <button className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full transition-colors duration-200">
                 <MoreVertical className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               </button>
             </div>

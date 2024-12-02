@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, Plus, Users2 } from "lucide-react";
 import { jobs } from "../../../data/admin-dashboard";
+import { useNavigate } from "react-router-dom";
 
 const categoryColors: Record<string, string> = {
   Design: "#B6EDD8",
@@ -14,6 +15,7 @@ const categoryColors: Record<string, string> = {
 
 export default function Recruitment() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen p-6 bg-lightMode-background">
@@ -63,7 +65,8 @@ export default function Recruitment() {
           {jobs.map((job) => (
             <div
               key={job.id}
-              className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary"
+              onClick={() => navigate(`/admin/dashboard/recruitment/job/${job.id}`)}
+              className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground cursor-pointer flex gap-4 duration-300 transform"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-4">

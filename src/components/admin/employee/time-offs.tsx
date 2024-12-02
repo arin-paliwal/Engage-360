@@ -75,7 +75,7 @@ export default function Timeoff() {
             <input
               type="text"
               placeholder="Search keyword..."
-              className="w-64 h-10 pl-10 pr-4 rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText border-2 focus:outline-none focus:border-lightMode-accentBlue dark:focus:border-darkMode-accentBlue"
+              className="w-64 h-10 pl-10 pr-4 rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary focus:outline-none focus:border-lightMode-accentBlue dark:focus:border-darkMode-accentBlue"
             />
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
           </div>
@@ -83,9 +83,9 @@ export default function Timeoff() {
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary">
+      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border-2 border-borders-primary dark:border-borders-secondary">
         {/* Table Header */}
-        <div className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b border-borders-primary">
+        <div className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b-2 border-borders-primary dark:border-borders-secondary">
           {["Employee Name", "Leave Type", "Leave From", "Leave To", "Days", "Status", "Action"].map(
             (header, index) => (
               <div
@@ -101,7 +101,7 @@ export default function Timeoff() {
         {timeOffRequests.map((request) => (
           <div
             key={request.id}
-            className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b border-borders-primary last:border-b-0"
+            className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b-2 border-borders-primary dark:border-borders-secondary last:border-b-0"
           >
             <div className="flex items-center gap-3">
               <img src={`https://avatar.iran.liara.run/public/${getRandomNumber()}`} alt="" className="w-10 h-10 rounded-full" />
@@ -145,7 +145,7 @@ export default function Timeoff() {
                   {openPopupId === request.id && (
                     <div
                       ref={popupRef}
-                      className="absolute top-8 right-0 mt-2 w-48 bg-white dark:bg-darkMode-secondaryBackground rounded-md shadow-lg z-10 border border-borders-primary"
+                      className="absolute top-8 right-0 mt-2 w-48 bg-white dark:bg-darkMode-secondaryBackground rounded-md shadow-lg z-10 border-2 border-borders-primary dark:border-borders-secondary"
                     >
                       <button
                         onClick={() => handleAccept(request.id)}

@@ -3,6 +3,7 @@
 import React from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import { Edit2, EditIcon, ZoomIn, ZoomOut } from "lucide-react";
+import { useTheme } from "next-themes";
 
 interface Employee {
   name: string;
@@ -89,23 +90,25 @@ const orgData: Employee = {
   ],
 };
 
-const getDepartmentColor = (department?: string) => {
+function getDepartmentColor(department: string) {
   switch (department) {
-    case "Business and Marketing":
-      return "bg-blue-500";
-    case "Design":
-      return "bg-emerald-500";
     case "Development":
-      return "bg-blue-400";
+      return "bg-lightMode-accentBlue/10 text-lightMode-accentBlue dark:bg-darkMode-accentBlue/10 dark:text-darkMode-accentBlue";
+    case "Design":
+      return "bg-lightMode-accentGreen/10 text-lightMode-accentGreen dark:bg-darkMode-accentGreen/10 dark:text-darkMode-accentGreen";
+    case "Business and Marketing":
+      return "bg-lightMode-accentOrange/10 text-lightMode-accentOrange dark:bg-darkMode-accentOrange/10 dark:text-darkMode-accentOrange";
+    case "Human Resource":
+      return "bg-lightMode-accentPurple/10 text-lightMode-accentPurple dark:bg-darkMode-accentPurple/10 dark:text-darkMode-accentPurple";
     default:
-      return "bg-gray-200";
+      return "bg-lightMode-accentLightBlue/10 text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/10 dark:text-darkMode-accentLightBlue";
   }
-};
+}
 
 const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
   <div className="flex flex-col items-center">
     <div className="relative flex flex-col items-center">
-      <div className="flex flex-col items-center justify-center p-3 bg-white rounded-lg border shadow-sm min-w-[200px]">
+      <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-black rounded-lg border-2 border-borders-primary dark:border-borders-secondary shadow-sm min-w-[200px]">
         <img
           src={employee.image}
           alt={employee.name}
@@ -129,6 +132,7 @@ const renderTree = (data: Employee): React.ReactNode => (
 );
 
 export default function OrganizationalChart() {
+  const {theme} = useTheme();
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center mb-6">
@@ -136,30 +140,33 @@ export default function OrganizationalChart() {
           Organisational Chart
         </h2>
         <div className="flex items-center gap-4">
-        <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border border-gray-400 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground">
-              <EditIcon className="text-lightMode-primaryText dark:text-darkMode-primaryText" size={18} />
-              Edit Organisation
-            </button>
+          <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2  rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary">
+            <EditIcon
+              className="text-lightMode-primaryText dark:text-darkMode-primaryText"
+              size={18}
+            />
+            Edit Organisation
+          </button>
         </div>
       </div>
-    <div
-      className="flex w-[calc(100vw-19.5rem)]
+      <div
+        className="flex w-[calc(100vw-19.5rem)]
     h-[calc(100vh-250px)] overflow-auto componentScroll  
-    bg-dots-pattern border rounded-xl p-8"
-    >
-      <div>
-        <Tree
-          lineWidth={"2px"}
-          lineColor={"#CBD5E0"}
-          lineBorderRadius={"10px"}
-          label={<EmployeeNode employee={orgData} />}
-        >
-          {orgData.children?.map((child, index) => (
-            <React.Fragment key={index}>{renderTree(child)}</React.Fragment>
-          ))}
-        </Tree>
+    bg-dots-pattern border-2 border-borders-primary dark:border-borders-secondary rounded-xl p-8"
+      >
+        <div>
+          <Tree
+            lineWidth={"2px"}
+            lineColor={theme === "dark" ? "#4B5563" : "#E5E7EB"}
+            lineBorderRadius={"10px"}
+            label={<EmployeeNode employee={orgData} />}
+          >
+            {orgData.children?.map((child, index) => (
+              <React.Fragment key={index}>{renderTree(child)}</React.Fragment>
+            ))}
+          </Tree>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

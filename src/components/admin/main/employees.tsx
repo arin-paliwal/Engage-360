@@ -66,7 +66,7 @@ export default function Employee() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border border-gray-400 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground">
+            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary">
               <DownloadCloudIcon className="w-5 h-5 text-lightMode-primaryText dark:text-darkMode-primaryText" />
               Export
             </button>
@@ -76,7 +76,7 @@ export default function Employee() {
             </button>
           </div>
         </div>
-        <div className="flex gap-8 border-b border-borders-primary">
+        <div className="flex gap-8 border-b border-borders-primary dark:border-borders-secondary">
           {tabs.map((tab) => (
             <Tab
               key={tab.id}
@@ -89,7 +89,7 @@ export default function Employee() {
           ))}
         </div>
       </div>
-      <div className="bg-white overflow-x-auto p-6 w-full">
+      <div className="bg-white dark:bg-darkMode-background overflow-x-auto p-6 w-full">
         {tabs.find((tab) => tab.id === activeTab)?.component}
       </div>
     </div>
@@ -99,7 +99,7 @@ const Tab = ({ activeTab, setActiveTab, tabId, icon, label }: TabProps) => {
   return (
     <button
       onClick={() => setActiveTab(tabId)}
-      className={`flex items-center gap-2 px-1 py-3 border-b-2 ${
+      className={`flex items-center gap-2 px-1 py-3 border-b-2  ${
         activeTab === tabId
           ? "border-lightMode-accentBlue dark:border-darkMode-accentBlue text-lightMode-accentBlue dark:text-darkMode-accentBlue"
           : "border-transparent text-lightMode-secondaryText dark:text-darkMode-secondaryText"
