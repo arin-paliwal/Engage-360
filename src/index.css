@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.bg-dots-pattern {
+  background-image: radial-gradient(circle, gray .5px, transparent .9px);
+  background-size: 20px 20px;
+}
+.componentScroll {
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.componentScroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
