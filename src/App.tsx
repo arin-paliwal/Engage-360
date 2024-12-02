@@ -1,7 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { routesConfig } from "./routes/Config";
-import PrivateRoute from "./routes/ProtectedRoute";
+import { routesConfig } from "./routes/routes-config";
+import PrivateRoute from "./routes/protected-routes";
 
 function App() {
   return (

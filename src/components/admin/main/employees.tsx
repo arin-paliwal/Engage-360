@@ -57,7 +57,7 @@ export default function Employee() {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
+              <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
                 Employee
               </h1>
               <p className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">

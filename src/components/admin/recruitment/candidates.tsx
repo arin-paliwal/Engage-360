@@ -71,11 +71,11 @@ const statusStyles = {
 }
 
 const statusCount = {
-  SOURCED: '05',
+  'SOURCED': '05',
   'IN PROGRESS': '03',
-  INTERVIEW: '03',
-  HIRED': '01',
-  REJECTED: '05'
+  'INTERVIEW': '03',
+  'HIRED': '01',
+  'REJECTED': '05'
 }
 
 export default function CandidatesPage() {
@@ -97,39 +97,7 @@ export default function CandidatesPage() {
   return (
     <div className="min-h-screen bg-lightMode-background dark:bg-darkMode-background">
       <div className="max-w-[1400px] mx-auto p-6">
-        {/* Header */}
-        <div className="mb-6">
-          <a 
-            href="/jobs"
-            className="inline-flex items-center text-lightMode-secondaryText dark:text-darkMode-secondaryText hover:text-lightMode-primaryText dark:hover:text-darkMode-primaryText"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Job List
-          </a>
-          <h1 className="text-2xl font-bold text-lightMode-primaryText dark:text-darkMode-primaryText mt-4">
-            UI/UX Designer
-          </h1>
-        </div>
 
-        {/* Tabs */}
-        <div className="border-b border-borders-primary mb-6">
-          <div className="flex gap-8">
-            <a 
-              href="job-description"
-              className="pb-4 text-lightMode-secondaryText dark:text-darkMode-secondaryText hover:text-lightMode-primaryText dark:hover:text-darkMode-primaryText"
-            >
-              Job Description
-            </a>
-            <a 
-              href="candidates"
-              className="pb-4 text-lightMode-accentBlue dark:text-darkMode-accentBlue border-b-2 border-lightMode-accentBlue dark:border-darkMode-accentBlue"
-            >
-              Candidates
-            </a>
-          </div>
-        </div>
-
-        {/* Search and Add */}
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
             Candidates

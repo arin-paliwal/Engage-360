@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, Plus, Users2 } from "lucide-react";
 import { jobs } from "../../../data/admin-dashboard";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../../context";
 
 const categoryColors: Record<string, string> = {
   Design: "#B6EDD8",
@@ -15,7 +16,7 @@ const categoryColors: Record<string, string> = {
 
 export default function Recruitment() {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+  const { dispatch } = useAppContext();
 
   return (
     <div className="min-h-screen p-6">
@@ -65,7 +66,9 @@ export default function Recruitment() {
           {jobs.map((job) => (
             <div
               key={job.id}
-              onClick={() => navigate(`/admin/dashboard/recruitment/job/${job.id}`)}
+              onClick={() => {
+                dispatch({ type: "SET_ADMIN_STATE", payload: "R-JD" });
+              }}
               className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-black cursor-pointer flex gap-4 duration-300 transform"
             >
               <div className="flex flex-col h-full">
@@ -88,7 +91,9 @@ export default function Recruitment() {
                     className="px-3 py-1 rounded-lg flex justify-center items-center"
                     style={{ backgroundColor: categoryColors[job.type[0]] }}
                   >
-                    <span className="font-medium text-black">{job.type[0]}</span>
+                    <span className="font-medium text-black">
+                      {job.type[0]}
+                    </span>
                   </div>
                   <div
                     className="px-3 py-1 rounded-lg border-2 border-borders-primary dark:border-borders-secondary flex justify-center items-center"

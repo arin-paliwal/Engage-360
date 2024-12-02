@@ -4,6 +4,8 @@ import Employee from "./main/employees";
 import Payrolls from "./main/payrolls";
 import Recruitment from "./main/recruitment";
 import Schedule from "./main/schedule";
+import CandidatesPage from "./recruitment/candidates";
+import JobDescription from "./recruitment/job-description";
 
 const AdminDashboardComponent = () => {
   const { state } = useAppContext(); 
@@ -20,6 +22,11 @@ const AdminDashboardComponent = () => {
         return <Payrolls />;
       case "Schedule":
         return <Schedule />;
+      case "R-JD":
+        return <JobDescription />;
+      case "R-Candidates":
+        return <CandidatesPage />;
+      
       default:
         return <div>Please select a valid admin state.</div>;
     }

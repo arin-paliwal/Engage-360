@@ -151,7 +151,7 @@ export default function OrganizationalChart() {
       </div>
       <div
         className="flex w-[calc(100vw-19.5rem)]
-    h-[calc(100vh-250px)] overflow-auto componentScroll  
+    h-[calc(100vh-260px)] overflow-auto componentScroll  
     bg-dots-pattern border-2 border-borders-primary dark:border-borders-secondary rounded-xl p-8"
       >
         <div>
