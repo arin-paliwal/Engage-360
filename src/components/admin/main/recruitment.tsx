@@ -18,11 +18,11 @@ export default function Recruitment() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen p-6 bg-lightMode-background">
+    <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-[#3C41E9] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-lightMode-accentBlue flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
                 className="w-6 h-6 text-white"
@@ -41,7 +41,7 @@ export default function Recruitment() {
               <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
                 Recruitment
               </h1>
-              <p className="text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+              <p className="text-lightMode-secondaryText dark:text-darkMode-secondaryText text-sm">
                 Manage recruitment process
               </p>
             </div>
@@ -49,13 +49,13 @@ export default function Recruitment() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border border-gray-400 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
+              className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
             >
               <Users2 size={18} />
               <span>Active Jobs</span>
               <ChevronDown className="w-4 h-4" />
             </button>
-            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue text-white rounded-lg hover:opacity-90">
+            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-lightMode-accentBlue text-white rounded-lg hover:opacity-90">
               <Plus size={18} />
               <span>Create New Job</span>
             </button>
@@ -66,13 +66,13 @@ export default function Recruitment() {
             <div
               key={job.id}
               onClick={() => navigate(`/admin/dashboard/recruitment/job/${job.id}`)}
-              className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground cursor-pointer flex gap-4 duration-300 transform"
+              className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-black cursor-pointer flex gap-4 duration-300 transform"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-4">
                   <div className="inline-flex px-3 py-1 rounded-md text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText border-2 border-borders-primary dark:border-borders-secondary">
                     Active until:&nbsp;
-                    <span className="font-bold text-black">
+                    <span className="font-bold text-black dark:text-white">
                       {job.activeUntil}
                     </span>
                   </div>
@@ -88,16 +88,16 @@ export default function Recruitment() {
                     className="px-3 py-1 rounded-lg flex justify-center items-center"
                     style={{ backgroundColor: categoryColors[job.type[0]] }}
                   >
-                    <span className="font-medium">{job.type[0]}</span>
+                    <span className="font-medium text-black">{job.type[0]}</span>
                   </div>
                   <div
-                    className="px-3 py-1 rounded-lg border-2 flex justify-center items-center"
+                    className="px-3 py-1 rounded-lg border-2 border-borders-primary dark:border-borders-secondary flex justify-center items-center"
                     style={{ backgroundColor: categoryColors[job.type[1]] }}
                   >
                     <span className="">{job.type[1]}</span>
                   </div>
                   <div
-                    className="px-3 py-1 rounded-lg border-2 flex justify-center items-center"
+                    className="px-3 py-1 rounded-lg border-2 border-borders-primary dark:border-borders-secondary  flex justify-center items-center"
                     style={{ backgroundColor: categoryColors[job.type[2]] }}
                   >
                     <span className="">{job.type[2]}</span>
