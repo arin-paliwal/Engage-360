@@ -45,7 +45,7 @@ export default function Sidebar() {
         </div>
         <nav className="space-y-1">
           {[
-            { name: "Dashboard", icon: BarChart3 },
+            // { name: "Dashboard", icon: BarChart3 },
             { name: "Employee", icon: Users },
             { name: "Recruitment", icon: UserPlus },
             { name: "Payroll", icon: DollarSign },

@@ -8,7 +8,7 @@ type AppState = {
 
 const initialState: AppState = {
   state: "",
-  adminState: "Dashboard",
+  adminState: localStorage.getItem("adminState") || "Employee",
 };
 
 const appReducer = (state: AppState, action: AppAction): AppState => {
@@ -16,6 +16,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
     case "SET_STATE":
       return { ...state, state: action.payload };
     case "SET_ADMIN_STATE":
+      localStorage.setItem("adminState", action.payload);
       return { ...state, adminState: action.payload };
     default:
       return state;

@@ -1,4 +1,5 @@
 import { Search, MoreVertical } from 'lucide-react'
+import InitialAvatar from '../../../utility/initialAvatar'
 
 interface Employee {
   id: number
@@ -111,7 +112,8 @@ export default function ManageEmployee() {
         {employees.map((employee, index) => (
           <div key={employee.id} className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200">
             <div className="flex items-center gap-3">
-              <img src={`https://avatar.iran.liara.run/public/${index}`} alt="" className="w-10 h-10 rounded-full" />
+              {/* <img src={`https://avatar.iran.liara.run/public/${index}`} alt="" className="w-10 h-10 rounded-full" /> */}
+              <InitialAvatar name={employee.name} size="sm" />
               <div>
                 <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">{employee.name}</div>
                 <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">{employee.email}</div>

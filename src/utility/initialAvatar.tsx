@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 interface InitialAvatarProps {
   name: string;
-  size?: "sm" | "md";
+  size?: "sm" | "md";s
+  borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
 }
 
 const satisfyingColors = [
@@ -12,7 +13,7 @@ const satisfyingColors = [
   "#B5E0CC", "#A6D3E8", "#D3A6E8", "#FFC9A3", "#E8BFA6",
 ];
 
-export default function InitialAvatar({ name, size = "md" }: InitialAvatarProps) {
+export default function InitialAvatar({ name, size = "md",borderRadius="md" }: InitialAvatarProps) {
   const [initials, setInitials] = useState<string>();
   const [color, setColor] = useState<string>();
   const [textColor, setTextColor] = useState<string>();
@@ -53,7 +54,7 @@ export default function InitialAvatar({ name, size = "md" }: InitialAvatarProps)
   return (
     <div
       className={`flex items-center justify-center 
-        ${size === "sm" ? "w-8 h-8" : "w-10 h-10"} rounded-md`}
+        ${size === "sm" ? "w-8 h-8" : "w-10 h-10"} rounded-${borderRadius}`}
       style={{ backgroundColor: color }}
     >
       <p

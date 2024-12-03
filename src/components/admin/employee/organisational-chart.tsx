@@ -4,6 +4,7 @@ import React from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import { Edit2, EditIcon, ZoomIn, ZoomOut } from "lucide-react";
 import { useTheme } from "next-themes";
+import InitialAvatar from "../../../utility/initialAvatar";
 
 interface Employee {
   name: string;
@@ -109,11 +110,12 @@ const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
   <div className="flex flex-col items-center">
     <div className="relative flex flex-col items-center">
       <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-black rounded-lg border-2 border-borders-primary dark:border-borders-secondary shadow-sm min-w-[200px]">
-        <img
+        {/* <img
           src={employee.image}
           alt={employee.name}
           className="w-10 h-10 rounded-full border-2 border-white"
-        />
+        /> */}
+        <InitialAvatar name={employee.name} size="sm" borderRadius="full" />
         <div className="mt-2 text-center">
           <div className="font-medium text-sm">{employee.name}</div>
           <div className="text-xs text-gray-500">{employee.role}</div>

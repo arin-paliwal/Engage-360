@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, Search, Plus, Clock, Users, Link, Linkedin, PersonStanding } from "lucide-react";
+import InitialAvatar from "../../../utility/initialAvatar";
 
 interface Candidate {
   id: string;
@@ -146,11 +147,12 @@ export default function CandidatesPage() {
                   className="p-3 bg-white dark:bg-darkMode-secondaryBackground rounded-lg border-2 border-borders-primary dark:border-borders-secondary text-sm flex flex-col"
                 >
                   <div className="flex items-start gap-3">
-                    <img
+                    {/* <img
                       src={`https://avatar.iran.liara.run/public/20`}
                       alt=""
                       className="w-10 h-10 rounded-full"
-                    />
+                    /> */}
+                    <InitialAvatar name={candidate.name} size="sm" borderRadius="full" />
                     <div>
                       <h3 className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
                         {candidate.name}

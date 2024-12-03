@@ -63,11 +63,11 @@ const Schedule: React.FC = () => {
     }
   };
 
-  const handleDateClick = (day: number) => {
+  const handleDateClick = (day: number|string) => {
     const selected = new Date(Date.UTC(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      day
+      Number(day)
     ));
     setSelectedDate(selected);
     setModalOpen(true);
@@ -140,7 +140,7 @@ const Schedule: React.FC = () => {
       </div>
 
       {/* Calendar */}
-      <div className="bg-lightMode-background dark:bg-darkMode-secondaryBackground rounded-lg shadow-lg p-6">
+      <div className="bg-lightMode-background dark:bg-darkMode-secondaryBackground rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <button
@@ -211,7 +211,7 @@ const Schedule: React.FC = () => {
                         new Date(
                           currentDate.getFullYear(),
                           currentDate.getMonth(),
-                          day.day
+                          Number(day.day)
                         ).toDateString()
                     )
                     .map((event, idx) => (

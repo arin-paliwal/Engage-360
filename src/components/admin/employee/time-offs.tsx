@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MoreVertical, Search, Check, X } from 'lucide-react';
 import { getRandomNumber } from "./organisational-chart";
+import InitialAvatar from "../../../utility/initialAvatar";
 
 interface TimeOffRequest {
   id: number;
@@ -104,7 +105,8 @@ export default function Timeoff() {
             className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b-2 border-borders-primary dark:border-borders-secondary last:border-b-0"
           >
             <div className="flex items-center gap-3">
-              <img src={`https://avatar.iran.liara.run/public/${getRandomNumber()}`} alt="" className="w-10 h-10 rounded-full" />
+              {/* <img src={`https://avatar.iran.liara.run/public/${getRandomNumber()}`} alt="" className="w-10 h-10 rounded-full" /> */}
+              <InitialAvatar name={request.employee.name} size="sm" />
               <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
                 {request.employee.name}
               </div>
