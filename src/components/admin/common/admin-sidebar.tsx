@@ -56,7 +56,7 @@ export default function Sidebar() {
               onClick={() =>
                 dispatch({ type: "SET_ADMIN_STATE", payload: item.name })
               }
-              className={`flex items-center border gap-3 w-full px-3 py-2 text-sm rounded-md transition-colors ${
+              className={`flex items-center border-2 gap-3 w-full px-3 py-2 text-sm rounded-md transition-colors ${
                 state.adminState === item.name
                   ? "bg-lightMode-accentBlue/20 text-lightMode-accentBlue dark:bg-darkMode-accentBlue/10 dark:text-darkMode-accentBlue border-lightMode-accentBlue dark:border-darkMode-accentBlue"
                   : "text-lightMode-primaryText dark:text-darkMode-primaryText border-transparent hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
