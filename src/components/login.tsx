@@ -40,7 +40,7 @@ export default function Login() {
       <div className="relative w-full md:w-1/2 flex items-center justify-center px-6">
         <div className="absolute top-4 left-4">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
             className="p-2 bg-lightMode-accentBlue text-white cursor-pointer hover:rotate-180 duration-300 transform rounded-full"
           >
             <ChevronLeft size={22} />
