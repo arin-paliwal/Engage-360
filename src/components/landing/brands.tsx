@@ -11,7 +11,7 @@ const Brands = () => {
         { id: 13, src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" },
       ];
   return (
-    <div className="slider-container bg-white dark:bg-black my-[6rem] grayscale">
+    <div className="slider-container bg-white dark:bg-black grayscale">
       <div className="slider bg-white dark:bg-black">
         <div className="slide-track bg-white dark:bg-black">
           {images.map(image => (

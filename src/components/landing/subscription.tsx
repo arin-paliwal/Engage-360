@@ -40,7 +40,7 @@ export default function Subscription() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className=" bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-2">
           Everything You Need to Manage

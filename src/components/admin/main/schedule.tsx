@@ -115,7 +115,7 @@ const Schedule: React.FC = () => {
   }, [modalOpen]);
 
   return (
-    <div className="flex flex-col h-screen p-6 space-y-2 overflow-y-scroll bg-white dark:bg-black">
+    <div className="flex flex-col h-screen p-6 overflow-y-scroll bg-white dark:bg-black">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 bg-blue-500 dark:bg-blue-600 rounded-lg flex items-center justify-center">
@@ -183,7 +183,7 @@ const Schedule: React.FC = () => {
             {generateCalendarDays().map((day, index) => (
               <div
                 key={index}
-                className={`min-h-[120px] p-2 border-r border-b last:border-r-0 dark:border-gray-700 ${
+                className={`min-h-[120px] p-2 border-r border-b last:border-r-0 dark:border-gray-700 cursor-pointer hover:bg-white dark:bg-black duration-300 transform ${
                   !day.isCurrentMonth ? "bg-gray-50 dark:bg-gray-800" : ""
                 }`}
                 onClick={() => day.isCurrentMonth && handleDateClick(day.day)}

@@ -1,9 +1,11 @@
 import { ChevronRight, Moon, StarIcon, Sun, Tv } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TypewriterComponent from "typewriter-effect";
 
 export default function Hero() {
+  const  navigate  = useNavigate();
   const words = [
     "Businesses",
     "Startups",
@@ -19,7 +21,7 @@ export default function Hero() {
   return (
     <section className="relative flex bg-dots-pattern-hero flex-row h-screen items-center justify-center">
       <div className="absolute top-0 left-0 p-6 text-2xl">
-        <h1 className="">Enagage360</h1>
+        <h1 className="text-3xl font-semibold">Enagage360</h1>
       </div>
       <div className="absolute top-0 right-1/2 p-6 text-2xl">
       
@@ -45,8 +47,10 @@ export default function Hero() {
             We provide a comprehensive suite of financial services <br /> to
             help businesses grow and prosper.
           </p>
-          <div className="flex items-center gap-2 mb-3">
-            <button className="border-2 border-lightMode-accentBlue bg-lightMode-accentBlue p-3 text-sm w-[12rem] text-white rounded-md flex items-center gap-2 justify-center">
+          <div className="flex items-center gap-2 mb-6">
+            <button className="border-2 border-lightMode-accentBlue bg-lightMode-accentBlue p-3 text-sm w-[12rem] text-white rounded-md flex items-center gap-2 justify-center"
+            onClick={()=>navigate("/login")}
+            >
               Get Started Now
               <ChevronRight size={16} />
             </button>

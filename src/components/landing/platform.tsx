@@ -1,14 +1,13 @@
 export default function Platform() {
   return (
     <section className="">
-      <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-semibold text-center mb-2">
           One Customer Platform
         </h2>
         <p className="text-gray-700 text-center mb-12 text-3xl">
           Everyone's Business
         </p>
-        <div className="grid md:grid-cols-3 gap-8 px-6 py-8">
+        <div className="flex flex-row gap-4 justify-center">
           {[
             {
               title: "Employee Management and Payroll",
@@ -37,21 +36,21 @@ export default function Platform() {
           ].map((feature) => (
             <div
               key={feature.title}
-              className="p-4 rounded-lg w-full flex flex-col duration-300"
+              className="p-4 rounded-lg w-[23rem] h-[30rem] flex flex-col duration-300"
               style={{ backgroundColor: feature.color }}
             >
-              <div className="w-full mb-4 h-full">
+              <div className="w-full mb-4 h-[15rem] ">
                 <img
                   src={feature.image}
                   alt={feature.image}
-                  className="w-full h-full rounded object-cover"
+                  className="rounded h-full object-cover"
                 />
               </div>
-              <div className="flex flex-col gap-3 px-4">
-                <h3 className="px-2 py-1 rounded-md bg-[#cfd5da] w-fit mb-3 text-xs">
+              <div className="flex flex-col gap-1 p-3">
+                <h3 className="px-3 py-1 rounded-md bg-gray-200 w-fit mb-3 text-sm">
                   {feature.tag}
                 </h3>
-                <h3 className="font-semibold">{feature.title}</h3>
+                <h3 className="font-medium text-xl">{feature.title}</h3>
                 <p className="text-gray-600 text-sm">
                   {feature.description}
                 </p>
@@ -59,7 +58,6 @@ export default function Platform() {
             </div>
           ))}
         </div>
-      </div>
     </section>
   );
 }

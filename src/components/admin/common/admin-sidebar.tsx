@@ -1,22 +1,24 @@
 'use client'
 
 import {
-  BarChart3,
   Users,
   UserPlus,
   DollarSign,
   Calendar,
   Settings,
-  HelpCircle,
   Sun,
   Moon,
+  LogOutIcon,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAppContext } from "../../../context"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 export default function Sidebar() {
   const { state, dispatch } = useAppContext()
   const { theme, setTheme } = useTheme()
+  const navigate = useNavigate()
 
   return (
     <div className="fixed w-64 border-r border-borders-primary dark:border-borders-secondary h-screen z-50 bg-lightMode-background dark:bg-darkMode-background rounded-md">
@@ -97,18 +99,25 @@ export default function Sidebar() {
           OTHER
         </div>
         <nav className="space-y-1">
-          {[
-            { name: "Setting", icon: Settings },
-            { name: "Help Center", icon: HelpCircle },
-          ].map((item) => (
-            <button
-              key={item.name}
+        <button
               className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground transition-colors"
             >
-              <item.icon className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
-              {item.name}
+              <Settings className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
+              Settings
             </button>
-          ))}
+            <button
+              className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-red-600 hover:text-white transition-colors"
+              onClick={()=>{
+                localStorage.clear();
+                toast.success("Logged out successfully")
+                setTimeout(() => {
+                  navigate("/login")
+                }, 1000);
+              }}
+            >
+              <LogOutIcon className="" size={18} />
+              Logout
+            </button>
         </nav>
       </div>
     </div>

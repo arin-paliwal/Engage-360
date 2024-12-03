@@ -30,6 +30,10 @@ export default function Login() {
   };
   const navigate = useNavigate();
 
+  const handleLogin = () => {
+    navigate("/admin/dashboard");
+  };
+
   return (
     <div className="h-screen flex flex-wrap bg-lightMode-background dark:bg-darkMode-background">
       {/* Left Section */}
@@ -39,7 +43,7 @@ export default function Login() {
             onClick={() => navigate(-1)}
             className="p-2 bg-lightMode-accentBlue text-white cursor-pointer hover:rotate-180 duration-300 transform rounded-full"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={22} />
           </button>
         </div>
         <div className="absolute top-4 right-4">
@@ -108,6 +112,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg flex items-center gap-3 w-[8rem] justify-center"
+                onClick={handleLogin}
               >
                 Login
                 <Unlock size={16} />
