@@ -4,6 +4,7 @@ import Hero from '../components/landing/hero'
 import Brands from '../components/landing/brands'
 import Platform from '../components/landing/platform'
 import Needs from '../components/landing/needs'
+import Subscription from '../components/landing/subscription'
 
 export default function LandingPage() {
   return (
@@ -12,98 +13,10 @@ export default function LandingPage() {
       <Brands />
       <Platform />
       <Needs />
-
+      <Subscription />
 
       {/* Pricing */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-2">
-            Everything You Need to Manage
-          </h2>
-          <p className="text-gray-600 text-center mb-12">
-            and Control Global Spend
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Premium Cards",
-                price: "$19",
-                features: [
-                  "Basic card management",
-                  "Standard support",
-                  "Up to 5 users",
-                ],
-              },
-              {
-                name: "All-In-One Spend",
-                price: "$39",
-                features: [
-                  "Advanced card management",
-                  "Priority support",
-                  "Up to 20 users",
-                  "Custom workflows",
-                ],
-                popular: true,
-              },
-              {
-                name: "Enterprise",
-                price: "$69",
-                features: [
-                  "Enterprise card management",
-                  "24/7 support",
-                  "Unlimited users",
-                  "Custom integration",
-                ],
-              },
-            ].map((plan) => (
-              <div
-                key={plan.name}
-                className={`bg-white p-8 rounded-lg border ${
-                  plan.popular
-                    ? "ring-2 ring-teal-600 scale-105"
-                    : "hover:shadow-lg"
-                } transition-all`}
-              >
-                <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-gray-600">/month</span>
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2">
-                      <svg
-                        className="w-5 h-5 text-teal-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#"
-                  className={`block text-center py-2 px-4 rounded ${
-                    plan.popular
-                      ? "bg-teal-600 text-white hover:bg-teal-700"
-                      : "border border-teal-600 text-teal-600 hover:bg-teal-50"
-                  }`}
-                >
-                  Get Started
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* FAQs */}
       <section className="py-16 md:py-24">
