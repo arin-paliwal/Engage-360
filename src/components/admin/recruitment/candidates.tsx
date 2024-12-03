@@ -67,7 +67,7 @@ enum StatusColors {
   SOURCED = "bg-lightMode-accentOrange/30",
   IN_PROGRESS = "bg-lightMode-accentGreen/30",
   INTERVIEW = "bg-lightMode-accentBlue/30",
-  HIRED = "bg-lightMode-accentOrange/30",
+  HIRED = "bg-lightMode-accentLightBlue/30",
   REJECTED = "bg-lightMode-accentPurple/30",
 }
 
