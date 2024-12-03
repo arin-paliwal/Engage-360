@@ -1,15 +1,45 @@
-import { ChevronRight, StarIcon, Tv } from "lucide-react";
+import { ChevronRight, Moon, StarIcon, Sun, Tv } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
+import TypewriterComponent from "typewriter-effect";
 
 export default function Hero() {
+  const words = [
+    "Businesses",
+    "Startups",
+    "Enterprises",
+    "SMEs",
+    "Corporations",
+  ];
+  const {theme, setTheme} = useTheme();
+  useEffect(() => {
+    setTheme("light");
+  }, []);
+  
   return (
-    <section className="flex px-6 flex-row h-full items-center justify-center">
+    <section className="relative flex bg-dots-pattern-hero flex-row h-screen items-center justify-center">
+      <div className="absolute top-0 left-0 p-6 text-2xl">
+        <h1 className="">Enagage360</h1>
+      </div>
+      <div className="absolute top-0 right-1/2 p-6 text-2xl">
+      
+      </div>
       <div className="w-1/2 flex justify-center">
         <div className="flex flex-col justify-center gap-2">
           <div className="text-4xl tracking-wide md:text-6xl mb-3">
             A Revolutionary and
             <br /> Reliable Solution for
             <br />
-            <span className="text-gray-600">Global Finance</span>
+            <span className="text-gray-600">
+            <TypewriterComponent
+            options={{
+              strings: words,
+              autoStart: true,
+              loop: true,
+              deleteSpeed: 0.2,
+            }}
+          />
+            </span>
           </div>
           <p className="text-gray-600 mb-8">
             We provide a comprehensive suite of financial services <br /> to
@@ -28,20 +58,20 @@ export default function Hero() {
           <div className="flex gap-4">
             <div className="flex">
               <div className="w-8 h-8 border-2 border-white dark:border-black rounded-full">
-                <img src={`https://avatar.iran.liara.run/public/45`} />
+                <img src={`/public/avatars/1.png`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`https://avatar.iran.liara.run/public/46`} />
+                <img src={`/public/avatars/2.png`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`https://avatar.iran.liara.run/public/47`} />
+                <img src={`/public/avatars/3.png`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`https://avatar.iran.liara.run/public/48`} />
+                <img src={`/public/avatars/4.png`} />
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center gap-">
+              <div className="flex items-center">
               {Array(5)
                 .fill(null)
                 .map((_, i) => (
@@ -64,7 +94,7 @@ export default function Hero() {
         <img
           src="/images/hero.jpg"
           alt="Platform Preview"
-          className="bject-cover rounded-lg h-[calc(100vh-4rem)]"
+          className="bject-cover h-screen"
         />
       </div>
     </section>

@@ -1,89 +1,15 @@
 import { ChevronDown } from 'lucide-react'
 import Navbar from '../components/landing/navbar'
 import Hero from '../components/landing/hero'
+import Brands from '../components/landing/brands'
+import Platform from '../components/landing/platform'
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col">
-      <div className='flex flex-col h-screen'>
-      <Navbar />
       <Hero />
-      </div>
-      {/* Partners */}
-      <section className="border-y bg-gray-50 py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-gray-600 mb-8">
-            Industry leaders trust Paycelest to grow their revenue
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
-            {["Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5"].map(
-              (partner) => (
-                <img
-                  key={partner}
-                  src="/placeholder.svg?height=40&width=120"
-                  alt={partner}
-                  width={120}
-                  height={40}
-                  className="opacity-60 hover:opacity-100 transition-opacity"
-                />
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-2">
-            One Customer Platform
-          </h2>
-          <p className="text-gray-600 text-center mb-12">
-            Everyone's Business
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Accounts payable & purchase orders",
-                description:
-                  "Streamline your accounts payable process with automated workflows.",
-              },
-              {
-                title: "All your spend. One platform",
-                description:
-                  "Manage all your business spending in one place with complete visibility.",
-              },
-              {
-                title: "Dedicated in multiple currencies",
-                description:
-                  "Handle transactions in multiple currencies with ease.",
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="bg-white p-6 rounded-lg border hover:shadow-lg transition-shadow"
-              >
-                <img
-                  src="/placeholder.svg?height=200&width=300"
-                  alt={feature.title}
-                  width={300}
-                  height={200}
-                  className="mb-4 rounded"
-                />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-                <a
-                  href="#"
-                  className="text-teal-600 hover:text-teal-700 mt-4 inline-block"
-                >
-                  Learn More
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <Brands />
+      <Platform />
       {/* Testimonial */}
       <section className="bg-gray-900 text-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">

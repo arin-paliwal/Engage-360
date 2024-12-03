@@ -14,6 +14,10 @@
   background-image: radial-gradient(circle, gray .5px, transparent .9px);
   background-size: 20px 20px;
 }
+.bg-dots-pattern-hero {
+  background-image: radial-gradient(circle, gray .5px, transparent .5px);
+  background-size: 20px 20px;
+}
 .componentScroll {
   overflow: auto;
   scrollbar-width: none;
@@ -22,4 +26,37 @@
 .componentScroll::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  height: 100px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+}
+
+.slide-track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 10);
+}
+
+.slide {
+  height: 100px;
+  width: 250px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 5));
+  }
 }
