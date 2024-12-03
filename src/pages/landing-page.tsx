@@ -3,6 +3,7 @@ import Navbar from '../components/landing/navbar'
 import Hero from '../components/landing/hero'
 import Brands from '../components/landing/brands'
 import Platform from '../components/landing/platform'
+import Needs from '../components/landing/needs'
 
 export default function LandingPage() {
   return (
@@ -10,36 +11,8 @@ export default function LandingPage() {
       <Hero />
       <Brands />
       <Platform />
-      {/* Testimonial */}
-      <section className="bg-gray-900 text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <img
-              src="/placeholder.svg?height=400&width=400"
-              alt="Customer"
-              width={400}
-              height={400}
-              className="rounded-lg"
-            />
-            <div>
-              <h2 className="text-3xl font-bold mb-2">
-                Designed Based on
-                <br />
-                <span className="text-gray-400">Our Consumers' Needs</span>
-              </h2>
-              <p className="text-gray-400 mb-6">
-                "I have been using Paycelest Solution for my business, and I must say, it has been a game-changer. The platform is incredibly intuitive. I love about the insight and data-driven approach of this platform. It has helped me."
-              </p>
-              <div className="flex items-center gap-4">
-                <div>
-                  <p className="font-semibold">Sarah Smith</p>
-                  <p className="text-gray-400">CEO, Tech Solutions Inc.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Needs />
+
 
       {/* Pricing */}
       <section className="py-16 md:py-24 bg-gray-50">

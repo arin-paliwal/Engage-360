@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 interface InitialAvatarProps {
   name: string;
-  size?: "sm" | "md";s
+  size?: "sm" | "md"
   borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
 }
 
