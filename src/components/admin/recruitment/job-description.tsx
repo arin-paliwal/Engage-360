@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
-  ArrowLeft,
   Edit,
   Calendar,
   Building,
@@ -13,13 +12,16 @@ import {
   Pencil,
   UserPlus,
 } from "lucide-react";
-import { useAppContext } from "../../../context";
 import CandidatesPage from "./candidates";
 
-export default function JobDescription() {
-  const job_id = localStorage.getItem("job_id");
-  const { state, dispatch } = useAppContext();
-  const [subState, setSubState] = useState("Job Description");
+export default function JobDescription({
+  subState,
+  setSubState,
+}: {
+  subState: string;
+  setSubState: Dispatch<SetStateAction<string>>
+}) {
+  // const job_id = localStorage.getItem("job_id");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [jobDescription, setJobDescription] = useState({
     aboutCompany:
@@ -61,7 +63,7 @@ export default function JobDescription() {
         <button
           className="flex items-center text-lightMode-secondaryText dark:text-darkMode-secondaryText hover:text-lightMode-accentBlue dark:hover:text-darkMode-accentBlue transition-colors"
           onClick={() => {
-            dispatch({ type: "SET_ADMIN_STATE", payload: "Recruitment" });
+            setSubState("Active Jobs");
           }}
         >
           <ChevronLeft className="mr-2" size={18} />
@@ -80,7 +82,7 @@ export default function JobDescription() {
             }`}
             onClick={() => setSubState(tab)}
           >
-            {tab?.toLowerCase() === "job description" ? (
+            {tab === "Job Description" ? (
               <Pencil size={18} />
             ) : (
               <UserPlus size={18} />
