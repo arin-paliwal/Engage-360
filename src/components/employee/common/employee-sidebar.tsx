@@ -11,6 +11,7 @@ import {
   Projector,
   Workflow,
   CalendarCheck,
+  FolderKanban,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAppContext } from "../../../context"
@@ -50,8 +51,8 @@ export default function EmployeeSidebar() {
         <nav className="space-y-1">
           {[
             { name: "Attendance", icon: CalendarCheck },
-            { name: "ToDo", icon: Workflow },
-            { name: "ProjectManagement", icon: Projector },
+            { name: "To Do", icon: Workflow },
+            { name: "Project Management", icon: FolderKanban },
             { name: "Details", icon: User2 },
             { name: "Schedule", icon: Calendar },
           ].map((item) => (

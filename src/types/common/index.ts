@@ -35,6 +35,11 @@ export interface Employee {
     averageStartTime: string;
     averageEndTime: string;
   };
+  timeline:{
+    hired: string;
+    prohabation: string;
+    permanent: string;
+  }
   performanceRating: number | null;
   probationStatus: string;
   projectsAssigned: string[];

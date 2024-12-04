@@ -12,9 +12,9 @@ const EmployeeDashboardComponent = () => {
     switch (state.employeeState) {
       case "Attendance":
         return <Attendance />;
-      case "ToDo":
+      case "To Do":
         return <ToDoList />;
-      case "ProjectManagement":
+      case "Project Management":
         return <ProjectManagement />;
       case "Details":
         return <Details />;
