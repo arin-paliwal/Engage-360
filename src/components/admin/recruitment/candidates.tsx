@@ -60,8 +60,53 @@ const candidates: Candidate[] = [
     stages: 1,
     status: "REJECTED",
   },
-  // Add more candidates as needed...
+  {
+    id: "6",
+    name: "Carlos Mendez",
+    email: "carlos.mendez@email.com",
+    avatar: "/placeholder.svg?height=40&width=40",
+    interviews: 3,
+    stages: 2,
+    status: "IN PROGRESS",
+  },
+  {
+    id: "7",
+    name: "Jessica Bauer",
+    email: "jessica.bauer@email.com",
+    avatar: "/placeholder.svg?height=40&width=40",
+    interviews: 1,
+    stages: 1,
+    status: "SOURCED",
+  },
+  {
+    id: "8",
+    name: "Markus Clarke",
+    email: "markus.clarke@email.com",
+    avatar: "/placeholder.svg?height=40&width=40",
+    interviews: 6,
+    stages: 5,
+    status: "HIRED",
+  },
+  {
+    id: "9",
+    name: "Clara Jensen",
+    email: "clara.jensen@email.com",
+    avatar: "/placeholder.svg?height=40&width=40",
+    interviews: 3,
+    stages: 2,
+    status: "INTERVIEW",
+  },
+  {
+    id: "10",
+    name: "Oliver Perry",
+    email: "oliver.perry@email.com",
+    avatar: "/placeholder.svg?height=40&width=40",
+    interviews: 2,
+    stages: 1,
+    status: "REJECTED",
+  },
 ];
+
 
 enum StatusColors {
   SOURCED = "bg-lightMode-accentOrange/30",
