@@ -15,10 +15,35 @@ import {
   Building,
   Info,
   Timer,
+  IndianRupee,
+  ArrowUp01,
+  ArrowUpRightSquare,
+  ArrowUpRight,
+  File,
+  CloudDownload,
 } from "lucide-react";
 import InitialAvatar from "../../../utility/initialAvatar";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function Details() {
+  const { theme } = useTheme();
+  const [progress, setProgress] = useState(0);
+  const size = 100;
+  const strokeWidth = 10;
+  const center = size / 2;
+  const radius = center - strokeWidth / 2;
+  const circumference = 2 * Math.PI * radius;
+  const targetProgress = (18 / 30) * 100;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProgress(targetProgress);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const progressOffset = ((100 - progress) / 100) * circumference;
   const appointments = [
     {
       date: "12 Oct 2023",
@@ -39,6 +64,60 @@ export default function Details() {
       color: "bg-green-500",
     },
   ];
+  const payrolls = [
+    {
+      id: 1,
+      type: "Bank Transfer",
+      invoice: "INV-458",
+      amount: "₹15000",
+      status: "Paid",
+    },
+    {
+      id: 2,
+      type: "Bank Transfer",
+      invoice: "INV-459",
+      amount: "₹18700",
+      status: "Pending",
+    },
+    {
+      id: 3,
+      type: "Bank Transfer",
+      invoice: "INV-460",
+      amount: "₹23000",
+      status: "Paid",
+    },
+    {
+      id: 4,
+      type: "Bank Transfer",
+      invoice: "INV-461",
+      amount: "₹17800",
+      status: "Paid",
+    },
+    {
+      id: 5,
+      type: "Bank Transfer",
+      invoice: "INV-462",
+      amount: "₹15000",
+      status: "Pending",
+    },
+  ];
+  const documents = [{
+      name:"Offer_Letter.pdf",
+      size:"1.2 MB"
+    },{
+      name:"ID_Card.pdf",
+      size:"1.2 MB"
+    },{
+      name:"Resume.pdf",
+      size:"1.2 MB"
+    },{
+      name:"NDA.pdf",
+      size:"1.2 MB"
+    },{
+      name:"Bank_Details.pdf",
+      size:"1.2 MB"
+    }
+  ]
   return (
     <div className="h-screen overflow-auto p-6 flex flex-col gap-6">
       <div className="flex items-center gap-2">
@@ -186,166 +265,134 @@ export default function Details() {
                     {appointment.date}
                   </div>
                   <div className="border-2 border-borders-primary dark:border-borders-secondary p-3 rounded-lg">
-                  <div className="font-medium mb-">{appointment.title}</div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    <span className="text-sm">
-                      {appointment.doctor}
-                    </span>
-                  </div>
+                    <div className="font-medium mb-">{appointment.title}</div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-blue-500" />
+                      <span className="text-sm">{appointment.doctor}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Data Assurance Card */}
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-lightMode-accentBlue to-lightMode-accentPurple rounded-xl p-6 text-white">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="bg-white/20 rounded-lg p-2 inline-block mb-4">
-                    <span className="text-2xl">234-234-232-32</span>
-                  </div>
-                  <div className="space-y-2">
-                    <div>
-                      <p className="text-sm opacity-80">Expiry</p>
-                      <p>23/04/2024</p>
-                    </div>
-                    <div>
-                      <p className="text-sm opacity-80">Status</p>
-                      <p>Actived</p>
-                    </div>
-                  </div>
-                </div>
-                <button>
-                  <MoreVertical className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
-
-            {/* Member Dentalica */}
-            <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-6 shadow-sm">
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-lg font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
-                  Member Dentalica
-                </h2>
-                <img
-                  src="/placeholder.svg"
-                  alt="Dental illustration"
-                  width={80}
-                  height={80}
-                  className="rounded-lg"
-                />
+            <div className="flex bg-[#171717] p-6 flex-col text-white text-sm gap-5 rounded-2xl shadow-xl">
+              <div className="flex items-center justify-between">
+                <h1 className="">SDE2 @ Software</h1>
+                <h1 className="">Engage360</h1>
               </div>
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                    Start Date Joined
-                  </p>
-                  <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    12 Dec 2023
-                  </p>
+                <img src="/logos/chip.svg" alt="Chip logo" />
+                <img src="/logos/contactless.svg" alt="Chip logo" />
+              </div>
+              <div className="flex justify-between items-end">
+                <div className="flex flex-col mt-8">
+                  <h1 className="">EMPSDE458</h1>
+                  <h1 className="text-gray-200">Arin Paliwal</h1>
+                  <h1 className="text-gray-200">DOJ : 26 / 03 / 2024</h1>
                 </div>
-                <div className="relative w-20 h-20">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-lightMode-accentBlue">
-                      32
-                    </span>
-                  </div>
-                  <svg className="transform -rotate-90" viewBox="0 0 36 36">
-                    <path
-                      d="M18 2.0845
-                      a 15.9155 15.9155 0 0 1 0 31.831
-                      a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="#E5E7EB"
-                      strokeWidth="3"
-                    />
-                    <path
-                      d="M18 2.0845
-                      a 15.9155 15.9155 0 0 1 0 31.831
-                      a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="#3C41E9"
-                      strokeWidth="3"
-                      strokeDasharray="75, 100"
-                    />
-                  </svg>
-                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-sm text-lightMode-secondaryText">
-                    Days
-                  </span>
+                <div className="flex flex-col">
+                  <h1 className="text-end">Valid upto</h1>
+                  <h1 className="text-gray-200">26 / 03 / 2025</h1>
                 </div>
               </div>
-              <button className="mt-4 text-lightMode-accentBlue hover:underline text-sm font-medium">
-                Extend →
-              </button>
+            </div>
+            <div className="flex flex-col gap-6 bg-white dark:bg-darkMode-background rounded-xl px-4 py-7 border-2 border-borders-primary dark:border-borders-secondary">
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
+                  Current Payroll
+                </h2>
+                <div className="flex p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground cursor-pointer">
+                  <IndianRupee className="" size={18} />
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="relative w-[100px] h-[100px]">
+                  <svg
+                    width={size}
+                    height={size}
+                    viewBox={`0 0 ${size} ${size}`}
+                    className="transform -rotate-90"
+                  >
+                    <circle
+                      cx={center}
+                      cy={center}
+                      r={radius}
+                      fill="none"
+                      stroke={theme === "dark" ? "#1E1E1E" : "#F3F4F6"}
+                      strokeWidth={strokeWidth}
+                    />
+                    <circle
+                      cx={center}
+                      cy={center}
+                      r={radius}
+                      fill="none"
+                      stroke="#3C41E9"
+                      strokeWidth={strokeWidth}
+                      strokeDasharray={circumference}
+                      strokeDashoffset={progressOffset}
+                      strokeLinecap="round"
+                      className="transition-all duration-1000 ease-out"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="font-bold">18</span>
+                    <span className="text-sm opacity-80">Days</span>
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                    Current Payroll Start
+                  </h1>
+                  <h1 className="font-bold">12 March 2023</h1>
+                  <button className="flex items-center justify-center mt-3 text-sm border-2 gap-2 border-borders-primary dark:border-borders-secondary rounded-lg px-1 py-1">
+                    Update
+                    <ArrowUpRight className="" size={17} />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* History Dental */}
-          <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-6 shadow-sm md:col-span-2">
-            <h2 className="text-lg font-semibold mb-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
-              History dental
+          <div className="bg-white dark:bg-darkMode-background rounded-xl p-4 border-2 border-borders-primary dark:border-borders-secondary md:col-span-2">
+            <h2 className="text-lg font-bold mb-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
+              Payrolls History
             </h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto border-2 border-borders-primary dark:border-borders-secondary rounded-lg">
               <table className="w-full">
                 <thead>
-                  <tr className="text-left text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                    <th className="pb-4">ID</th>
-                    <th className="pb-4">Type Treatment</th>
-                    <th className="pb-4">Date</th>
-                    <th className="pb-4">Result Treatment</th>
-                    <th className="pb-4">Payment Status</th>
-                    <th className="pb-4"></th>
+                  <tr className="text-left bg-lightMode-secondaryBackground dark:bg-darkMode-secondaryBackground text-lightMode-secondaryText dark:text-darkMode-secondaryText text-sm">
+                    <th className="px-4 py-2">ID</th>
+                    <th className="px-4 py-2">Type</th>
+                    <th className="px-4 py-2">Invoice No.</th>
+                    <th className="px-4 py-2">Amount</th>
+                    <th className="px-4 py-2">Payment Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    {
-                      id: "#12324",
-                      type: "Implant",
-                      date: "12 Jun 2023",
-                      result: "Well done",
-                      status: "Pending",
-                    },
-                    {
-                      id: "#20324",
-                      type: "Route canal",
-                      date: "4 May 2023",
-                      result: "Well done",
-                      status: "Paid",
-                    },
-                    // Add more rows as needed
-                  ].map((item, index) => (
-                    <tr key={index} className="border-t border-borders-primary">
-                      <td className="py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
+                  {payrolls.map((item, index) => (
+                    <tr key={index} className="border-t border-borders-primary dark:border-borders-secondary">
+                      <td className="px-4 py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
                         {item.id}
                       </td>
-                      <td className="py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
+                      <td className="px-4 py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
                         {item.type}
                       </td>
-                      <td className="py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
-                        {item.date}
+                      <td className="px-4 py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
+                        {item.invoice}
                       </td>
-                      <td className="py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
-                        {item.result}
+                      <td className="px-4 py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
+                        {item.amount}
                       </td>
-                      <td className="py-4">
+                      <td className="px-4 py-4">
                         <span
-                          className={`px-2 py-1 rounded-full text-sm ${
+                          className={`px-2 py-1 rounded-md text-sm ${
                             item.status === "Paid"
-                              ? "bg-lightMode-accentGreen/10 text-lightMode-accentGreen"
-                              : "bg-lightMode-accentOrange/10 text-lightMode-accentOrange"
+                              ? "bg-lightMode-accentGreen/10 border-2 border-lightMode-accentGreen/10 text-lightMode-accentGreen"
+                              : "bg-lightMode-accentOrange/10 border-2 border-lightMode-accentOrange/10 text-lightMode-accentOrange"
                           }`}
                         >
                           {item.status}
                         </span>
-                      </td>
-                      <td className="py-4">
-                        <button>
-                          <MoreVertical className="w-5 h-5 text-lightMode-secondaryText" />
-                        </button>
                       </td>
                     </tr>
                   ))}
@@ -353,33 +400,21 @@ export default function Details() {
               </table>
             </div>
           </div>
-
-          {/* Agreement Documents */}
-          <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-6 shadow-sm">
+          <div className="bg-white dark:bg-darkMode-background rounded-xl p-4 border-2 border-borders-primary dark:border-borders-secondary">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
-                Agreement of document
+              <h2 className="text-lg font-bold text-lightMode-primaryText dark:text-darkMode-primaryText">
+                Submitted Documents
               </h2>
-              <button>
-                <MoreVertical className="w-6 h-6 text-lightMode-secondaryText" />
-              </button>
             </div>
-            <div className="space-y-4">
-              {[
-                { name: "Agreement_Meditation.zip", size: "2.3 mb" },
-                { name: "Provision of information.pdf", size: "1.2 mb" },
-                { name: "Agreement_Meditation.zip", size: "2.3 mb" },
-                { name: "Provision of information.pdf", size: "1.2 mb" },
-              ].map((doc, index) => (
+            <div className="space-y-2">
+              {documents.map((doc, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background"
+                  className="flex items-center justify-between p-2 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background border-2 border-borders-primary dark:border-borders-secondary cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-lightMode-secondaryBackground dark:bg-darkMode-background rounded">
-                      <div className="w-8 h-8 flex items-center justify-center">
-                        📄
-                      </div>
+                    <div className="p-2 rounded">
+                      <File className="w-6 h-6 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -391,7 +426,7 @@ export default function Details() {
                     </div>
                   </div>
                   <button className="p-2 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full">
-                    <Download className="w-4 h-4 text-lightMode-secondaryText" />
+                    <CloudDownload className=" text-lightMode-secondaryText" size={19} />
                   </button>
                 </div>
               ))}
