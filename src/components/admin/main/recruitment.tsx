@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useState } from "react";
 import { ChevronDown, Plus, Users2 } from "lucide-react";

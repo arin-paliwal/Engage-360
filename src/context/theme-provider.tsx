@@ -1,4 +1,4 @@
-"use client";
+
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { childrenInterface } from "../types/globals";
 

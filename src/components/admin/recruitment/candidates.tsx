@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useState } from "react";
 import { ArrowLeft, Search, Plus, Clock, Users, Link, Linkedin, PersonStanding } from "lucide-react";

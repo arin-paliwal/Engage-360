@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock, View, Info } from 'lucide-react';
