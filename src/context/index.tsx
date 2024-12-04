@@ -4,11 +4,13 @@ import { AppAction, childrenInterface } from "../types/globals";
 type AppState = {
   state: string;
   adminState: string;
+  employeeState: string;
 };
 
 const initialState: AppState = {
   state: "",
   adminState: localStorage.getItem("adminState") || "Employee",
+  employeeState: localStorage.getItem("employeeState") || "Attendance",
 };
 
 const appReducer = (state: AppState, action: AppAction): AppState => {
@@ -18,6 +20,9 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
     case "SET_ADMIN_STATE":
       localStorage.setItem("adminState", action.payload);
       return { ...state, adminState: action.payload };
+    case "SET_EMPLOYEE_STATE":
+      localStorage.setItem("employeeState", action.payload);
+      return { ...state, employeeState: action.payload };
     default:
       return state;
   }

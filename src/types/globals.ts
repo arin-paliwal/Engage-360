@@ -6,5 +6,6 @@ export interface childrenInterface {
 
 export type AppAction =
   | { type: 'SET_STATE'; payload: string }
-  | { type: 'SET_ADMIN_STATE'; payload: string };
+  | { type: 'SET_ADMIN_STATE'; payload: string }
+  | { type: 'SET_EMPLOYEE_STATE'; payload: string };
 

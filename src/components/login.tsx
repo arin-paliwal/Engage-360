@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <div className="h-screen flex flex-wrap bg-lightMode-background dark:bg-darkMode-background">
       {/* Left Section */}
-      <div className="relative w-full md:w-1/2 flex items-center justify-center px-6">
+      <div className="relative bg-dots-pattern-hero w-full md:w-1/2 flex items-center justify-center px-6">
         <div className="absolute top-4 left-4">
           <button
             onClick={() => navigate("/")}
