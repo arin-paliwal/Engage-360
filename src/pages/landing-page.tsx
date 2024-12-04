@@ -12,7 +12,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col gap-[8rem]">
       <Hero />
-      <Brands />
+      {/* <Brands /> */}
       <Platform />
       <Needs />
       <Subscription />

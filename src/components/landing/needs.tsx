@@ -1,31 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-const testimonials = [
-  {
-    image: "/images/needs1.jpg",
-    text: "Paycelest has completely transformed the way I manage my business operations. Its intuitive platform offers insights that have streamlined my workflows, saving me hours every week. I would recommend this to any entrepreneur looking to improve efficiency.",
-    name: "Sarah Smith",
-    designation: "CEO, Tech Solutions Inc.",
-  },
-  {
-    image: "/images/needs2.jpg",
-    text: "From the moment I started using Paycelest, I noticed an immediate improvement in how my team collaborates. The seamless user experience and powerful analytics make it a tool that we rely on daily. It’s an indispensable part of our business.",
-    name: "John Doe",
-    designation: "Founder, Startup Hub",
-  },
-  {
-    image: "/images/needs3.jpg",
-    text: "I have used many platforms before, but Paycelest stands out due to its customer-focused design and regular feature updates. It’s been a game-changer for our marketing campaigns, providing us with actionable insights that drive results.",
-    name: "Emily Carter",
-    designation: "Marketing Manager, BrandFlow",
-  },
-  {
-    image: "/images/needs4.jpg",
-    text: "Paycelest is not just a tool but a strategic partner in scaling our operations. Its ease of use, coupled with robust support, has made a significant difference in how we approach business challenges. Highly recommended!",
-    name: "Michael Lee",
-    designation: "COO, Enterprise Solutions",
-  },
-];
+import { testimonials_data } from "../../data/landing-page";
 
 export default function Needs() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,14 +7,14 @@ export default function Needs() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+        prevIndex === testimonials_data.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change every 5 seconds
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
 
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = testimonials_data[currentIndex];
 
   const handleDotClick = (index:number) => {
     setCurrentIndex(index);
@@ -75,7 +49,7 @@ export default function Needs() {
       </div>
 
       <div className="flex justify-center mt-8 gap-2">
-        {testimonials.map((_, index) => (
+        {testimonials_data.map((_, index) => (
           <button
             key={index}
             onClick={() => handleDotClick(index)}
