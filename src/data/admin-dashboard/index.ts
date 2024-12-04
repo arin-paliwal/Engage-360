@@ -227,7 +227,7 @@ export const employees_data: Employee[] = [
     name: "Leslie Alexander",
     email: "leslie.alexander@example.com",
     phone: "+1-202-555-0158",
-    department: "Project Management",
+    department: "Management",
     jobTitle: "Project Manager",
     contractType: "Full-time",
     avatar: null,

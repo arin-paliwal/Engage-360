@@ -34,7 +34,20 @@ export default function ManageEmployee() {
   const handleDelete = (id: number) => {
     setEmployees((prev) => prev.filter((emp) => emp.id !== id));
   };
-  
+  const getDepartmentColor = (department: string) => {
+    const colors = {
+      Design:
+        "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
+      Development:
+        "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
+      HR: "bg-[#F4E8FF] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
+      "Management": "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
+      "Sales": "bg-[#FFF0F0] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
+      "Marketing": "bg-[#F0F0FF] text-lightMode-accentBlue dark:bg-darkMode-accentBlue/20 dark:text-darkMode-accentBlue",
+      "Support": "bg-[#F0FFF0] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
+    };
+    return colors[department as keyof typeof colors] || "";
+  };
 
   return (
     <div>
@@ -44,7 +57,7 @@ export default function ManageEmployee() {
           <input
             type="text"
             placeholder="Search keyword..."
-            className="w-64 h-10 pl-10 pr-4 rounded-lg border focus:outline-none"
+            className="w-64 h-10 pl-10 pr-4 rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText border border-borders-primary dark:border-borders-secondary focus:outline-none focus:ring-2 focus:ring-lightMode-accentBlue dark:focus:ring-darkMode-accentBlue transition-all duration-200"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -52,8 +65,8 @@ export default function ManageEmployee() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border overflow-hidden">
-        <div className="grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b">
+      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary dark:border-borders-secondary overflow-hidden">
+        <div className="grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary">
           {[
             "Employee Name",
             "Phone Number",
@@ -62,7 +75,10 @@ export default function ManageEmployee() {
             "Contract Type",
             "Attendance",
           ].map((title) => (
-            <div key={title} className="text-sm font-medium">
+            <div
+              key={title}
+              className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText"
+            >
               {title}
             </div>
           ))}
@@ -70,37 +86,54 @@ export default function ManageEmployee() {
 
         {filteredEmployees.map((employee) => (
           <div
-            key={employee.id}
-            className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b hover:bg-gray-100"
-          >
-            <div className="flex items-center gap-3">
-              <InitialAvatar name={employee.name} size="sm" />
-              <div>
-                <div className="font-medium">{employee.name}</div>
-                <div className="text-sm text-gray-500">{employee.email}</div>
+          key={employee.id}
+          className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200"
+        >
+          <div className="flex items-center gap-3">
+            <InitialAvatar name={employee.name} size="sm" />
+            <div>
+              <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
+                {employee.name}
+              </div>
+              <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                {employee.email}
               </div>
             </div>
-            <div>{employee.phone}</div>
-            <div>{employee.department}</div>
-            <div>{employee.jobTitle}</div>
-            <div>{employee.contractType}</div>
-            <div>120h 32m</div>
-            <div className="flex justify-end">
-              <button
-                className="p-1 rounded-full hover:bg-gray-200"
-                onClick={() => handleEdit(employee)}
-              >
-                <MoreVertical className="w-5 h-5 text-gray-500" />
-              </button>
-            </div>
           </div>
+          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+            {employee.phone}
+          </div>
+          <div className="flex items-center">
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium ${getDepartmentColor(employee.department)}`}
+            >
+              {employee.department}
+            </span>
+          </div>
+          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+            {employee.jobTitle}
+          </div>
+          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+            {employee.contractType}
+          </div>
+          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+            {employee.dateOfBirth}
+          </div>
+          <div className="flex items-center justify-end">
+            <button className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full transition-colors duration-200"
+            onClick={() => handleEdit(employee)}
+            >
+              <MoreVertical className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
+            </button>
+          </div>
+        </div>
         ))}
       </div>
 
       {/* Edit Modal */}
       {isEditing && selectedEmployee && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white h-[90%] w-[70%] overflow-auto p-6 rounded-lg shadow-lg ">
+        <div className="fixed inset-0 z-50 backdrop: flex justify-center items-center">
+          <div className="bg-white dark:bg-black h-[90%] w-[70%] overflow-auto p-6 rounded-lg shadow-lg ">
             <h3 className="text-xl font-bold mb-4">Edit Employee</h3>
             <div className="space-y-4">
               {/* Name */}
@@ -108,7 +141,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Name</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.name}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -124,7 +157,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Email</label>
                 <input
                   type="email"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.email}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -140,7 +173,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Phone</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.phone}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -156,7 +189,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Department</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.department}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -172,7 +205,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Job Title</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.jobTitle}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -189,7 +222,7 @@ export default function ManageEmployee() {
                   Contract Type
                 </label>
                 <select
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.contractType}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -216,7 +249,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="date"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.dateOfJoining}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -234,7 +267,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="date"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.dateOfBirth}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -250,7 +283,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Manager ID</label>
                 <input
                   type="number"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.managerId || ""}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -268,7 +301,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Skills</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.skills.join(", ")}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -286,7 +319,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Street</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.address.street}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -303,7 +336,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">City</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.address.city}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -320,7 +353,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">State</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.address.state}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -337,7 +370,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Postal Code</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.address.postalCode}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -354,7 +387,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Country</label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.address.country}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -375,7 +408,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.emergencyContact.name}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -394,7 +427,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.emergencyContact.phone}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -413,7 +446,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.emergencyContact.relation}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -434,7 +467,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="number"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.salary.amount}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -452,7 +485,7 @@ export default function ManageEmployee() {
                   Salary Currency
                 </label>
                 <select
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.salary.currency}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -486,7 +519,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">Start Time</label>
                 <input
                   type="time"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.workSchedule.startTime}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -503,7 +536,7 @@ export default function ManageEmployee() {
                 <label className="block text-sm font-medium">End Time</label>
                 <input
                   type="time"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.workSchedule.endTime}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -524,7 +557,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.workSchedule.workingDays.join(", ")}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -547,7 +580,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="number"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.performanceRating || ""}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -567,7 +600,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.probationStatus}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -585,7 +618,7 @@ export default function ManageEmployee() {
                 </label>
                 <input
                   type="text"
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.projectsAssigned.join(", ")}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -602,7 +635,7 @@ export default function ManageEmployee() {
               <div>
                 <label className="block text-sm font-medium">Notes</label>
                 <textarea
-                  className="w-full border rounded-lg px-3 py-2"
+                  className="w-full border-2 border-borders-primary dark:border-borders-secondary rounded-lg px-3 py-2"
                   value={selectedEmployee.notes}
                   onChange={(e) =>
                     setSelectedEmployee({
@@ -617,13 +650,13 @@ export default function ManageEmployee() {
             {/* Save/Cancel Buttons */}
             <div className="mt-6 flex justify-end gap-4">
               <button
-                className="px-4 py-2 bg-gray-300 rounded-lg"
+                className="px-4 py-2 bg-red-600 text-white w-[8rem] rounded-lg"
                 onClick={() => setIsEditing(false)}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                className="px-4 py-2 bg-blue-600 text-white w-[8rem] rounded-lg"
                 onClick={handleSave}
               >
                 Save
