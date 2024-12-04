@@ -7,13 +7,17 @@ import {
   Sun,
   Moon,
   LogOutIcon,
+  User2,
+  Projector,
+  Workflow,
+  CalendarCheck,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAppContext } from "../../../context"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
-export default function Sidebar() {
+export default function EmployeeSidebar() {
   const { state, dispatch } = useAppContext()
   const { theme, setTheme } = useTheme()
   const navigate = useNavigate()
@@ -45,26 +49,26 @@ export default function Sidebar() {
         </div>
         <nav className="space-y-1">
           {[
-            // { name: "Dashboard", icon: BarChart3 },
-            { name: "Employee", icon: Users },
-            { name: "Recruitment", icon: UserPlus },
-            { name: "Payroll", icon: DollarSign },
+            { name: "Attendance", icon: CalendarCheck },
+            { name: "ToDo", icon: Workflow },
+            { name: "ProjectManagement", icon: Projector },
+            { name: "Details", icon: User2 },
             { name: "Schedule", icon: Calendar },
           ].map((item) => (
             <button
               key={item.name}
               onClick={() =>
-                dispatch({ type: "SET_ADMIN_STATE", payload: item.name })
+                dispatch({ type: "SET_EMPLOYEE_STATE", payload: item.name })
               }
               className={`flex items-center border-2 gap-3 w-full px-3 py-2 text-sm rounded-md transition-colors ${
-                state.adminState === item.name
+                state.employeeState === item.name
                   ? "bg-lightMode-accentBlue/20 text-lightMode-accentBlue dark:bg-darkMode-accentBlue/10 dark:text-darkMode-accentBlue border-lightMode-accentBlue dark:border-darkMode-accentBlue"
                   : "text-lightMode-primaryText dark:text-darkMode-primaryText border-transparent hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
               }`}
             >
               <item.icon
                 className={`w-5 h-5 ${
-                  state.adminState === item.name
+                  state.employeeState === item.name
                     ? "text-lightMode-accentBlue dark:text-darkMode-accentBlue"
                     : "text-lightMode-secondaryText dark:text-darkMode-secondaryText"
                 }`}

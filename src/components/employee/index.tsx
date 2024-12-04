@@ -1,36 +1,32 @@
 import { useAppContext } from "../../context";
-import Dashboard from "./main/dashboard";
-import Employee from "./main/employees";
-import Payrolls from "./main/payrolls";
-import Recruitment from "./main/recruitment";
+import Attendance from "./main/attendance";
+import Details from "./main/details";
+import ProjectManagement from "./main/project-management";
 import Schedule from "./main/schedule";
+import ToDoList from "./main/to-do";
 
 const EmployeeDashboardComponent = () => {
-  const { state } = useAppContext(); 
+  const { state } = useAppContext();
 
   const renderComponent = () => {
-    switch (state.adminState) {
-      case "Dashboard":
-        return <Dashboard />;
-      case "Employee":
-        return <Employee />;
-      case "Recruitment":
-        return <Recruitment />;
-      case "Payroll":
-        return <Payrolls />;
+    switch (state.employeeState) {
+      case "Attendance":
+        return <Attendance />;
+      case "ToDo":
+        return <ToDoList />;
+      case "ProjectManagement":
+        return <ProjectManagement />;
+      case "Details":
+        return <Details />;
       case "Schedule":
         return <Schedule />;
-      
+
       default:
         return <div>Please select a valid admin state.</div>;
     }
   };
 
-  return (
-    <div>
-      {renderComponent()}
-    </div>
-  );
+  return <div>{renderComponent()}</div>;
 };
 
 export default EmployeeDashboardComponent;

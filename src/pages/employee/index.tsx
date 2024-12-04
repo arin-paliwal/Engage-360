@@ -1,15 +1,15 @@
-import AdminDashboardComponent from "../../components/admin";
-import Sidebar from "../../components/admin/common/admin-sidebar";
+import EmployeeDashboardComponent from "../../components/employee";
+import EmployeeSidebar from "../../components/employee/common/employee-sidebar";
 
-const AdminDashboard = () => {
+const EmployeeDashboard = () => {
   return (
     <div className="flex">
-      <Sidebar />
+      <EmployeeSidebar />
       <div className="flex-1 ml-64">
-        <AdminDashboardComponent />
+        <EmployeeDashboardComponent />
       </div>
     </div>
   );
 };
 
-export default AdminDashboard;
+export default EmployeeDashboard;
