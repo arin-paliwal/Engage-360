@@ -62,16 +62,16 @@ export default function Hero() {
           <div className="flex gap-4">
             <div className="flex">
               <div className="w-8 h-8 border-2 border-white dark:border-black rounded-full">
-                <img src={`/avatars/1.png`} />
+                <img src={`/avatars/1.jpg`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`/avatars/2.png`} />
+                <img src={`/avatars/2.jpg`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`/avatars/3.png`} />
+                <img src={`/avatars/3.jpg`} />
               </div>
               <div className="w-8 h-8 ml-[-.5em] border-2 border-white dark:border-black rounded-full">
-                <img src={`/avatars/4.png`} />
+                <img src={`/avatars/4.jpg`} />
               </div>
             </div>
             <div className="flex flex-col">
