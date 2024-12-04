@@ -91,30 +91,11 @@ const orgData: Employee = {
   ],
 };
 
-function getDepartmentColor(department: string) {
-  switch (department) {
-    case "Development":
-      return "bg-lightMode-accentBlue/10 text-lightMode-accentBlue dark:bg-darkMode-accentBlue/10 dark:text-darkMode-accentBlue";
-    case "Design":
-      return "bg-lightMode-accentGreen/10 text-lightMode-accentGreen dark:bg-darkMode-accentGreen/10 dark:text-darkMode-accentGreen";
-    case "Business and Marketing":
-      return "bg-lightMode-accentOrange/10 text-lightMode-accentOrange dark:bg-darkMode-accentOrange/10 dark:text-darkMode-accentOrange";
-    case "Human Resource":
-      return "bg-lightMode-accentPurple/10 text-lightMode-accentPurple dark:bg-darkMode-accentPurple/10 dark:text-darkMode-accentPurple";
-    default:
-      return "bg-lightMode-accentLightBlue/10 text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/10 dark:text-darkMode-accentLightBlue";
-  }
-}
 
 const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
   <div className="flex flex-col items-center">
     <div className="relative flex flex-col items-center">
       <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-black rounded-lg border-2 border-borders-primary dark:border-borders-secondary shadow-sm min-w-[200px]">
-        {/* <img
-          src={employee.image}
-          alt={employee.name}
-          className="w-10 h-10 rounded-full border-2 border-white"
-        /> */}
         <InitialAvatar name={employee.name} size="sm" borderRadius="full" />
         <div className="mt-2 text-center">
           <div className="font-medium text-sm">{employee.name}</div>

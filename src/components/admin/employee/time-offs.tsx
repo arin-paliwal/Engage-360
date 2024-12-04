@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { MoreVertical, Search, Check, X } from 'lucide-react';
+import { MoreVertical, Search, Check, X } from "lucide-react";
 import { getRandomNumber } from "./organisational-chart";
 import InitialAvatar from "../../../utility/initialAvatar";
 
 interface TimeOffRequest {
   id: number;
-  employee: { name: string; avatar: string; };
+  employee: { name: string; avatar: string };
   leaveType: "Annual Leave" | "Sick Leave";
   leaveFrom: string;
   leaveTo: string;
@@ -16,21 +16,80 @@ interface TimeOffRequest {
 }
 
 const timeOffRequests: TimeOffRequest[] = [
-  { id: 1, employee: { name: "Brooklyn Simmons", avatar: "/placeholder.svg?height=40&width=40" }, leaveType: "Annual Leave", leaveFrom: "Jan 23, 2024", leaveTo: "Jan 24, 2024", days: 1, status: "Pending", },
-  { id: 2, employee: { name: "Ralph Edwards", avatar: "/placeholder.svg?height=40&width=40" }, leaveType: "Sick Leave", leaveFrom: "Jan 23, 2024", leaveTo: "Jan 27, 2024", days: 4, status: "Pending", },
-  { id: 3, employee: { name: "Leslie Alexander", avatar: "/placeholder.svg?height=40&width=40" }, leaveType: "Annual Leave", leaveFrom: "Jan 12, 2024", leaveTo: "Jan 14, 2024", days: 2, status: "Approved", },
-  { id: 4, employee: { name: "Cody Fisher", avatar: "/placeholder.svg?height=40&width=40" }, leaveType: "Sick Leave", leaveFrom: "Jan 04, 2024", leaveTo: "Jan 06, 2024", days: 2, status: "Approved", },
-  { id: 5, employee: { name: "Arlene McCoy", avatar: "/placeholder.svg?height=40&width=40" }, leaveType: "Annual Leave", leaveFrom: "Jan 03, 2024", leaveTo: "Jan 08, 2024", days: 5, status: "Approved", },
+  {
+    id: 1,
+    employee: {
+      name: "Brooklyn Simmons",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    leaveType: "Annual Leave",
+    leaveFrom: "Jan 23, 2024",
+    leaveTo: "Jan 24, 2024",
+    days: 1,
+    status: "Pending",
+  },
+  {
+    id: 2,
+    employee: {
+      name: "Ralph Edwards",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    leaveType: "Sick Leave",
+    leaveFrom: "Jan 23, 2024",
+    leaveTo: "Jan 27, 2024",
+    days: 4,
+    status: "Pending",
+  },
+  {
+    id: 3,
+    employee: {
+      name: "Leslie Alexander",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    leaveType: "Annual Leave",
+    leaveFrom: "Jan 12, 2024",
+    leaveTo: "Jan 14, 2024",
+    days: 2,
+    status: "Approved",
+  },
+  {
+    id: 4,
+    employee: {
+      name: "Cody Fisher",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    leaveType: "Sick Leave",
+    leaveFrom: "Jan 04, 2024",
+    leaveTo: "Jan 06, 2024",
+    days: 2,
+    status: "Approved",
+  },
+  {
+    id: 5,
+    employee: {
+      name: "Arlene McCoy",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    leaveType: "Annual Leave",
+    leaveFrom: "Jan 03, 2024",
+    leaveTo: "Jan 08, 2024",
+    days: 5,
+    status: "Approved",
+  },
 ];
 
 const leaveTypeStyles = {
-  "Annual Leave": "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
-  "Sick Leave": "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
+  "Annual Leave":
+    "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
+  "Sick Leave":
+    "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
 };
 
 const statusStyles = {
-  Pending: "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
-  Approved: "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
+  Pending:
+    "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
+  Approved:
+    "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
 };
 
 export default function Timeoff() {
@@ -39,7 +98,10 @@ export default function Timeoff() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
         setOpenPopupId(null);
       }
     }
@@ -87,16 +149,22 @@ export default function Timeoff() {
       <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border-2 border-borders-primary dark:border-borders-secondary">
         {/* Table Header */}
         <div className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b-2 border-borders-primary dark:border-borders-secondary">
-          {["Employee Name", "Leave Type", "Leave From", "Leave To", "Days", "Status", "Action"].map(
-            (header, index) => (
-              <div
-                key={index}
-                className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText"
-              >
-                {header}
-              </div>
-            )
-          )}
+          {[
+            "Employee Name",
+            "Leave Type",
+            "Leave From",
+            "Leave To",
+            "Days",
+            "Status",
+            "Action",
+          ].map((header, index) => (
+            <div
+              key={index}
+              className="text-sm font-medium text-lightMode-secondaryText dark:text-darkMode-secondaryText"
+            >
+              {header}
+            </div>
+          ))}
         </div>
 
         {timeOffRequests.map((request) => (
@@ -105,7 +173,6 @@ export default function Timeoff() {
             className="grid grid-cols-[2fr,1fr,1fr,1fr,0.5fr,1fr,.2fr] px-6 py-4 border-b-2 border-borders-primary dark:border-borders-secondary last:border-b-0"
           >
             <div className="flex items-center gap-3">
-              {/* <img src={`https://avatar.iran.liara.run/public/${getRandomNumber()}`} alt="" className="w-10 h-10 rounded-full" /> */}
               <InitialAvatar name={request.employee.name} size="sm" />
               <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
                 {request.employee.name}
@@ -174,4 +241,3 @@ export default function Timeoff() {
     </div>
   );
 }
-

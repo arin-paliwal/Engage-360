@@ -1,5 +1,3 @@
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock } from 'lucide-react';
 
