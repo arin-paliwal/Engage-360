@@ -46,22 +46,19 @@ export default function Details() {
   const progressOffset = ((100 - progress) / 100) * circumference;
   const appointments = [
     {
-      date: "12 Oct 2023",
-      title: "Prosthetic Tooth Fabrication",
-      doctor: "Drg. Wade Warren",
-      color: "bg-blue-500",
-    },
-    {
-      date: "12 Sep 2023",
-      title: "Post-Surgical Care",
-      doctor: "Drg.Marvin McKinney",
-      color: "bg-red-500",
-    },
-    {
       date: "12 Aug 2023",
-      title: "Implant Placement",
-      doctor: "Drg.Floyd Miles",
-      color: "bg-green-500",
+      action: "Interview Status Passed",
+      perfomed_by: "HR Department",
+    },
+    {
+      date: "12 Nov 2023",
+      action: "Prohabation Period Started",
+      perfomed_by: "HR Department",
+    },
+    {
+      date: "29 Nov 2023",
+      action: "Deployed on Project",
+      perfomed_by: "Software Department",
     },
   ];
   const payrolls = [
@@ -265,10 +262,10 @@ export default function Details() {
                     {appointment.date}
                   </div>
                   <div className="border-2 border-borders-primary dark:border-borders-secondary p-3 rounded-lg">
-                    <div className="font-medium mb-">{appointment.title}</div>
+                    <div className="font-medium mb-">{appointment.action}</div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-blue-500" />
-                      <span className="text-sm">{appointment.doctor}</span>
+                      <span className="text-sm">{appointment.perfomed_by}</span>
                     </div>
                   </div>
                 </div>
