@@ -105,6 +105,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="px-4 py-2 border-2 border-borders-primary dark:border-borders-secondary rounded-lg flex items-center gap-3 w-[10rem] justify-center"
+                onClick={() => navigate("/admin/dashboard")}
               >
                 Admin Login
                 <Shield size={16} />
@@ -112,7 +113,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg flex items-center gap-3 w-[8rem] justify-center"
-                onClick={handleLogin}
+                onClick={()=>navigate("/employee/dashboard")}
               >
                 Login
                 <Unlock size={16} />
