@@ -1,5 +1,6 @@
 import AdminDashboardComponent from "../../components/admin";
 import Sidebar from "../../components/admin/common/admin-sidebar";
+import withAuthCheck from "../../hoc";
 
 const AdminDashboard = () => {
   return (
@@ -12,4 +13,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default withAuthCheck(AdminDashboard);

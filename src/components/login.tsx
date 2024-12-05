@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import toast from "react-hot-toast";
+import { create_access_token } from "../utility/access-token";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -43,11 +44,15 @@ export default function Login() {
         setError(null);
         if (matchedEmployee.role == 1) {
           toast.success("Admin login successful.");
+          const token=create_access_token(1);
+          localStorage.setItem("access_token", token);
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
         } else {
           toast.success("Employee login successful.");
+          const token=create_access_token(2);
+          localStorage.setItem("access_token", token);
           setTimeout(() => {
             navigate("/employee/dashboard");
           }, 1000);

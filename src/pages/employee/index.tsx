@@ -1,5 +1,6 @@
 import EmployeeDashboardComponent from "../../components/employee";
 import EmployeeSidebar from "../../components/employee/common/employee-sidebar";
+import withAuthCheck from "../../hoc";
 
 const EmployeeDashboard = () => {
   return (
@@ -12,4 +13,4 @@ const EmployeeDashboard = () => {
   );
 };
 
-export default EmployeeDashboard;
+export default withAuthCheck(EmployeeDashboard);
