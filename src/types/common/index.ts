@@ -35,7 +35,7 @@ export interface Employee {
     averageStartTime: string;
     averageEndTime: string;
   };
-  timeline:{
+  timeline?:{
     hired: string;
     prohabation: string;
     permanent: string;
