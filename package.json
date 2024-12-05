@@ -11,7 +11,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "format": "prettier --write .",
-    "start:json-server": "json-server --watch database/db.json --port 5000"
+    "start:json-server": "json-server --watch db/db.json --port 5000"
   },
   "dependencies": {
     "axios": "^1.7.9",
