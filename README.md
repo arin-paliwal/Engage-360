@@ -9,82 +9,75 @@ Engage360 is a front-end platform designed to improve employee engagement and fo
 
 #### **Admin Role**
 
-Admins oversee platform management, ensuring smooth operation and configuring platform settings. Their dashboard includes tools for analytics, user management, and event creation.
+Admins oversee platform management, ensuring smooth operation and configuring platform settings. Their dashboard includes tools for employee management, recruitment, payroll, and schedule oversight.
 
 **Key Responsibilities:**
 
-1. **User Management:**
+1. **Employee Management:**
    - Add, update, or deactivate employee accounts.
    - Assign roles (employee, manager, admin).
-2. **Analytics Oversight:**
-   - Access high-level organizational metrics (e.g., engagement scores, event participation, feedback trends).
-   - Generate reports for management review.
-3. **Event Management:**
-   - Create and manage company-wide events.
-   - Monitor RSVP statuses and send reminders.
-4. **Resource Hub Management:**
-   - Upload and organize company policies, guides, and training materials.
-5. **Moderation:**
-   - Monitor and approve recognition or feedback content.
+2. **Recruitment:**
+   - Post job openings and manage the recruitment process.
+   - Screen applicants and manage interview scheduling.
+3. **Payroll:**
+   - Oversee employee payroll processes.
+   - Generate payroll reports and manage compensation details.
+4. **Schedule Management:**
+   - Set up and monitor work schedules for employees.
+   - Approve or adjust shift timings based on team needs.
 
 ---
 
-#### **Manager Role**
+#### **Manager & Employee**
 
-Managers focus on their team's engagement and well-being. Their dashboard provides insights into team-specific metrics, feedback analysis, and recognition trends.
-
-**Key Responsibilities:**
-
-1. **Team Insights:**
-   - View team-specific engagement data (e.g., recognition activity, feedback trends).
-   - Track performance and morale using visual summaries.
-2. **Recognition Leadership:**
-   - Recognize team members with badges or shoutouts.
-   - Monitor recognition trends within their team.
-3. **Feedback Management:**
-   - Analyze feedback from team members (anonymized if necessary).
-   - Respond to suggestions and act on sentiment data.
-4. **Event Collaboration:**
-   - Organize department-specific events or team meetings.
-   - Coordinate RSVPs and share event details.
-5. **Resource Allocation:**
-   - Share relevant resources with the team, such as guides or training materials.
-
----
-
-#### **Employee Role**
-
-Employees form the core user base, accessing tools for communication, recognition, and participation. Their dashboard highlights daily tasks, feedback mechanisms, and collaborative tools.
+Managers and Employees share similar responsibilities, with managers having additional features for team management. The role adapts to either function based on assigned permissions.
 
 **Key Responsibilities:**
 
 1. **Dashboard Overview:**
    - View role-specific updates and tasks.
-2. **Peer Recognition:**
-   - Send badges or shoutouts to colleagues.
-   - View a recognition feed to see acknowledgments from peers.
-3. **Feedback Participation:**
-   - Submit anonymous feedback through structured forms.
-   - Suggest ideas or improvements for the workplace.
+   - **Manager-Specific:** View team-specific engagement data (e.g., recognition activity, feedback trends).
+2. **Recognition System:**
+   - **Employee:** Send badges or shoutouts to colleagues.
+   - **Manager:** Send and track team recognition, monitor recognition trends within their team.
+3. **Feedback Mechanism:**
+   - **Employee:** Submit anonymous feedback and suggest ideas or improvements.
+   - **Manager:** Analyze feedback trends from the team, act on sentiment data, and respond to suggestions.
 4. **Event Participation:**
-   - RSVP to company or team events.
-   - Access event details and post-event summaries.
-5. **Resource Access:**
-   - Browse company policies, training materials, or guides in the Resource Hub.
-   - Bookmark frequently used resources for quick access.
+   - **Employee:** RSVP to company or team events, access event details, and participate in post-event summaries.
+   - **Manager:** Organize team-specific events, coordinate RSVPs, and share event details with the team.
+5. **Resource Hub:**
+   - **Employee:** Access company policies, training materials, and guides.
+   - **Manager:** Share relevant resources with the team, such as guides or training materials.
+6. **Attendance:**
+   - **Employee:** Track and log attendance records.
+   - **Manager:** Monitor team attendance, approve time-off requests.
+7. **To-Do List:**
+   - **Employee:** Manage daily tasks and track progress.
+   - **Manager:** Assign tasks to team members and track their completion.
+8. **Project Management:**
+   - **Employee:** Access and participate in projects, track deadlines and deliverables.
+   - **Manager:** Manage project timelines, assign responsibilities, and monitor progress.
+9. **Schedule:**
+   - **Employee:** View work schedule and shift timings.
+   - **Manager:** Configure work schedules for team members.
 
 ---
 
 ### **Platform Features by Role**
 
-| Feature              | Admin                       | Manager                       | Employee                  |
-| -------------------- | --------------------------- | ----------------------------- | ------------------------- |
-| Dashboards           | Org-Level Analytics         | Team-Level Analytics          | Task Overview             |
-| Recognition System   | Oversight & Moderation      | Send & Track Team Recognition | Send Peer Recognition     |
-| Feedback Mechanism   | Monitor Org Feedback Trends | Monitor Team Feedback Trends  | Submit Feedback           |
-| Assistant Simulation | Configure FAQ Responses     | Use Assistant for Queries     | Use Assistant for Queries |
-| Event Management     | Create & Manage Events      | Organize Team Events          | RSVP to Events            |
-| Resource Hub         | Upload & Manage Resources   | Share Resources with Team     | Access Resources          |
+| Feature               | Admin                        | Generic Role (Manager & Employee) |
+| --------------------- | ---------------------------- | --------------------------------- |
+| Dashboards            | Employee Management, Recruitment, Payroll, Schedule | Role-Specific Analytics          |
+| Recognition System    | Oversight & Moderation       | Send & Track Recognition         |
+| Feedback Mechanism    | Monitor Org Feedback Trends  | Submit/Analyze Feedback          |
+| Assistant Simulation  | Configure FAQ Responses      | Use Assistant for Queries        |
+| Event Management      | Create & Manage Events       | Organize/Participate in Events   |
+| Resource Hub          | Upload & Manage Resources    | Share/Access Resources           |
+| Attendance            |                              | Log & Approve Attendance         |
+| To-Do List            |                              | Manage Tasks & Track Progress    |
+| Project Management    |                              | Manage & Track Project Progress  |
+| Schedule Management   | Set Up & Monitor Schedules   | View & Manage Work Schedules     |
 
 ---
 
