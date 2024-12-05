@@ -9,6 +9,8 @@ import {
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../api/axios";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -16,11 +18,9 @@ export default function Login() {
     employeeCode: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -28,10 +28,41 @@ export default function Login() {
       [e.target.name]: e.target.value,
     }));
   };
-  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate("/admin/dashboard");
+  const handleLogin = async () => {
+    try {
+      const response = await axiosInstance.get("/employees");
+      const all_users = response.data;
+      const matchedEmployee = all_users.find(
+        (emp: { employeeId: string; password: string }) =>
+          emp.employeeId === formData.employeeCode &&
+          emp.password === formData.password
+      );
+
+      if (matchedEmployee) {
+        setError(null);
+        if (matchedEmployee.role == 1) {
+          toast.success("Admin login successful.");
+          setTimeout(() => {
+            navigate("/admin/dashboard");
+          }, 1000);
+        } else {
+          toast.success("Employee login successful.");
+          setTimeout(() => {
+            navigate("/employee/dashboard");
+          }, 1000);
+        }
+      } else {
+        setError("Invalid Employee Code or Password.");
+      }
+    } catch (err) {
+      setError("An error occurred while logging in. Please try again.");
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin();
   };
 
   return (
@@ -52,9 +83,9 @@ export default function Login() {
             className="p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground hover:dark:bg-darkMode-secondaryBackground"
           >
             {theme === "dark" ? (
-              <Sun className="" size={18} />
+              <Sun size={18} />
             ) : (
-              <Moon className="" size={18} />
+              <Moon size={18} />
             )}
           </button>
         </div>
@@ -101,11 +132,16 @@ export default function Login() {
               />
             </div>
 
+            {error && (
+              <p className="text-red-500 text-sm mt-2">
+                {error}
+              </p>
+            )}
+
             <div className="text-sm flex items-center justify-between pt-4">
               <button
                 type="submit"
                 className="px-4 py-2 border-2 border-borders-primary dark:border-borders-secondary rounded-lg flex items-center gap-3 w-[10rem] justify-center"
-                onClick={() => navigate("/admin/dashboard")}
               >
                 Admin Login
                 <Shield size={16} />
@@ -113,7 +149,6 @@ export default function Login() {
               <button
                 type="submit"
                 className="px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg flex items-center gap-3 w-[8rem] justify-center"
-                onClick={()=>navigate("/employee/dashboard")}
               >
                 Login
                 <Unlock size={16} />

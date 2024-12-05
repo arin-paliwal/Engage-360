@@ -10,9 +10,11 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start:json-server": "json-server --watch database/db.json --port 5000"
   },
   "dependencies": {
+    "axios": "^1.7.9",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.4.3",
@@ -39,6 +41,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
     "jsdom": "^25.0.1",
+    "json-server": "^1.0.0-beta.3",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
     "typescript": "~5.6.2",
