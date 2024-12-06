@@ -3,7 +3,7 @@ import Attendance from "./main/attendance";
 import Details from "./main/details";
 import ProjectManagement from "./main/project-management";
 import Schedule from "./main/schedule";
-import ToDoList from "./main/to-do";
+import TodoComponent from "./main/to-do";
 
 const EmployeeDashboardComponent = () => {
   const { state } = useAppContext();
@@ -13,7 +13,7 @@ const EmployeeDashboardComponent = () => {
       case "Attendance":
         return <Attendance />;
       case "To Do":
-        return <ToDoList />;
+        return <TodoComponent />;
       case "Project Management":
         return <ProjectManagement />;
       case "Details":
