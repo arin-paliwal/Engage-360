@@ -6,6 +6,7 @@ import {
   GitBranchPlusIcon,
   TimerOff,
   Users2,
+  BriefcaseBusiness,
 } from "lucide-react";
 import OrganisationChart from "../employee/organisational-chart";
 import Timeoff from "../employee/time-offs";
@@ -58,7 +59,7 @@ export default function Employee() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg flex items-center justify-center">
-              <Users2 className="w-6 h-6 text-white" />
+              <BriefcaseBusiness className="w-6 h-6 text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">

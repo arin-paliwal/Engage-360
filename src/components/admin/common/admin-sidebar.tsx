@@ -7,6 +7,7 @@ import {
   Sun,
   Moon,
   LogOutIcon,
+  BriefcaseBusiness,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAppContext } from "../../../context"
@@ -46,7 +47,7 @@ export default function Sidebar() {
         <nav className="space-y-1">
           {[
             // { name: "Dashboard", icon: BarChart3 },
-            { name: "Employee", icon: Users },
+            { name: "Employee", icon: BriefcaseBusiness },
             { name: "Recruitment", icon: UserPlus },
             { name: "Payroll", icon: DollarSign },
             { name: "Schedule", icon: Calendar },

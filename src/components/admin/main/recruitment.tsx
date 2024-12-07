@@ -1,20 +1,27 @@
-import { useState } from "react";
-import { ChevronDown, Plus, Users2 } from "lucide-react";
-import { jobs } from "../../../data/admin-dashboard";
-import { useAppContext } from "../../../context";
+import { useEffect, useState } from "react";
+import { ChevronDown, Plus, UserPlus, Users2 } from "lucide-react";
 import JobDescription from "../recruitment/job-description";
-
-const categoryColors: Record<string, string> = {
-  Design: "#B6EDD8",
-  Development: "#D5E3F8",
-  "Business and Marketing": "#E3E5FC",
-  "Project Manager": "#FFF2D7",
-  HR: "#EAE4F9",
-};
+import axiosInstance from "../../../api/axios";
+import { Job } from "../../../types/admin-dashboard/types";
 
 export default function Recruitment() {
   const [isOpen, setIsOpen] = useState(false);
-  const [subState, setSubState] = useState("Active Jobs");
+  const [subState, setSubState] = useState(localStorage.getItem("recruitmentSubState") || "Active Jobs");
+
+  useEffect(() => {
+    localStorage.setItem("recruitmentSubState", subState);
+  }, [subState]);
+  const [jobs, setJobs] = useState<Job[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get("/jobs");
+      setJobs(response.data);
+      console.log(response.data);
+    };
+    fetchData();
+  }, []);
+
 
   return (
     <>
@@ -24,19 +31,7 @@ export default function Recruitment() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-lg bg-lightMode-accentBlue flex items-center justify-center">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                <UserPlus className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -68,6 +63,7 @@ export default function Recruitment() {
                   key={job.id}
                   onClick={() => {
                     setSubState("Job Description");
+                    localStorage.setItem("selectedJob", JSON.stringify(job));
                   }}
                   className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-black cursor-pointer flex gap-4 duration-300 transform"
                 >
@@ -88,24 +84,16 @@ export default function Recruitment() {
                     </p>
                     <div className="flex flex-wrap gap-2 text-sm truncate">
                       <div
-                        className="px-3 py-1 rounded-lg flex justify-center items-center"
-                        style={{ backgroundColor: categoryColors[job.type[0]] }}
+                        className="px-3 py-1 rounded-lg flex justify-center items-center bg-lightMode-accentBlue text-white"
                       >
-                        <span className="font-medium text-black">
-                          {job.type[0]}
+                        <span className="font-medium">
+                          {job.role}
                         </span>
                       </div>
                       <div
-                        className="px-3 py-1 rounded-lg border-2 border-borders-primary dark:border-borders-secondary flex justify-center items-center"
-                        style={{ backgroundColor: categoryColors[job.type[1]] }}
+                        className="px-3 py-1 rounded-lg border-2 border-lightMode-accentBlue flex justify-center items-center"
                       >
-                        <span className="">{job.type[1]}</span>
-                      </div>
-                      <div
-                        className="px-3 py-1 rounded-lg border-2 border-borders-primary dark:border-borders-secondary  flex justify-center items-center"
-                        style={{ backgroundColor: categoryColors[job.type[2]] }}
-                      >
-                        <span className="">{job.type[2]}</span>
+                        <span className="">{job.type}</span>
                       </div>
                     </div>
                   </div>

@@ -13,3 +13,33 @@ export interface JobInterface {
   activeUntil: string;
   type: string[];
 }
+
+export interface Job {
+  id: string;
+  activeUntil: string;
+  title: string;
+  description: string;
+  role:
+    | "Developer"
+    | "Designer"
+    | "Manager"
+    | "HR"
+    | "Marketing"
+    | "Sales"
+    | "Finance";
+  type: "Full Time" | "Part Time" | "Internship";
+  aboutCompany: string;
+  techStack: string[];
+  requirements: string[];
+  location: string;
+  candidates: candidateInterface[];
+}
+
+export interface candidateInterface {
+  name: string;
+  email: string;
+  profile: string;
+  appliedBeforeTimes: number;
+  status: "Sourced" | "In-Progress " | "Interviewed" | "Hired" | "Rejected";
+  rating: number;
+}
