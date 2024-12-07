@@ -9,7 +9,6 @@ import InitialAvatar from "../../../utility/initialAvatar";
 interface Employee {
   name: string;
   role: string;
-  image: string;
   department?: string;
   children?: Employee[];
 }
@@ -17,75 +16,62 @@ interface Employee {
 const orgData: Employee = {
   name: "Cameron Williamson",
   role: "Founder - CEO",
-  image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
   children: [
     {
       name: "Leslie Alexander",
       role: "Head of Project Manager",
-      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-      department: "Business and Marketing",
+          department: "Business and Marketing",
       children: [
         {
           name: "Cody Firmansyah",
           role: "Senior Project Manager",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Jenni William",
           role: "Project Manager",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
       ],
     },
     {
       name: "Brooklyn Simmons",
       role: "Creative Director",
-      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-      department: "Design",
+          department: "Design",
       children: [
         {
           name: "Ralph Edwards",
           role: "Senior UX Designer",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Brooklyn Hehe",
           role: "Senior Graphic Design",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Vidi Gutierrezz",
           role: "UX Designer",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Pablo Hive",
           role: "Graphic Design",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
       ],
     },
     {
       name: "Cody Fisher",
       role: "Head of Development",
-      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-      department: "Development",
+          department: "Development",
       children: [
         {
           name: "Asther Mulyani",
           role: "Senior Front-End",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Jenny Wilson",
           role: "QA Engineering",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
         {
           name: "Eden Khoiruddin",
           role: "Back-End",
-          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
-        },
+                },
       ],
     },
   ],
@@ -122,7 +108,7 @@ export default function OrganizationalChart() {
         <h2 className="text-2xl font-bold text-lightMode-primaryText dark:text-darkMode-primaryText">
           Organisational Chart
         </h2>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2  rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary">
             <EditIcon
               className="text-lightMode-primaryText dark:text-darkMode-primaryText"
@@ -130,7 +116,7 @@ export default function OrganizationalChart() {
             />
             Edit Organisation
           </button>
-        </div>
+        </div> */}
       </div>
       <div
         className="flex w-[calc(100vw-19.5rem)]

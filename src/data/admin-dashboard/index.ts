@@ -1,9 +1,10 @@
 import { JobInterface } from "../../types/admin-dashboard/types";
-import { Employee } from "../../types/common";
+import { EmployeeInterface } from "../../types/common";
 
 export const jobs: JobInterface[] = [
   {
     id: 1,
+
     title: "UI/UX Designer",
     description:
       "Gathering and evaluating user requirements, in collaboration with product managers and engineers",
@@ -12,6 +13,7 @@ export const jobs: JobInterface[] = [
   },
   {
     id: 2,
+
     title: "Junior Frontend Developer",
     description:
       "A front-end developer is basically a web developer who has a specialization in creating user interfaces for applications...",
@@ -20,6 +22,7 @@ export const jobs: JobInterface[] = [
   },
   {
     id: 3,
+
     title: "Motion Graphic Designer",
     description:
       "We are currently hiring a Motion Graphics Designer who will work closely with the marketing team, video producers...",
@@ -28,6 +31,7 @@ export const jobs: JobInterface[] = [
   },
   {
     id: 4,
+
     title: "SEO Specialist",
     description:
       "Program in HTML, CSS and JavaScript to ensure the site is accessible and easy to follow and for increased interactions...",
@@ -36,6 +40,7 @@ export const jobs: JobInterface[] = [
   },
   {
     id: 5,
+
     title: "Project Assistant Manager",
     description:
       "Ensure that the project complies with the schedule, rules and regulations, manage and coordinate with the entire team...",
@@ -44,6 +49,7 @@ export const jobs: JobInterface[] = [
   },
   {
     id: 6,
+
     title: "Intern Graphic Design",
     description:
       "Develop illustrations, logos and other designs using software or by hand, work with copywriters and creatives...",
@@ -52,9 +58,10 @@ export const jobs: JobInterface[] = [
   },
 ];
 
-export const employees_data: Employee[] = [
+export const employees_data: EmployeeInterface[] = [
   {
     id: 1,
+    password: 123456,
     employeeId: "EMP001",
     name: "Brooklyn Simmons",
     email: "brooklyn.simmons@example.com",
@@ -97,6 +104,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 2,
+    password: 123456,
     employeeId: "EMP002",
     name: "Cody Fisher",
     email: "cody.fisher@example.com",
@@ -139,6 +147,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 3,
+    password: 123456,
     employeeId: "EMP003",
     name: "Ralph Edwards",
     email: "ralph.edwards@example.com",
@@ -181,6 +190,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 4,
+    password: 123456,
     employeeId: "EMP004",
     name: "Bessie Cooper",
     email: "bessie.cooper@example.com",
@@ -192,7 +202,12 @@ export const employees_data: Employee[] = [
     dateOfJoining: "2019-11-30",
     dateOfBirth: "1982-09-10",
     managerId: null,
-    skills: ["Recruitment", "Employee Relations", "HR Policies", "Talent Acquisition"],
+    skills: [
+      "Recruitment",
+      "Employee Relations",
+      "HR Policies",
+      "Talent Acquisition",
+    ],
     address: {
       street: "321 Maple Ave",
       city: "Chicago",
@@ -223,6 +238,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 5,
+    password: 123456,
     employeeId: "EMP005",
     name: "Leslie Alexander",
     email: "leslie.alexander@example.com",
@@ -234,7 +250,12 @@ export const employees_data: Employee[] = [
     dateOfJoining: "2021-07-14",
     dateOfBirth: "1987-05-20",
     managerId: 2,
-    skills: ["Agile Methodology", "Team Management", "Scrum", "Risk Management"],
+    skills: [
+      "Agile Methodology",
+      "Team Management",
+      "Scrum",
+      "Risk Management",
+    ],
     address: {
       street: "654 Cedar Blvd",
       city: "Austin",
@@ -265,6 +286,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 6,
+    password: 123456,
     employeeId: "EMP006",
     name: "Kathryn Murphy",
     email: "kathryn.murphy@example.com",
@@ -307,6 +329,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 7,
+    password: 123456,
     employeeId: "EMP007",
     name: "Eleanor Pena",
     email: "eleanor.pena@example.com",
@@ -349,6 +372,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 8,
+    password: 123456,
     employeeId: "EMP008",
     name: "Jacob Jones",
     email: "jacob.jones@example.com",
@@ -391,6 +415,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 9,
+    password: 123456,
     employeeId: "EMP009",
     name: "Darlene Robertson",
     email: "darlene.robertson@example.com",
@@ -433,6 +458,7 @@ export const employees_data: Employee[] = [
   },
   {
     id: 10,
+    password: 123456,
     employeeId: "EMP010",
     name: "Grant Wagner",
     email: "grant.wagner@example.com",
@@ -444,7 +470,12 @@ export const employees_data: Employee[] = [
     dateOfJoining: "2021-11-05",
     dateOfBirth: "1992-12-23",
     managerId: 1,
-    skills: ["Customer Support", "Troubleshooting", "Zendesk", "Technical Assistance"],
+    skills: [
+      "Customer Support",
+      "Troubleshooting",
+      "Zendesk",
+      "Technical Assistance",
+    ],
     address: {
       street: "1052 Aspen Ave",
       city: "Denver",
@@ -472,5 +503,5 @@ export const employees_data: Employee[] = [
     probationStatus: "Completed",
     projectsAssigned: ["Tech Support", "Customer Service Improvements"],
     notes: "Strong communicator with a technical background.",
-  }
+  },
 ];

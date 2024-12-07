@@ -1,38 +1,69 @@
-import React, { useState } from "react";
-import { Search, MoreVertical } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Search, MoreVertical, Trash } from "lucide-react";
 import InitialAvatar from "../../../utility/initialAvatar";
-import { Employee } from "../../../types/common";
-import { employees_data } from "../../../data/admin-dashboard";
+import { EmployeeInterface } from "../../../types/common";
+import axiosInstance from "../../../api/axios";
+import AddUserForm from "./add-employee-form";
+import toast from "react-hot-toast";
 
 export default function ManageEmployee() {
-  const [employees, setEmployees] = useState<Employee[]>(employees_data);
-  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
-    null
-  );
+  const [employees, setEmployees] = useState<EmployeeInterface[]>([]);
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [selectedEmployee, setSelectedEmployee] =
+    useState<EmployeeInterface | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get("/employees");
+      setEmployees(response.data);
+      console.log(response.data);
+    };
+    fetchData();
+  }, []);
 
-  const filteredEmployees = employees.filter((employee) =>
-    employee.name.toLowerCase().includes(searchQuery.toLowerCase())
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 500);
+  
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
+  const filteredEmployees = employees?.filter((employee) =>
+    employee.name.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
+  
 
-  const handleEdit = (employee: Employee) => {
+  const handleEdit = (employee: EmployeeInterface) => {
     setSelectedEmployee(employee);
     setIsEditing(true);
   };
 
-  const handleSave = () => {
-    setEmployees((prev) =>
-      prev.map((emp) =>
-        emp.id === selectedEmployee?.id ? { ...selectedEmployee } : emp
-      )
-    );
-    setIsEditing(false);
-    setSelectedEmployee(null);
+  const handleSave = async () => {
+    try {
+      await axiosInstance.put(`/employees/${selectedEmployee?.id}`, selectedEmployee);
+      toast.success("Employee updated successfully");
+      const updatedEmployees = employees.map((emp) =>
+        emp.id === selectedEmployee?.id ? selectedEmployee : emp
+      );
+      setEmployees(updatedEmployees);
+      setIsEditing(false);
+    } catch (error) {
+      toast.error("Something went wrong. Please try again later");
+    }
   };
 
-  const handleDelete = (id: number) => {
-    setEmployees((prev) => prev.filter((emp) => emp.id !== id));
+  const handleDelete = async (id: number | string) => {
+    try {
+      await axiosInstance.delete(`/employees/${id}`);
+      const updatedEmployees = employees.filter((emp) => emp.id !== id);
+      setEmployees(updatedEmployees);
+      toast.success("Employee deleted successfully");
+    } catch (error) {
+      toast.error("Something went wrong. Please try again later");
+    }
   };
   const getDepartmentColor = (department: string) => {
     const colors = {
@@ -41,12 +72,16 @@ export default function ManageEmployee() {
       Development:
         "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
       HR: "bg-[#F4E8FF] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
-      "Management": "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
-      "Sales": "bg-[#FFF0F0] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
-      "Marketing": "bg-[#F0F0FF] text-lightMode-accentBlue dark:bg-darkMode-accentBlue/20 dark:text-darkMode-accentBlue",
-      "Support": "bg-[#F0FFF0] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
+      Management:
+        "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
+      Sales:
+        "bg-[#FFF0F0] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
+      Marketing:
+        "bg-[#F0F0FF] text-lightMode-accentBlue dark:bg-darkMode-accentBlue/20 dark:text-darkMode-accentBlue",
+      Support:
+        "bg-[#F0FFF0] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
     };
-    return colors[department as keyof typeof colors] || "";
+    return colors[department as keyof typeof colors] || "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange";
   };
 
   return (
@@ -61,10 +96,9 @@ export default function ManageEmployee() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="text-lightMode-secondaryText dark:text-darkMode-secondaryText absolute left-3 top-1/2 -translate-y-1/2" size={18}/>
         </div>
       </div>
-
       <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary dark:border-borders-secondary overflow-hidden">
         <div className="grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary">
           {[
@@ -73,7 +107,7 @@ export default function ManageEmployee() {
             "Department",
             "Job Title",
             "Contract Type",
-            "Attendance",
+            "Date of Joining",
           ].map((title) => (
             <div
               key={title}
@@ -83,56 +117,65 @@ export default function ManageEmployee() {
             </div>
           ))}
         </div>
-
         {filteredEmployees.map((employee) => (
           <div
-          key={employee.id}
-          className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200"
-        >
-          <div className="flex items-center gap-3">
-            <InitialAvatar name={employee.name} size="sm" />
-            <div>
-              <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
-                {employee.name}
-              </div>
-              <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                {employee.email}
+            key={employee.id}
+            className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200"
+          >
+            <div className="flex items-center gap-3">
+              <InitialAvatar name={employee.name} size="sm" />
+              <div>
+                <div className="font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
+                  {employee.name}
+                </div>
+                <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  {employee.email}
+                </div>
               </div>
             </div>
+            <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+              {employee.phone}
+            </div>
+            <div className="flex items-center">
+              <span
+                className={`px-3 py-1 rounded-full text-xs font-medium ${getDepartmentColor(employee.department)}`}
+              >
+                {employee.department}
+              </span>
+            </div>
+            <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+              {employee.jobTitle}
+            </div>
+            <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+              {employee.contractType}
+            </div>
+            <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
+              {employee.dateOfJoining}
+            </div>
+            <div className="flex items-center justify-end">
+              <button
+                className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full transition-colors duration-200"
+                onClick={() => handleEdit(employee)}
+              >
+                <MoreVertical className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
+              </button>
+              <button className="" onClick={() => handleDelete(
+                employee.id
+              )}>
+                <Trash className="ml-6 text-red-600" size={18} />
+              </button>
+            </div>
           </div>
-          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
-            {employee.phone}
-          </div>
-          <div className="flex items-center">
-            <span
-              className={`px-3 py-1 rounded-full text-xs font-medium ${getDepartmentColor(employee.department)}`}
-            >
-              {employee.department}
-            </span>
-          </div>
-          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
-            {employee.jobTitle}
-          </div>
-          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
-            {employee.contractType}
-          </div>
-          <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
-            {employee.dateOfBirth}
-          </div>
-          <div className="flex items-center justify-end">
-            <button className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full transition-colors duration-200"
-            onClick={() => handleEdit(employee)}
-            >
-              <MoreVertical className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
-            </button>
-          </div>
-        </div>
         ))}
       </div>
+      {filteredEmployees.length == 0 && 
+      <div className="flex justify-center items-center h-[50vh]">
+        <img src="/images/empty.svg" alt="No data" className="mt-6 block justify-center" width={400} height={300} />
+      </div>
+      }
 
-      {/* Edit Modal */}
       {isEditing && selectedEmployee && (
-        <div className="fixed inset-0 z-50 backdrop: flex justify-center items-center">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white dark:bg-black h-[90%] w-[70%] overflow-auto p-6 rounded-lg shadow-lg ">
             <h3 className="text-xl font-bold mb-4">Edit Employee</h3>
             <div className="space-y-4">

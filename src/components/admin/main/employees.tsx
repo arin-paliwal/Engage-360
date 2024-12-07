@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DownloadCloudIcon,
   Plus,
   Users2Icon,
   GitBranchPlusIcon,
   TimerOff,
+  Users2,
 } from "lucide-react";
 import OrganisationChart from "../employee/organisational-chart";
 import Timeoff from "../employee/time-offs";
 import ManageEmployee from "../employee/manage-employees";
 import { TabProps } from "../../../types/admin-dashboard/types";
+import AddUserForm from "../employee/add-employee-form";
+import exportAsCsv from "../common/export";
+import axiosInstance from "../../../api/axios";
 
 export default function Employee() {
-  const [activeTab, setActiveTab] = useState("manage");
+  const [activeTab, setActiveTab] = useState(
+    localStorage.getItem("activeTab") || "manage"
+  );
+  const [isAddingEmployee, setIsAddingEmployee] = useState(false);
   const tabs = [
     {
       id: "manage",
@@ -33,28 +40,25 @@ export default function Employee() {
       component: <Timeoff />,
     },
   ];
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get("/employees");
+      setEmployees(response.data);
+      console.log(response.data);
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+  }, [activeTab]);
   return (
     <div className="h-screen flex flex-col">
       <div className="px-6 pt-6 flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg flex items-center justify-center">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
-                  fill="white"
-                />
-                <path
-                  d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z"
-                  fill="white"
-                />
-              </svg>
+              <Users2 className="w-6 h-6 text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -66,11 +70,17 @@ export default function Employee() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary">
-              <DownloadCloudIcon className="w-5 h-5 text-lightMode-primaryText dark:text-darkMode-primaryText" />
+            <button
+              className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary"
+              onClick={() => exportAsCsv(employees)}
+            >
+              <DownloadCloudIcon className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               Export
             </button>
-            <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue text-white rounded-lg hover:opacity-90">
+            <button
+              className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue text-white rounded-lg hover:opacity-90"
+              onClick={() => setIsAddingEmployee(true)}
+            >
               <Plus className="w-5 h-5" />
               Add Employee
             </button>
@@ -92,6 +102,11 @@ export default function Employee() {
       <div className="bg-white dark:bg-darkMode-background overflow-x-auto p-6 w-full">
         {tabs.find((tab) => tab.id === activeTab)?.component}
       </div>
+      {isAddingEmployee && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+          <AddUserForm setIsAddingEmployee={setIsAddingEmployee} />
+        </div>
+      )}
     </div>
   );
 }

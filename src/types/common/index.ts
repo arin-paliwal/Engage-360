@@ -1,5 +1,6 @@
-export interface Employee {
-  id: number;
+export interface EmployeeInterface {
+  id: number | string;
+  password: string | number
   employeeId: string;
   name: string;
   email: string;
