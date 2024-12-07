@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useRef, useEffect } from "react";
 import { MoreVertical, Search, Check, X } from "lucide-react";
 import { getRandomNumber } from "./organisational-chart";
