@@ -401,7 +401,11 @@ export default function ProjectManagement() {
             onClick={() => setIsDropdownOpen((prev) => !prev)}
           >
             <span>{selectedProject.name}</span>
-            <MousePointer2 className="" size={18} />
+            <ChevronDownIcon
+              className={`transform duration-300
+              ${isDropdownOpen ? " rotate-180 " : ""}`}
+              size={18}
+            />
           </button>
           {isDropdownOpen && (
             <div className="absolute top-12 right-1 w-56 rounded-md border-2 border-borders-primary dark:border-borders-secondary">
