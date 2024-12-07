@@ -49,7 +49,7 @@ export function AssignedTodoItem({ todo, onComplete }: TodoItemProps) {
             <h3 className="font-medium">{todo.title}</h3>
           </div>
           <div className="flex items-center gap-2">
-            {todo.date > new Date().toISOString() && (
+            {todo.date < new Date().toISOString() && (
               <span className="bg-lightMode-accentBlue px-2 py-1 text-white rounded-md text-xs">
                 Due
               </span>
