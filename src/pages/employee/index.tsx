@@ -13,4 +13,4 @@ const EmployeeDashboard = () => {
   );
 };
 
-export default withAuthCheck(EmployeeDashboard);
+export default withAuthCheck(EmployeeDashboard, 2);

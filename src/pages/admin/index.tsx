@@ -13,4 +13,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default withAuthCheck(AdminDashboard);
+export default withAuthCheck(AdminDashboard, 1);

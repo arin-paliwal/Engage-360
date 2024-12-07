@@ -19,7 +19,6 @@ export default function Login() {
     employeeCode: "",
     password: "",
   });
-  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -41,7 +40,6 @@ export default function Login() {
       );
 
       if (matchedEmployee) {
-        setError(null);
         if (matchedEmployee.role == 1) {
           toast.success("Admin login successful.");
           const token=create_access_token(1);
@@ -58,10 +56,10 @@ export default function Login() {
           }, 1000);
         }
       } else {
-        setError("Invalid Employee Code or Password.");
+        toast.error("Invalid employee code or password.");
       }
     } catch (err) {
-      setError("An error occurred while logging in. Please try again.");
+      console.log("An error occurred while logging in. Please try again.");
     }
   };
 
@@ -72,7 +70,6 @@ export default function Login() {
 
   return (
     <div className="h-screen flex flex-wrap bg-lightMode-background dark:bg-darkMode-background">
-      {/* Left Section */}
       <div className="relative bg-dots-pattern-hero w-full md:w-1/2 flex items-center justify-center px-6">
         <div className="absolute top-4 left-4">
           <button
@@ -137,11 +134,6 @@ export default function Login() {
               />
             </div>
 
-            {error && (
-              <p className="text-red-500 text-sm mt-2">
-                {error}
-              </p>
-            )}
 
             <div className="text-sm flex items-center justify-between pt-4">
               <button
