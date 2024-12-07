@@ -9,6 +9,12 @@ import {
   FolderKanban,
   MousePointer2,
   File,
+  CheckCircle2Icon,
+  ClockIcon,
+  X,
+  Check,
+  Clock,
+  ChevronDown,
 } from "lucide-react";
 import {
   VerticalTimeline,
@@ -16,6 +22,7 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import getIcon from "../../../utility/get-file-icon";
+import InitialAvatar from "../../../utility/initialAvatar";
 
 interface Project {
   id: string;
@@ -191,18 +198,49 @@ const workflowSteps = [
         completed: true,
         assignee: "Rustam Musaiev",
         timestamp: "2 weeks ago",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Sarah Lee",
+            timestamp: "2 weeks ago",
+          },
+          {
+            action: "Created requirement document",
+            employee: "Rustam Musaiev",
+            timestamp: "1 week ago",
+          },
+        ],
       },
       {
         name: "Home Page Prototype",
         completed: true,
         assignee: "Rustam Musaiev",
         timestamp: "1 week ago",
+        actions: [
+          {
+            action: "Created prototype",
+            employee: "Rustam Musaiev",
+            timestamp: "1 week ago",
+          },
+          {
+            action: "Added files",
+            employee: "Rustam Musaiev",
+            timestamp: "1 week ago",
+          },
+        ],
       },
       {
         name: "Prototypes Of All Pages",
         completed: true,
         assignee: "Rustam Musaiev",
         timestamp: "1 week ago",
+        actions: [
+          {
+            action: "Created prototypes",
+            employee: "Rustam Musaiev",
+            timestamp: "1 week ago",
+          },
+        ],
       },
     ],
   },
@@ -214,12 +252,31 @@ const workflowSteps = [
         completed: true,
         assignee: "Sergey Lopatin",
         timestamp: "5 days ago",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Rustam Musaiev",
+            timestamp: "6 days ago",
+          },
+          {
+            action: "Created design",
+            employee: "Sergey Lopatin",
+            timestamp: "5 days ago",
+          },
+        ],
       },
       {
         name: "Prototypes Of All Pages",
         completed: true,
         assignee: "Sergey Lopatin",
         timestamp: "1 day ago",
+        actions: [
+          {
+            action: "Created design",
+            employee: "Sergey Lopatin",
+            timestamp: "1 day ago",
+          },
+        ],
       },
     ],
   },
@@ -231,12 +288,31 @@ const workflowSteps = [
         completed: false,
         assignee: "Alex Johnson",
         timestamp: "In progress",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Sergey Lopatin",
+            timestamp: "3 days ago",
+          },
+          {
+            action: "Started backend setup",
+            employee: "Alex Johnson",
+            timestamp: "3 days ago",
+          },
+        ],
       },
       {
         name: "Frontend Implementation",
         completed: false,
         assignee: "Sarah Lee",
         timestamp: "Not started",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Rustam Musaiev",
+            timestamp: "2 days ago",
+          },
+        ],
       },
     ],
   },
@@ -248,12 +324,26 @@ const workflowSteps = [
         completed: false,
         assignee: "Mike Brown",
         timestamp: "Not started",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Sarah Lee",
+            timestamp: "1 day ago",
+          },
+        ],
       },
       {
         name: "Integration Testing",
         completed: false,
         assignee: "Lisa Wang",
         timestamp: "Not started",
+        actions: [
+          {
+            action: "Assigned task",
+            employee: "Mike Brown",
+            timestamp: "1 day ago",
+          },
+        ],
       },
     ],
   },
@@ -279,6 +369,15 @@ export default function ProjectManagement() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  const [expandedTasks, setExpandedTasks] = useState<number[]>([]);
+
+  const toggleExpand = (stepIndex: number) => {
+    setExpandedTasks((prev) =>
+      prev.includes(stepIndex)
+        ? prev.filter((i) => i !== stepIndex)
+        : [...prev, stepIndex]
+    );
+  };
 
   return (
     <div className="min-h-screen p-6">
@@ -305,7 +404,7 @@ export default function ProjectManagement() {
             <MousePointer2 className="" size={18} />
           </button>
           {isDropdownOpen && (
-            <div className="absolute left-0 mt-2 w-56 origin-top-left rounded-md bg-white border-2">
+            <div className="absolute top-12 right-1 w-56 rounded-md border-2 border-borders-primary dark:border-borders-secondary">
               <div className="py-1">
                 {projects.map((project) => (
                   <button
@@ -314,7 +413,7 @@ export default function ProjectManagement() {
                       setSelectedProject(project);
                       setIsDropdownOpen(false);
                     }}
-                    className="block w-full px-4 py-2 text-left text-sm  hover:bg-gray-700"
+                    className="block w-full px-4 py-2 text-left text-sm bg-white hover:bg-lightMode-secondaryBackground dark:bg-black dark:hover:bg-darkMode-secondaryBackground"
                   >
                     {project.name}
                   </button>
@@ -324,7 +423,7 @@ export default function ProjectManagement() {
           )}
         </div>
       </div>
-      <main className="flex flex-col gap-6">
+      <main className="flex flex-col gap-12">
         <section className="flex flex-col gap-2">
           <h3 className="text-2xl font-semibold">{selectedProject.name}</h3>
           <p className="text-lightMode-secondaryText dark:text-darkMode-secondaryText">
@@ -345,22 +444,29 @@ export default function ProjectManagement() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-4">
           <div className="flex">
             <h2 className="text-2xl font-semibold">Files & Links</h2>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <button className="flex p-5 h-[4rem] justify-center items-center border-2 border-borders-primary dark:border-borders-secondary border-dotted rounded-lg">
-              <PlusIcon className="text-lightMode-secondaryText dark:text-darkMode-secondaryText" size={20} />
+              <PlusIcon
+                className="text-lightMode-secondaryText dark:text-darkMode-secondaryText"
+                size={20}
+              />
             </button>
             {selectedProject.attachedFiles.map((file, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 p-4 h-[4rem] border-2 border-borders-primary dark:border-borders-secondary rounded-lg"
+                className="flex items-center gap-2 p-4 h-[4rem] border-2 border-borders-primary border-dotted dark:border-borders-secondary rounded-lg"
               >
-                <img src={getIcon(file.type)} alt={file.type} className={`
-                ${file.type === "docx" || file.type === "xlsx" || file.type === "pptx" || file.type=="csv" ? "w-14 h-14 ml-[-10px]" : "w-8 h-8"} rounded-lg bg-white p-1
-                  `} />
+                <img
+                  src={getIcon(file.type)}
+                  alt={file.type}
+                  className={`
+                ${file.type === "docx" || file.type === "xlsx" || file.type === "pptx" || file.type == "csv" ? "w-14 h-14 ml-[-10px]" : "w-8 h-8"} rounded-lg  p-1
+                  `}
+                />
                 <div className="flex flex-col">
                   <span className="text-sm">{file.name}</span>
                   <span className="text-xs text-gray-500">{file.type}</span>
@@ -369,54 +475,73 @@ export default function ProjectManagement() {
             ))}
           </div>
         </section>
-        {/* Work Progress Timeline */}
-        <section>
-          <h2 className="mb-4 text-2xl font-bold">Work Progress</h2>
-          <VerticalTimeline lineColor="#4B5563">
-            {workflowSteps.map((step, index) => (
-              <VerticalTimelineElement
-                key={index}
-                className="vertical-timeline-element--work"
-                contentStyle={{ background: "#fff", color: "#000" }}
-                contentArrowStyle={{ borderRight: "7px solid #1F2937" }}
-                date={`Step ${index + 1}`}
-                iconStyle={{
-                  background: step.tasks.every((task) => task.completed)
-                    ? "#10B981"
-                    : "#4B5563",
-                  color: "#fff",
-                }}
-                icon={
-                  step.tasks.every((task) => task.completed) ? (
-                    <CheckCircleIcon className="w-full h-full p-2" />
-                  ) : (
-                    <XCircleIcon className="w-full h-full p-2" />
-                  )
-                }
-              >
-                <h3 className="vertical-timeline-element-title text-xl font-bold mb-2">
-                  {step.title}
-                </h3>
-                <div className="space-y-2">
-                  {step.tasks.map((task, taskIndex) => (
-                    <div key={taskIndex} className="flex items-start space-x-2">
-                      <div
-                        className={`mt-1 h-4 w-4 rounded-full flex-shrink-0 ${
-                          task.completed ? "bg-green-500" : "bg-gray-500"
-                        }`}
-                      />
-                      <div>
-                        <p className="font-medium">{task.name}</p>
-                        <p className="text-sm ">
-                          {task.assignee} • {task.timestamp}
-                        </p>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl font-semibold">Work Progress</h2>
+          {workflowSteps.map((step, stepIndex) => (
+            <div key={stepIndex} className="space-y-3">
+              <div className="space-y-4">
+                {step.tasks
+                  .slice(0, expandedTasks.includes(stepIndex) ? undefined : 1)
+                  .map((task, taskIndex) => (
+                    <div
+                      key={taskIndex}
+                      className="border-2 border-borders-primary dark:border-borders-secondary border-dashed rounded-lg p-4 space-y-3"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-3">
+                          <InitialAvatar name={task.assignee} size="sm" />
+                          <div>
+                            <p className="font-medium">{task.name}</p>
+                            <p className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                              {task.assignee}
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                          {task.timestamp}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {task.actions.map((action, actionIndex) => (
+                          <div
+                            key={actionIndex}
+                            className="flex items-center gap-2 text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue" />
+                            <span>
+                              {action.action} by{" "}
+                              <span className="text-lightMode-primaryText dark:text-darkMode-primaryText">
+                                {action.employee}
+                              </span>
+                              <span className="ml-1">({action.timestamp})</span>
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   ))}
-                </div>
-              </VerticalTimelineElement>
-            ))}
-          </VerticalTimeline>
+
+                {step.tasks.length > 1 && (
+                  <button
+                    onClick={() => toggleExpand(stepIndex)}
+                    className="flex items-center gap-2 text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText hover:text-lightMode-primaryText dark:hover:text-darkMode-primaryText transition-colors"
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        expandedTasks.includes(stepIndex) ? "rotate-180" : ""
+                      }`}
+                    />
+                    Show{" "}
+                    {expandedTasks.includes(stepIndex)
+                      ? "less"
+                      : `${step.tasks.length - 1} more`}{" "}
+                    tasks
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
         </section>
       </main>
     </div>
