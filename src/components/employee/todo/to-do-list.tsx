@@ -23,7 +23,7 @@ export function TodoList({ title, todos, onComplete, onDrop }: TodoListProps) {
   return (
     <div
       ref={drop}
-      className={`flex-1 h-[65vh] bg-lightMode-background dark:bg-darkMode-background componentScroll overflow-auto rounded-lg border-2 border-borders-primary dark:border-borders-secondary p-4 transition-colors ${
+      className={`flex-1 h-[55vh] bg-lightMode-background dark:bg-darkMode-background componentScroll overflow-auto rounded-lg borde border-borders-primary dark:border-borders-secondary p-6 transition-colors ${
         isOver ? "border-dotted" : "border-transparent"
       }`}
     >

@@ -3,8 +3,15 @@
 import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { FolderKanban, GitBranchPlus, Plus, SlidersHorizontal, Workflow } from "lucide-react";
+import {
+  FolderKanban,
+  GitBranchPlus,
+  Plus,
+  SlidersHorizontal,
+  Workflow,
+} from "lucide-react";
 import { TodoList } from "../todo/to-do-list";
+import { AssignedTodoList } from "../todo/assigned-todo";
 export interface Todo {
   id: string;
   title: string;
@@ -34,14 +41,14 @@ const initialTodos: Todo[] = [
     id: "3",
     title: "Review pull requests",
     date: "2024-12-12",
-    completed: false,
+    completed: true,
     tags: ["Code Review", "Development"],
   },
   {
     id: "4",
     title: "Prepare for client meeting",
     date: "2024-12-15",
-    completed: false,
+    completed: true,
     tags: ["Meeting", "Client"],
   },
   {
@@ -53,9 +60,47 @@ const initialTodos: Todo[] = [
   },
 ];
 
+const assignedTodos: Todo[] = [
+  {
+    id: "6",
+    title: "Complete project documentation",
+    date: "2024-12-07",
+    completed: false,
+    tags: ["Development", "Documentation"],
+  },
+  {
+    id: "7",
+    title: "Plan sprint tasks",
+    date: "2024-12-10",
+    completed: false,
+    tags: ["Planning", "Sprint"],
+  },
+  {
+    id: "8",
+    title: "Review pull requests",
+    date: "2024-12-12",
+    completed: true,
+    tags: ["Code Review", "Development"],
+  },
+  {
+    id: "9",
+    title: "Prepare for client meeting",
+    date: "2024-12-15",
+    completed: true,
+    tags: ["Meeting", "Client"],
+  },
+  {
+    id: "10",
+    title: "Optimize application performance",
+    date: "2024-12-20",
+    completed: false,
+    tags: ["Optimization", "Performance"],
+  },
+];
 
 export default function TodoComponent() {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
+  const [assignedTodosState, setAssignedTodos] = useState<Todo[]>(assignedTodos);
 
   const incompleteTodos = todos.filter((todo) => !todo.completed);
   const completedTodos = todos.filter((todo) => todo.completed);
@@ -68,6 +113,14 @@ export default function TodoComponent() {
     );
   };
 
+  const handleCompleteAssigned = (id: string) => {
+    setAssignedTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
   const handleDrop = (droppedTodo: Todo) => {
     setTodos((prev) =>
       prev.map((todo) =>
@@ -79,9 +132,9 @@ export default function TodoComponent() {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="h-screen text-lightMode-primaryText dark:text-darkMode-primaryText">
-        <div className="flex flex-col p-6">
+    <div className="min-h-screen text-lightMode-primaryText dark:text-darkMode-primaryText">
+      <div className="flex flex-col p-6">
+        <DndProvider backend={HTML5Backend}>
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-lightMode-accentBlue rounded-lg flex items-center justify-center">
@@ -105,20 +158,28 @@ export default function TodoComponent() {
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <TodoList
-              title="Tasks"
+              title="Private Tasks"
               todos={incompleteTodos}
               onComplete={handleComplete}
               onDrop={handleDrop}
             />
             <TodoList
-              title="Completed"
+              title="Completed Tasks"
               todos={completedTodos}
               onComplete={handleComplete}
               onDrop={handleDrop}
             />
           </div>
-        </div>
+        </DndProvider>
+        <h2 className="text-xl font-semibold flex items-center gap-2 my-6">
+          <div className="w-1 h-6 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded"></div>
+          Assigned Tasks
+        </h2>
+        <AssignedTodoList
+          todos={assignedTodosState}
+          onComplete={handleCompleteAssigned}
+        />
       </div>
-    </DndProvider>
+    </div>
   );
 }

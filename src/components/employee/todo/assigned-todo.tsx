@@ -1,25 +1,38 @@
-import { useDrag } from "react-dnd";
 import { Todo } from "../main/to-do";
 
+interface TodoListProps {
+  todos: Todo[];
+  onComplete: (id: string) => void;
+}
 interface TodoItemProps {
   todo: Todo;
   onComplete: (id: string) => void;
 }
 
-export function TodoItem({ todo, onComplete }: TodoItemProps) {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "TODO",
-    item: todo,
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }));
-
+export function AssignedTodoList({ todos, onComplete }: TodoListProps) {
   return (
     <div
-      ref={drag}
+      className={`flex items-center componentScroll overflow-auto rounded-lg borde border-borders-primary dark:border-borders-secondary transition-colors`}
+    >
+      <div className="h-full flex flex-wrap gap-4 items-center">
+        {todos.length === 0 && (
+          <div className="flex justify-center items-center h-full">
+            <img src="/images/empty.svg" alt="empty" className="" width={350} />
+          </div>
+        )}
+        {todos.map((todo) => (
+          <AssignedTodoItem key={todo.id} todo={todo} onComplete={onComplete} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function AssignedTodoItem({ todo, onComplete }: TodoItemProps) {
+  return (
+    <div
       className={`group relative rounded-lg border-2 bg-white dark:bg-black border-borders-primary dark:border-borders-secondary p-4 shadow-sm transition-all hover:shadow-md ${
-        isDragging ? "opacity-50" : ""
+        todo.completed ? "line-through" : ""
       }`}
     >
       <div className="flex items-center gap-3">
