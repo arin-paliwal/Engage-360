@@ -1,357 +1,47 @@
 import { useEffect, useRef, useState } from "react";
 import {
   ChevronDownIcon,
-  CheckCircleIcon,
-  XCircleIcon,
   PlusIcon,
-  LinkIcon,
-  FileIcon,
   FolderKanban,
-  MousePointer2,
-  File,
-  CheckCircle2Icon,
-  ClockIcon,
-  X,
-  Check,
-  Clock,
   ChevronDown,
 } from "lucide-react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+
 import getIcon from "../../../utility/get-file-icon";
 import InitialAvatar from "../../../utility/initialAvatar";
-
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  lead: string;
-  duration: string;
-  timeNeeded: string;
-  dateStarted: string;
-  attachedFiles: {
-    name: string;
-    type: string;
-  }[];
-}
-
-const projects: Project[] = [
-  {
-    id: "1",
-    name: "StrataScratch",
-    description:
-      "StrataScratch is a data science interview platform with over 900+ real interview questions from top companies. Questions span SQL, Python, statistics, probability, modeling, product sense, and system design.",
-    lead: "John Doe",
-    duration: "3 months",
-    timeNeeded: "400 hours",
-    dateStarted: "2024-01-15",
-    attachedFiles: [
-      {
-        name: "Project Plan",
-        type: "pdf",
-      },
-      {
-        name: "Meeting Notes",
-        type: "docx",
-      },
-      {
-        name: "Design Mockups",
-        type: "pdf",
-      },
-      {
-        name: "User Stories",
-        type: "csv",
-      },
-      {
-        name: "Database Schema",
-        type: "sql",
-      },
-      {
-        name: "API Documentation",
-        type: "pdf",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "HealthBridge",
-    description:
-      "HealthBridge is a telehealth platform connecting patients with licensed medical professionals, enabling consultations, prescriptions, and health monitoring through a secure app.",
-    lead: "Jane Smith",
-    duration: "6 months",
-    timeNeeded: "800 hours",
-    dateStarted: "2023-09-10",
-    attachedFiles: [
-      {
-        name: "Project Plan",
-        type: "pdf",
-      },
-      {
-        name: "Market Research",
-        type: "docx",
-      },
-      {
-        name: "Telemedicine Guidelines",
-        type: "pdf",
-      },
-      {
-        name: "API Endpoints",
-        type: "json",
-      },
-    ],
-  },
-  {
-    id: "3",
-    name: "GreenTech Insights",
-    description:
-      "A sustainability-focused analytics tool providing businesses insights into their carbon footprint and suggesting actionable strategies to achieve net-zero emissions.",
-    lead: "Michael Johnson",
-    duration: "4 months",
-    timeNeeded: "600 hours",
-    dateStarted: "2023-11-01",
-    attachedFiles: [
-      {
-        name: "Project Charter",
-        type: "pdf",
-      },
-      {
-        name: "Carbon Footprint Model",
-        type: "xlsx",
-      },
-      {
-        name: "Sustainability Guidelines",
-        type: "pdf",
-      },
-      {
-        name: "API Documentation",
-        type: "pdf",
-      },
-    ],
-  },
-  {
-    id: "4",
-    name: "EduMentor AI",
-    description:
-      "An AI-driven personalized education platform offering students tailored lesson plans, interactive quizzes, and progress tracking for academic success.",
-    lead: "Sophia Lee",
-    duration: "5 months",
-    timeNeeded: "700 hours",
-    dateStarted: "2024-02-01",
-    attachedFiles: [
-      {
-        name: "Curriculum Overview",
-        type: "docx",
-      },
-      {
-        name: "AI Algorithm Specifications",
-        type: "pdf",
-      },
-      {
-        name: "Interactive Quizzes",
-        type: "zip",
-      },
-      {
-        name: "Progress Tracker",
-        type: "xlsx",
-      },
-    ],
-  },
-  {
-    id: "5",
-    name: "CityWorks 360",
-    description:
-      "A civic engagement app where citizens can report issues, track municipal projects, and engage with city officials for better urban governance.",
-    lead: "Emma Brown",
-    duration: "3 months",
-    timeNeeded: "500 hours",
-    dateStarted: "2024-03-15",
-    attachedFiles: [
-      {
-        name: "App Design",
-        type: "pdf",
-      },
-      {
-        name: "User Flow Diagrams",
-        type: "svg",
-      },
-      {
-        name: "API Documentation",
-        type: "json",
-      },
-      {
-        name: "Issue Reporting Guidelines",
-        type: "docx",
-      },
-    ],
-  },
-];
-
-const workflowSteps = [
-  {
-    title: "Project Preparation",
-    tasks: [
-      {
-        name: "Requirements Collection",
-        completed: true,
-        assignee: "Rustam Musaiev",
-        timestamp: "2 weeks ago",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Sarah Lee",
-            timestamp: "2 weeks ago",
-          },
-          {
-            action: "Created requirement document",
-            employee: "Rustam Musaiev",
-            timestamp: "1 week ago",
-          },
-        ],
-      },
-      {
-        name: "Home Page Prototype",
-        completed: true,
-        assignee: "Rustam Musaiev",
-        timestamp: "1 week ago",
-        actions: [
-          {
-            action: "Created prototype",
-            employee: "Rustam Musaiev",
-            timestamp: "1 week ago",
-          },
-          {
-            action: "Added files",
-            employee: "Rustam Musaiev",
-            timestamp: "1 week ago",
-          },
-        ],
-      },
-      {
-        name: "Prototypes Of All Pages",
-        completed: true,
-        assignee: "Rustam Musaiev",
-        timestamp: "1 week ago",
-        actions: [
-          {
-            action: "Created prototypes",
-            employee: "Rustam Musaiev",
-            timestamp: "1 week ago",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "UX/UI",
-    tasks: [
-      {
-        name: "Home Page Prototype",
-        completed: true,
-        assignee: "Sergey Lopatin",
-        timestamp: "5 days ago",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Rustam Musaiev",
-            timestamp: "6 days ago",
-          },
-          {
-            action: "Created design",
-            employee: "Sergey Lopatin",
-            timestamp: "5 days ago",
-          },
-        ],
-      },
-      {
-        name: "Prototypes Of All Pages",
-        completed: true,
-        assignee: "Sergey Lopatin",
-        timestamp: "1 day ago",
-        actions: [
-          {
-            action: "Created design",
-            employee: "Sergey Lopatin",
-            timestamp: "1 day ago",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Development",
-    tasks: [
-      {
-        name: "Backend Setup",
-        completed: false,
-        assignee: "Alex Johnson",
-        timestamp: "In progress",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Sergey Lopatin",
-            timestamp: "3 days ago",
-          },
-          {
-            action: "Started backend setup",
-            employee: "Alex Johnson",
-            timestamp: "3 days ago",
-          },
-        ],
-      },
-      {
-        name: "Frontend Implementation",
-        completed: false,
-        assignee: "Sarah Lee",
-        timestamp: "Not started",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Rustam Musaiev",
-            timestamp: "2 days ago",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Testing",
-    tasks: [
-      {
-        name: "Unit Testing",
-        completed: false,
-        assignee: "Mike Brown",
-        timestamp: "Not started",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Sarah Lee",
-            timestamp: "1 day ago",
-          },
-        ],
-      },
-      {
-        name: "Integration Testing",
-        completed: false,
-        assignee: "Lisa Wang",
-        timestamp: "Not started",
-        actions: [
-          {
-            action: "Assigned task",
-            employee: "Mike Brown",
-            timestamp: "1 day ago",
-          },
-        ],
-      },
-    ],
-  },
-];
+import axiosInstance from "../../../api/axios";
+import {
+  ProjectInterface,
+  WorkflowInterface,
+} from "../../../types/employee-dashboard/project";
 
 export default function ProjectManagement() {
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [workflowSteps, setWorkflowSteps] = useState<WorkflowInterface[]>([]);
+  const [projects, setProjects] = useState<ProjectInterface[]>([]);
+  const [selectedProject, setSelectedProject] = useState<ProjectInterface>(
+    {} as ProjectInterface
+  );
+  useEffect(() => {
+    const fetchWorkflow = async () => {
+      try {
+        const response = await axiosInstance.get("/workflowSteps");
+        setWorkflowSteps(response.data);
+      } catch (error) {
+        console.error("An error occurred while fetching workflow data.");
+      }
+    };
+    const fetchProjects = async () => {
+      try {
+        const response = await axiosInstance.get("/initialProjects");
+        setProjects(response.data);
+        setSelectedProject(response.data[0]);
+      } catch (error) {
+        console.error("An error occurred while fetching project data.");
+      }
+    };
+    fetchWorkflow();
+    fetchProjects();
+  }, []);
 
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -459,7 +149,7 @@ export default function ProjectManagement() {
                 size={20}
               />
             </button>
-            {selectedProject.attachedFiles.map((file, index) => (
+            {selectedProject?.attachedFiles?.map((file, index) => (
               <div
                 key={index}
                 className="flex items-center gap-2 p-4 h-[4rem] border-2 border-borders-primary border-dotted dark:border-borders-secondary rounded-lg"
