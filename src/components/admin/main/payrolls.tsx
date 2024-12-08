@@ -1,145 +1,68 @@
 import {
+  Check,
   CircleArrowOutUpRight,
   DownloadCloudIcon,
   IndianRupee,
   Info,
   Search,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InitialAvatar from "../../../utility/initialAvatar";
-
-interface Employee {
-  id: string;
-  name: string;
-  avatar: string;
-  payrollId: string;
-  startDate: string;
-  endDate: string;
-  hours: number;
-  amount: number;
-  status: "Paid" | "Unpaid";
-}
-
-const employees: Employee[] = [
-  {
-    id: "1",
-    name: "Brooklyn Simmons",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515726",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 22,
-    amount: 2020.0,
-    status: "Paid",
-  },
-  {
-    id: "2",
-    name: "Cody Fisher",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515727",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 22,
-    amount: 2020.0,
-    status: "Unpaid",
-  },
-  {
-    id: "3",
-    name: "Savannah Nguyen",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515728",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 30,
-    amount: 2500.0,
-    status: "Paid",
-  },
-  {
-    id: "4",
-    name: "Darlene Robertson",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515729",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 18,
-    amount: 1500.0,
-    status: "Unpaid",
-  },
-  {
-    id: "5",
-    name: "Wade Warren",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515730",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 40,
-    amount: 3500.0,
-    status: "Paid",
-  },
-  {
-    id: "6",
-    name: "Esther Howard",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515731",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 25,
-    amount: 2200.0,
-    status: "Paid",
-  },
-  {
-    id: "7",
-    name: "Eleanor Pena",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515732",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 20,
-    amount: 1800.0,
-    status: "Unpaid",
-  },
-  {
-    id: "8",
-    name: "Marvin McKinney",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515733",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 15,
-    amount: 1400.0,
-    status: "Paid",
-  },
-  {
-    id: "9",
-    name: "Kathryn Murphy",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515734",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 35,
-    amount: 3200.0,
-    status: "Unpaid",
-  },
-  {
-    id: "10",
-    name: "Ralph Edwards",
-    avatar: "/placeholder.svg?height=32&width=32",
-    payrollId: "#6515735",
-    startDate: "Dec 29, 2023",
-    endDate: "Jan 28, 2024",
-    hours: 28,
-    amount: 2400.0,
-    status: "Paid",
-  },
-];
+import axiosInstance from "../../../api/axios";
+import { EmployeePayrolls } from "../../../types/admin-dashboard/types";
+import toast from "react-hot-toast";
+import exportAsCsv from "../common/export";
 
 export default function Payrolls() {
+  const [payrolls, setPayrolls] = useState<EmployeePayrolls[]>([]);
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get("/employee_payrolls");
+      setPayrolls(response.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 500);
+  
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
+  const filteredPayrolls = payrolls?.filter((payroll) =>
+    payroll.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+  );
+
+  const updateStatus = async (id: string, status: "Paid" | "Unpaid") => {
+    var getPayroll = payrolls.find((payroll) => payroll.id === id);
+    if (getPayroll) {
+      getPayroll.status = "Paid";
+    }
+    const response = await axiosInstance.put(`/employee_payrolls/${id}`, {
+      ...getPayroll
+    });
+    if (response.status === 200) {
+      toast.success("Payroll updated successfully");
+      const updatedPayrolls = payrolls.map((payroll) => {
+        if (payroll.id === id) {
+          return { ...payroll, status };
+        }
+        return payroll;
+      });
+      setPayrolls(updatedPayrolls);
+    }
+  };
 
   return (
     <div className="p-6 bg-lightMode-background dark:bg-darkMode-background min-h-screen">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-lightMode-accentBlue  rounded-lg flex items-center justify-center">
             <IndianRupee className="w-6 h-6 text-white" />
           </div>
           <div className="ml-2">
@@ -152,14 +75,16 @@ export default function Payrolls() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground">
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
+          onClick={() => exportAsCsv(payrolls, "payrolls")}
+          >
             <DownloadCloudIcon
               size={18}
               className=" text-lightMode-primaryText dark:text-darkMode-primaryText"
             />
             Export
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg hover:bg-opacity-90">
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue  rounded-lg hover:bg-opacity-90">
             <CircleArrowOutUpRight size={18} className="" />
             Pay All Invoices
           </button>
@@ -229,6 +154,8 @@ export default function Payrolls() {
               <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search keyword..."
                 className="w-full pl-10 pr-4 py-2 text-sm border-2 border-borders-primary dark:border-borders-secondary rounded-lg bg-transparent text-lightMode-primaryText dark:text-darkMode-primaryText placeholder-lightMode-secondaryText dark:placeholder-darkMode-secondaryText focus:outline-none focus:ring-2 focus:ring-lightMode-accentBlue dark:focus:ring-darkMode-accentBlue"
               />
@@ -264,68 +191,75 @@ export default function Payrolls() {
               </tr>
             </thead>
             <tbody>
-              {employees.map((employee) => (
+              {filteredPayrolls.map((payroll) => (
                 <tr
-                  key={employee.id}
+                  key={payroll.id}
                   className="border-b border-borders-primary dark:border-borders-secondary"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      {/* <img
-                        src={`https://avatar.iran.liara.run/public/20`}
-                        alt=""
-                        className="w-8 h-8 rounded-full"
-                      /> */}
-                      <InitialAvatar name={employee.name} size="sm" />
+                      <InitialAvatar name={payroll.name} size="sm" />
                       <div>
                         <p className="text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText">
-                          {employee.name}
+                          {payroll.name}
                         </p>
                         <p className="text-xs text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                          {employee.payrollId}
+                          {payroll.payrollId}
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    {employee.startDate}
+                    {payroll.startDate}
                   </td>
                   <td className="px-4 py-3 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    {employee.endDate}
+                    {payroll.endDate}
                   </td>
                   <td className="px-4 py-3 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    {employee.hours}
+                    {payroll.hours}
                   </td>
                   <td className="px-4 py-3 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    {employee.hours}h 35m
+                    {payroll.hours}h 35m
                   </td>
                   <td className="px-4 py-3 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    ${employee.amount.toFixed(2)}
+                    ${payroll.amount.toFixed(2)}
                   </td>
                   <td className="px-4 py-3">
                     <span
                       className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        employee.status === "Paid"
-                          ? "bg-lightMode-accentBlue/10 text-lightMode-accentBlue dark:bg-darkMode-accentBlue/10 dark:text-darkMode-accentBlue"
+                        payroll.status === "Paid"
+                          ? "bg-lightMode-accentBlue/10 text-lightMode-accentBlue /10 dark:text-darkMode-accentBlue"
                           : "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400"
                       }`}
                     >
-                      {employee.status}
+                      {payroll.status}
                     </span>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      
-                      <button className="px-3 py-1 text-sm border-2 border-borders-primary dark:border-borders-secondary rounded hover:bg-opacity-90">
+                      {payroll.status === "Unpaid" ?(<button className="px-3 py-1 text-sm border-2 border-borders-primary dark:border-borders-secondary rounded hover:bg-opacity-90"
+                      onClick={() => updateStatus(payroll.id, "Paid")}>
                         Pay
-                      </button>
+                      </button>):(
+                        <div className="text-sm flex items-center gap-1">
+                          Paid
+                        <Check className="w-5 h-5 text-green-500" />
+                        
+                        </div>
+                      )}
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
+            
           </table>
         </div>
+        {filteredPayrolls.length == 0 && 
+      <div className="flex justify-center items-center h-[50vh]">
+        <img src="/images/empty.svg" alt="No data" className="mt-6 block justify-center" width={400} height={300} />
+      </div>
+      }
       </div>
     </div>
   );

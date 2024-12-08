@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-export default function exportAsCsv(data: any[]) {
+export default function exportAsCsv(data: any[],fileName:string) {
   if (!data || data.length === 0) {
     return;
   }
@@ -26,7 +26,7 @@ export default function exportAsCsv(data: any[]) {
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = "employees.csv";
+  link.download = `${fileName}.csv`;
   link.click();
 
   URL.revokeObjectURL(url);

@@ -43,3 +43,15 @@ export interface candidateInterface {
   status: "Sourced" | "In-Progress " | "Interviewed" | "Hired" | "Rejected";
   rating: number;
 }
+
+export interface EmployeePayrolls {
+  id: string;
+  name: string;
+  avatar: string;
+  payrollId: string;
+  startDate: string;
+  endDate: string;
+  hours: number;
+  amount: number;
+  status: "Paid" | "Unpaid";
+}

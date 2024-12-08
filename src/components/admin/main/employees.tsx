@@ -73,7 +73,7 @@ export default function Employee() {
           <div className="flex items-center gap-3">
             <button
               className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary"
-              onClick={() => exportAsCsv(employees)}
+              onClick={() => exportAsCsv(employees, "employees")}
             >
               <DownloadCloudIcon className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               Export
