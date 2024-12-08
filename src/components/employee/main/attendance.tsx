@@ -16,6 +16,8 @@ import {
   Timer,
   User,
 } from "lucide-react";
+import { EmployeeInterface } from "../../../types/common";
+import exportAsCsv from "../../admin/common/export";
 
 const attendanceData = [
   {
@@ -53,6 +55,16 @@ const attendanceData = [
 
 export default function Attendance() {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
+  const userData: EmployeeInterface = JSON.parse(localStorage.getItem('currentUser') || '{}') as EmployeeInterface;
+
+  const handleDownloadInfo = () => {
+    const data = {
+      ...userData,
+      attendanceData
+    }
+    console.log(data);
+    exportAsCsv([data], 'attendance-info');
+  }
 
   return (
     <div className="h-screen text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -72,7 +84,9 @@ export default function Attendance() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4"
+            onClick={handleDownloadInfo}
+            >
               <button className="flex items-center gap-2 px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg">
                 <Download className="w-4 h-4" />
                 Download Info
@@ -92,53 +106,61 @@ export default function Attendance() {
               <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                 Name
               </h1>
-              <h2 className="text-xl font-semibold">John Doe</h2>
+              <h2 className="text-xl font-semibold">
+                {userData.name}
+              </h2>
             </div>
             <div className="flex flex-col">
               <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                 Employee Code
               </h1>
-              <h2 className="text-xl font-semibold">#EMP0045</h2>
+              <h2 className="text-xl font-semibold">{userData.employeeId}</h2>
             </div>
             <div className="flex flex-col">
               <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                 Role
               </h1>
-              <h2 className="text-xl font-semibold">Software Developer</h2>
+              <h2 className="text-xl font-semibold">
+                {userData.jobTitle}
+              </h2>
             </div>
             <div className="flex flex-col">
               <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                 Phone
               </h1>
-              <h2 className="text-xl font-semibold">+91 6393866066</h2>
+              <h2 className="text-xl font-semibold">
+                {userData.phone}
+              </h2>
             </div>
             <div className="flex flex-col">
               <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                 Email
               </h1>
-              <h2 className="text-xl font-semibold">arin@gmail.com</h2>
+              <h2 className="text-xl font-semibold">
+                {userData.email}
+              </h2>
             </div>
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4 mt-8">
             <StatCard
               icon={<Sigma className="w-5 h-5" />}
-              value="309/365"
-              label="Total Present/Total Days"
+              value={userData.workSchedule.workingDays.length.toString()}
+              label="Total Working Days"
             />
             <StatCard
               icon={<LogIn className="w-5 h-5" />}
-              value="08:46"
+              value={userData.workSchedule.averageStartTime}
               label="Avg Check In Time"
             />
             <StatCard
               icon={<LogOut className="w-5 h-5" />}
-              value="17:04"
+              value={userData.workSchedule.averageEndTime}
               label="Avg Check Out Time"
             />
             <StatCard
               icon={<Badge className="w-5 h-5" />}
-              value="On Time"
+              value="Healthy"
               label="Attendance Status"
             />
           </div>
