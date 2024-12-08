@@ -55,3 +55,10 @@ export interface EmployeePayrolls {
   amount: number;
   status: "Paid" | "Unpaid";
 }
+export interface EventInterface {
+  id: string;
+  date: string;
+  name: string;
+  description: string;
+  time: string;
+}

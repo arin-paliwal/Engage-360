@@ -30,5 +30,5 @@ export default function exportAsCsv(data: any[],fileName:string) {
   link.click();
 
   URL.revokeObjectURL(url);
-  toast.success("Exported as CSV"); 
+  toast.success(`Exported ${data.length} records to ${fileName}.csv`); 
 }

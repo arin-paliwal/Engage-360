@@ -58,7 +58,7 @@ export default function Employee() {
       <div className="px-6 pt-6 flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-lightMode-accentBlue  rounded-lg flex items-center justify-center">
               <BriefcaseBusiness className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -79,7 +79,7 @@ export default function Employee() {
               Export
             </button>
             <button
-              className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue text-white rounded-lg hover:opacity-90"
+              className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue  text-white rounded-lg hover:opacity-90"
               onClick={() => setIsAddingEmployee(true)}
             >
               <Plus className="w-5 h-5" />

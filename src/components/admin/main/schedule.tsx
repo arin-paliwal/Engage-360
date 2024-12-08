@@ -1,35 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock } from 'lucide-react';
+import { EventInterface } from "../../../types/admin-dashboard/types";
+import axiosInstance from "../../../api/axios";
+import toast from "react-hot-toast";
 
 const Schedule: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [events, setEvents] = useState<{
-    date: string;
-    name: string;
-    description: string;
-    time: string;
-  }[]>([
-    {
-      date: "Thu Dec 05 2024",
-      name: "Team Meeting",
-      description: "Weekly sync",
-      time: "10:00",
-    },
-    {
-      date: "Tue Dec 10 2024",
-      name: "Project Deadline",
-      description: "Final submission",
-      time: "17:00",
-    },
-  ]);
-  const [newEvent, setNewEvent] = useState({
+  const [events, setEvents] = useState<EventInterface[]>([])
+  const [newEvent, setNewEvent] = useState<EventInterface>({
+    id: "",
+    date: "",
     name: "",
     description: "",
     time: "",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response=await axiosInstance.get("/events");
+      setEvents(response.data);
+      const lastEvent = response.data[response.data.length - 1];
+      setNewEvent((prev) => ({ ...prev, id: String(Number(lastEvent.id) + 1) }));
+    }
+    fetchData();
+  }, []);
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -48,7 +45,7 @@ const Schedule: React.FC = () => {
     year: "numeric",
   });
 
-  const addEvent = () => {
+  const addEvent = async () => {
     if (selectedDate && newEvent.name.trim()) {
       const eventDate = new Date(Date.UTC(
         selectedDate.getUTCFullYear(),
@@ -56,8 +53,12 @@ const Schedule: React.FC = () => {
         selectedDate.getUTCDate()
       ));
       setEvents((prev) => [...prev, { ...newEvent, date: eventDate.toDateString() }]);
+      const toBeAddedEvent = { ...newEvent, date: eventDate.toDateString() };
+      const response=await axiosInstance.post("/events", toBeAddedEvent);
+      console.log(response.data);
+      toast.success("Event added successfully");
       setModalOpen(false);
-      setNewEvent({ name: "", description: "", time: "" });
+      // setNewEvent({ date: "", name: "", description: "", time: "" });
     }
   };
 
@@ -69,7 +70,7 @@ const Schedule: React.FC = () => {
     ));
     setSelectedDate(selected);
     setModalOpen(true);
-    setNewEvent({ name: "", description: "", time: "" });
+    // setNewEvent({ date: "", name: "", description: "", time: "" });
   };
 
   const generateCalendarDays = () => {
@@ -227,7 +228,6 @@ const Schedule: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div ref={modalRef} className="bg-white dark:bg-black p-8 rounded-lg shadow-lg w-[32rem] max-w-full">
