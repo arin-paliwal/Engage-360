@@ -12,24 +12,23 @@ import axiosInstance from "../../../api/axios";
 import { EmployeePayrolls } from "../../../types/admin-dashboard/types";
 import toast from "react-hot-toast";
 import exportAsCsv from "../common/export";
+import usePayrolls from "../../../hooks/usePayrolls";
 
 export default function Payrolls() {
-  const [payrolls, setPayrolls] = useState<EmployeePayrolls[]>([]);
+  const { fetchedPayrolls, loading, error } = usePayrolls();
+  const [payrolls, setPayrolls] = useState<EmployeePayrolls[]>(fetchedPayrolls);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axiosInstance.get("/employee_payrolls");
-      setPayrolls(response.data);
-    };
-    fetchData();
-  }, []);
+    setPayrolls(fetchedPayrolls);
+  }, [fetchedPayrolls]);
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);
     }, 500);
-  
+
     return () => {
       clearTimeout(handler);
     };
@@ -44,7 +43,7 @@ export default function Payrolls() {
       getPayroll.status = "Paid";
     }
     const response = await axiosInstance.put(`/employee_payrolls/${id}`, {
-      ...getPayroll
+      ...getPayroll,
     });
     if (response.status === 200) {
       toast.success("Payroll updated successfully");
@@ -62,23 +61,22 @@ export default function Payrolls() {
       ...payroll,
       status,
     }));
-  
+
     try {
       await Promise.all(
         updatedPayrolls.map((payroll) =>
           axiosInstance.put(`/employee_payrolls/${payroll.id}`, payroll)
         )
       );
-  
+
       setPayrolls(updatedPayrolls);
-  
+
       toast.success("All payrolls updated successfully");
     } catch (error) {
       console.error("Error updating payrolls:", error);
       toast.error("Failed to update payrolls. Please try again.");
     }
   };
-  
 
   return (
     <div className="p-6 bg-lightMode-background dark:bg-darkMode-background min-h-screen">
@@ -97,8 +95,9 @@ export default function Payrolls() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
-          onClick={() => exportAsCsv(payrolls, "payrolls")}
+          <button
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
+            onClick={() => exportAsCsv(payrolls, "payrolls")}
           >
             <DownloadCloudIcon
               size={18}
@@ -106,8 +105,9 @@ export default function Payrolls() {
             />
             Export
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue  rounded-lg hover:bg-opacity-90"
-          onClick={() => updateAllStatuses("Paid")}
+          <button
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue  rounded-lg hover:bg-opacity-90"
+            onClick={() => updateAllStatuses("Paid")}
           >
             <CircleArrowOutUpRight size={18} className="" />
             Pay All Invoices
@@ -261,14 +261,17 @@ export default function Payrolls() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      {payroll.status === "Unpaid" ?(<button className="px-3 py-1 text-sm border-2 border-borders-primary dark:border-borders-secondary rounded hover:bg-opacity-90"
-                      onClick={() => updateStatus(payroll.id, "Paid")}>
-                        Pay
-                      </button>):(
+                      {payroll.status === "Unpaid" ? (
+                        <button
+                          className="px-3 py-1 text-sm border-2 border-borders-primary dark:border-borders-secondary rounded hover:bg-opacity-90"
+                          onClick={() => updateStatus(payroll.id, "Paid")}
+                        >
+                          Pay
+                        </button>
+                      ) : (
                         <div className="text-sm flex items-center gap-1">
                           Paid
-                        <Check className="w-5 h-5 text-green-500" />
-                        
+                          <Check className="w-5 h-5 text-green-500" />
                         </div>
                       )}
                     </div>
@@ -276,14 +279,19 @@ export default function Payrolls() {
                 </tr>
               ))}
             </tbody>
-            
           </table>
         </div>
-        {filteredPayrolls.length == 0 && 
-      <div className="flex justify-center items-center h-[50vh]">
-        <img src="/images/empty.svg" alt="No data" className="mt-6 block justify-center" width={400} height={300} />
-      </div>
-      }
+        {filteredPayrolls.length == 0 && (
+          <div className="flex justify-center items-center h-[50vh]">
+            <img
+              src="/images/empty.svg"
+              alt="No data"
+              className="mt-6 block justify-center"
+              width={400}
+              height={300}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
