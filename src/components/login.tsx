@@ -31,37 +31,32 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axiosInstance.get("/employees");
-      const all_users = response.data;
-      const matchedEmployee = all_users.find(
-        (emp: { employeeId: string; password: string }) =>
-          emp.employeeId === formData.employeeCode &&
-          emp.password === formData.password
+      const response = await axiosInstance.get(
+        `/employees?employeeId=${formData.employeeCode}&password=${formData.password}`
       );
 
+      const matchedEmployee = response.data[0];
       if (matchedEmployee) {
-        if (matchedEmployee.role == 1) {
-          toast.success("Admin login successful.");
-          const token=create_access_token(1);
-          localStorage.setItem("access_token", token);
-          setTimeout(() => {
-            navigate("/admin/dashboard");
-          }, 1000);
-        } else {
-          toast.success("Employee login successful.");
-          const token=create_access_token(2);
-          localStorage.setItem("access_token", token);
-          setTimeout(() => {
-            navigate("/employee/dashboard");
-          }, 1000);
-        }
+        const token = create_access_token(matchedEmployee.isAdmin ? 1 : 2);
+        localStorage.setItem("access_token", token);
+
+        toast.success(
+          matchedEmployee.isAdmin
+            ? "Admin login successful."
+            : "Employee login successful."
+        );
+        setTimeout(() => {
+          navigate(matchedEmployee.isAdmin ? "/admin/dashboard" : "/employee/dashboard");
+        }, 1000);
       } else {
         toast.error("Invalid employee code or password.");
       }
     } catch (err) {
-      console.log("An error occurred while logging in. Please try again.");
+      console.error("An error occurred during login:", err);
+      toast.error("Failed to log in. Please try again.");
     }
   };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

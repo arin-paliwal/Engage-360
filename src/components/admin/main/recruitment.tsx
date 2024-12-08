@@ -1,22 +1,49 @@
-import { useEffect, useState } from "react";
-import { ChevronDown, Plus, UserPlus, Users2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Plus, UserPlus, Users2 } from "lucide-react";
 import JobDescription from "../recruitment/job-description";
 import axiosInstance from "../../../api/axios";
 import { Job } from "../../../types/admin-dashboard/types";
+import toast from "react-hot-toast";
 
 export default function Recruitment() {
   const [isOpen, setIsOpen] = useState(false);
   const [subState, setSubState] = useState(localStorage.getItem("recruitmentSubState") || "Active Jobs");
+  const [activeJobState, setActiveJobState] = useState("Active Jobs");
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("recruitmentSubState", subState);
   }, [subState]);
-  const [jobs, setJobs] = useState<Job[]>([]);
+  const [fetchedJobs, setFetchedJobs] = useState<Job[]>([]);
+  const [jobs, setJobs] = useState<Job[]>(fetchedJobs);
+  const [openJobs, setOpenJobs] = useState<Job[]>([]);
+  const [closedJobs, setClosedJobs] = useState<Job[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axiosInstance.get("/jobs");
-      setJobs(response.data);
+      setFetchedJobs(response.data);
+      setOpenJobs(response.data.filter((job:Job) => new Date(job.activeUntil) > new Date()));
+      setJobs(response.data.filter((job:Job) => new Date(job.activeUntil) > new Date()));
+      setClosedJobs(
+        response.data.filter((job:Job) => new Date(job.activeUntil) < new Date())
+      );
       console.log(response.data);
     };
     fetchData();
@@ -42,15 +69,55 @@ export default function Recruitment() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex relative items-center gap-4"
+              ref={modalRef}
+              >
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2 border-borders-primary dark:border-borders-secondary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground"
                 >
-                  <Users2 size={18} />
-                  <span>Active Jobs</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <Users2 size={18} className="text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
+                  <span>
+                    {activeJobState}
+                  </span>
+                  <ChevronDown className={
+                    ` duration-300 transform text-lightMode-secondaryText dark:text-darkMode-secondaryText ${isOpen ? " rotate-180" : ""}`
+                  } size={18} />
                 </button>
+                {isOpen && 
+                <div className="absolute top-12 w-[10rem] z-30 bg-white dark:bg-black flex flex-col  rounded-md border-2 border-borders-primary dark:border-borders-secondary">
+                  <button
+                    onClick={() => {
+                      if(activeJobState === "Active Jobs") return;
+                      setActiveJobState("Active Jobs");
+                      setJobs(openJobs);
+                      toast.remove();
+                      toast.success("Switched to Active Jobs");
+                    }}
+                    className="flex justify-center relative py-2 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground "
+                  >
+                    Active Jobs
+                    {activeJobState === "Active Jobs" && <span className="absolute left-3 text-lightMode-accentBlue dark:text-lightMode-accentBlue">
+                      <Check size={18} />
+                      </span>}
+                  </button>
+                  <button
+                    onClick={() => {
+                      if(activeJobState === "Closed Jobs") return;
+                      setActiveJobState("Closed Jobs");
+                      setJobs(closedJobs);
+                      toast.remove();
+                      toast.success("Switched to Closed Jobs");
+                    }}
+                    className="py-2 text-sm text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground "
+                  >
+                    Closed Jobs
+                    {activeJobState === "Closed Jobs" && <span className="absolute left-3 text-lightMode-accentBlue dark:text-lightMode-accentBlue">
+                      <Check size={18} />
+                      </span>}
+                  </button>
+                </div>
+                }
                 <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-lightMode-accentBlue text-white rounded-lg hover:opacity-90">
                   <Plus size={18} />
                   <span>Create New Job</span>
@@ -60,13 +127,17 @@ export default function Recruitment() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {jobs.map((job) => (
                 <div
-                  key={job.id}
-                  onClick={() => {
+                key={job.id}
+                onClick={() => {
+                  if (activeJobState !== "Closed Jobs") {
                     setSubState("Job Description");
                     localStorage.setItem("selectedJob", JSON.stringify(job));
-                  }}
-                  className="bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary hover:bg-lightMode-secondaryBackground dark:hover:bg-black cursor-pointer flex gap-4 duration-300 transform"
-                >
+                  }
+                }}
+                className={`bg-white dark:bg-darkMode-secondaryBackground rounded-xl p-5 border-2 border-borders-primary dark:border-borders-secondary 
+                  hover:bg-lightMode-secondaryBackground dark:hover:bg-black flex gap-4 duration-300 transform 
+                  ${activeJobState === "Closed Jobs" ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+              >
                   <div className="flex flex-col h-full">
                     <div className="mb-4">
                       <div className="inline-flex px-3 py-1 rounded-md text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText border-2 border-borders-primary dark:border-borders-secondary">

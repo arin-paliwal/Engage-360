@@ -108,7 +108,7 @@ export default function JobDescription({
                     Areas you will work on:
                   </p>
                   <ul className="list-disc pl-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                    {job.techStack.map((tech, index) => (
+                    {job?.techStack?.map((tech, index) => (
                       <li key={index}>{tech}</li>
                     ))}
                   </ul>
@@ -117,7 +117,7 @@ export default function JobDescription({
                 <section>
                   <h3 className="text-lg font-semibold mb-2">Requirements:</h3>
                   <ul className="list-disc pl-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                    {job.requirements.map((requirement, index) => (
+                    {job?.requirements?.map((requirement, index) => (
                       <li key={index}>{requirement}</li>
                     ))}
                   </ul>

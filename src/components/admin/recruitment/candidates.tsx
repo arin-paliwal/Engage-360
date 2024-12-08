@@ -40,12 +40,12 @@ export default function CandidatesPage() {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCandidate, setNewCandidate] = useState<candidateInterface>({
-    name: "",
-    email: "",
-    profile: "",
-    appliedBeforeTimes: 0,
+    name: "Arin Paliwal",
+    email: "arin@gmail.com",
+    profile: "www.linkedin.com/arinpaliwal",
+    appliedBeforeTimes: 4,
     status: "Sourced",
-    rating: 0,
+    rating: 3,
   });
 
   useEffect(() => {
@@ -75,21 +75,27 @@ export default function CandidatesPage() {
   );
 
   const handleAddCandidate = async () => {
+    if(!newCandidate.name || !newCandidate.email) {
+      toast.error("Name and Email are required");
+      return;
+    }
     try {
       const response = await axiosInstance.get(`/jobs/${selectedJob.id}`);
       const updatedJob = response.data;
       updatedJob.candidates.push(newCandidate);
-      await axiosInstance.put(`/jobs/${selectedJob.id}`, updatedJob);
+      const newJob = await axiosInstance.put(
+        `/jobs/${selectedJob.id}`,
+        updatedJob
+      );
+      setSelectedJob(newJob.data);
       toast.success("Candidate added successfully");
+      setCandidates((prevCandidates) => [...prevCandidates, newCandidate]);
+      localStorage.setItem("selectedJob", JSON.stringify(newJob.data));
     } catch (error) {
       console.log(error);
       toast.error("Failed to add candidate");
     }
-    setCandidates((prevCandidates) => [...prevCandidates, newCandidate]);
-    localStorage.setItem(
-      "selectedJob",
-      JSON.stringify({ candidates: [...candidates, newCandidate] })
-    );
+
     setIsModalOpen(false);
   };
 
