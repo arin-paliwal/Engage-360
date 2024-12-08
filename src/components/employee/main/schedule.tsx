@@ -1,69 +1,28 @@
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock, View, Info } from 'lucide-react';
+import { EventInterface } from "../../../types/admin-dashboard/types";
+import axiosInstance from "../../../api/axios";
 
 const Schedule: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [events, setEvents] = useState<{
-    date: string;
-    name: string;
-    description: string;
-    time: string;
-  }[]>([
-    {
-      date: "Thu Dec 05 2024",
-      name: "Team Meeting",
-      description: "Weekly sync with the development team to discuss project progress and blockers.",
-      time: "10:00",
-    },
-    {
-      date: "Fri Dec 06 2024",
-      name: "Product Launch",
-      description: "Official launch event for the new app, including presentations and a Q&A session.",
-      time: "14:00",
-    },
-    {
-      date: "Sat Dec 07 2024",
-      name: "Volunteer Activity",
-      description: "Helping organize and distribute food at the local shelter.",
-      time: "09:00",
-    },
-    {
-      date: "Tue Dec 10 2024",
-      name: "Project Deadline",
-      description: "Final submission of all project deliverables to the client.",
-      time: "17:00",
-    },
-    {
-      date: "Wed Dec 11 2024",
-      name: "Fitness Class",
-      description: "Weekly yoga session for relaxation and stretching.",
-      time: "18:00",
-    },
-    {
-      date: "Thu Dec 12 2024",
-      name: "Code Review Session",
-      description: "Peer review for the latest sprint codebase to ensure quality and maintainability.",
-      time: "15:00",
-    },
-    {
-      date: "Fri Dec 13 2024",
-      name: "Networking Event",
-      description: "Meet industry professionals and discuss trends in technology.",
-      time: "19:00",
-    },
-    {
-      date: "Sun Dec 15 2024",
-      name: "Family Brunch",
-      description: "Casual get-together with the family at a local restaurant.",
-      time: "11:30",
-    },
-  ]);
+  const [events, setEvents] = useState<EventInterface[]>([])
+  const [userEmail, setUserEmail] = useState<string>(
+    JSON.parse(localStorage.getItem("currentUser") || "{}").email
+  );
 
+  useEffect(() => {
+    const fetchData= async () => {
+      const response=await axiosInstance.get(`/events`, {
+        params: { assignedTo: userEmail },
+      });
+      setEvents(response.data);
+      console.log(response.data);
+    }
+    fetchData();
+  }, [userEmail]);
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();

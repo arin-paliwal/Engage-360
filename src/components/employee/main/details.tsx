@@ -25,8 +25,21 @@ import {
 import InitialAvatar from "../../../utility/initialAvatar";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { EmployeeInterface } from "../../../types/common";
 
 export default function Details() {
+  const [userData, setUserData] = useState<EmployeeInterface>(
+    JSON.parse(localStorage.getItem("currentUser") || "{}") as EmployeeInterface
+  );
+  const currentDate = new Date();
+  const firstDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const formattedDate = firstDate.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const remainingDays = Math.max(0, (lastDate.getDate() - currentDate.getDate()));
   const { theme } = useTheme();
   const [progress, setProgress] = useState(0);
   const size = 100;
@@ -98,23 +111,28 @@ export default function Details() {
       status: "Pending",
     },
   ];
-  const documents = [{
-      name:"Offer_Letter.pdf",
-      size:"1.2 MB"
-    },{
-      name:"ID_Card.pdf",
-      size:"1.2 MB"
-    },{
-      name:"Resume.pdf",
-      size:"1.2 MB"
-    },{
-      name:"NDA.pdf",
-      size:"1.2 MB"
-    },{
-      name:"Bank_Details.pdf",
-      size:"1.2 MB"
-    }
-  ]
+  const documents = [
+    {
+      name: "Offer_Letter.pdf",
+      size: "1.2 MB",
+    },
+    {
+      name: "ID_Card.pdf",
+      size: "1.2 MB",
+    },
+    {
+      name: "Resume.pdf",
+      size: "1.2 MB",
+    },
+    {
+      name: "NDA.pdf",
+      size: "1.2 MB",
+    },
+    {
+      name: "Bank_Details.pdf",
+      size: "1.2 MB",
+    },
+  ];
   return (
     <div className="h-screen overflow-auto p-6 flex flex-col gap-6">
       <div className="flex items-center gap-2">
@@ -138,13 +156,13 @@ export default function Details() {
             </div>
             <div>
               <h1 className="text-xl flex items-center gap-4 font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
-                Jerome Bellingham
+                {userData.name}
                 <span className="text-xs bg-lightMode-accentBlue/10  text-lightMode-accentBlue dark:text-darkMode-accentBlue rounded-md px-2 py-1 border border-lightMode-accentBlue">
                   Employee
                 </span>
               </h1>
               <p className="text-sm flex items-center gap-2 text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Software Engineer
+                {userData.jobTitle}
               </p>
             </div>
           </div>
@@ -173,7 +191,7 @@ export default function Details() {
                     Name
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    Jerome Bellingham
+                    {userData.name}
                   </p>
                 </div>
               </div>
@@ -184,7 +202,7 @@ export default function Details() {
                     Date of Joining
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    12 March 2023
+                    {userData.dateOfJoining}
                   </p>
                 </div>
               </div>
@@ -195,7 +213,7 @@ export default function Details() {
                     Birthday
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    12 March 1993
+                    {userData.dateOfBirth}
                   </p>
                 </div>
               </div>
@@ -206,7 +224,7 @@ export default function Details() {
                     Registered Email
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    john@gmail.com
+                    {userData.email}
                   </p>
                 </div>
               </div>
@@ -217,7 +235,7 @@ export default function Details() {
                     Department
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    Software (Full-Time)
+                    {userData.department} ({userData.contractType})
                   </p>
                 </div>
               </div>
@@ -228,7 +246,7 @@ export default function Details() {
                     Employee Code
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    EMP004
+                    {userData.employeeId}
                   </p>
                 </div>
               </div>
@@ -239,7 +257,7 @@ export default function Details() {
                     Work Schedule
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    9:00 AM - 5:00 PM
+                    {userData.workSchedule.startTime} - {userData.workSchedule.endTime}
                   </p>
                 </div>
               </div>
@@ -275,7 +293,9 @@ export default function Details() {
           <div className="space-y-6">
             <div className="flex bg-[#171717] p-6 flex-col text-white text-sm gap-5 rounded-2xl shadow-xl">
               <div className="flex items-center justify-between">
-                <h1 className="">SDE2 @ Software</h1>
+                <h1 className="">
+                  {userData.jobTitle} @ {userData.department}
+                </h1>
                 <h1 className="">Engage360</h1>
               </div>
               <div className="flex items-center justify-between">
@@ -284,13 +304,16 @@ export default function Details() {
               </div>
               <div className="flex justify-between items-end">
                 <div className="flex flex-col mt-8">
-                  <h1 className="">EMPSDE458</h1>
-                  <h1 className="text-gray-200">Arin Paliwal</h1>
-                  <h1 className="text-gray-200">DOJ : 26 / 03 / 2024</h1>
+                  <h1 className="">{userData.employeeId}</h1>
+                  <h1 className="text-gray-200">{userData.name}</h1>
+                  <h1 className="text-gray-200">DOJ : {userData.dateOfJoining}</h1>
                 </div>
                 <div className="flex flex-col">
                   <h1 className="text-end">Valid upto</h1>
-                  <h1 className="text-gray-200">26 / 03 / 2025</h1>
+                  <h1 className="text-gray-200">
+                    {/* date of joining + 3 years */}
+                    {new Date(userData.dateOfJoining).getFullYear() + 5}
+                  </h1>
                 </div>
               </div>
             </div>
@@ -333,7 +356,7 @@ export default function Details() {
                     />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-bold">18</span>
+                    <span className="font-bold">{remainingDays}</span>
                     <span className="text-sm opacity-80">Days</span>
                   </div>
                 </div>
@@ -341,9 +364,9 @@ export default function Details() {
                   <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
                     Current Payroll Start
                   </h1>
-                  <h1 className="font-bold">12 March 2023</h1>
+                  <h1 className="font-bold">{formattedDate}</h1>
                   <button className="flex items-center justify-center mt-3 text-sm border-2 gap-2 border-borders-primary dark:border-borders-secondary rounded-lg px-1 py-1">
-                    Update
+                    Raise Issue
                     <ArrowUpRight className="" size={17} />
                   </button>
                 </div>
@@ -367,7 +390,10 @@ export default function Details() {
                 </thead>
                 <tbody>
                   {payrolls.map((item, index) => (
-                    <tr key={index} className="border-t border-borders-primary dark:border-borders-secondary">
+                    <tr
+                      key={index}
+                      className="border-t border-borders-primary dark:border-borders-secondary"
+                    >
                       <td className="px-4 py-4 text-lightMode-primaryText dark:text-darkMode-primaryText">
                         {item.id}
                       </td>
@@ -423,7 +449,10 @@ export default function Details() {
                     </div>
                   </div>
                   <button className="p-2 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full">
-                    <CloudDownload className=" text-lightMode-secondaryText" size={19} />
+                    <CloudDownload
+                      className=" text-lightMode-secondaryText"
+                      size={19}
+                    />
                   </button>
                 </div>
               ))}

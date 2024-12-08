@@ -46,7 +46,6 @@ export default function Employee() {
     const fetchData = async () => {
       const response = await axiosInstance.get("/employees");
       setEmployees(response.data);
-      console.log(response.data);
     };
     fetchData();
   }, []);

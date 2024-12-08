@@ -39,7 +39,7 @@ export default function Login() {
       if (matchedEmployee) {
         const token = create_access_token(matchedEmployee.isAdmin ? 1 : 2);
         localStorage.setItem("access_token", token);
-
+        localStorage.setItem("currentUser", JSON.stringify(matchedEmployee));
         toast.success(
           matchedEmployee.isAdmin
             ? "Admin login successful."
@@ -134,6 +134,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="px-4 py-2 border-2 border-borders-primary dark:border-borders-secondary rounded-lg flex items-center gap-3 w-[10rem] justify-center"
+                onClick={()=>setFormData({employeeCode:"EMP001",password:""})}
               >
                 Admin Login
                 <Shield size={16} />

@@ -17,7 +17,13 @@ export default function ManageEmployee() {
     const fetchData = async () => {
       const response = await axiosInstance.get("/employees");
       setEmployees(response.data);
-      console.log(response.data);
+      const emails = response.data
+        .filter(
+          (employee: { email: string; isAdmin: boolean }) => !employee.isAdmin
+        )
+        .map((employee: { email: string }) => employee.email);
+
+      localStorage.setItem("emails", JSON.stringify(emails));
     };
     fetchData();
   }, []);
@@ -26,7 +32,7 @@ export default function ManageEmployee() {
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);
     }, 500);
-  
+
     return () => {
       clearTimeout(handler);
     };
@@ -34,7 +40,6 @@ export default function ManageEmployee() {
   const filteredEmployees = employees?.filter((employee) =>
     employee.name.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
-  
 
   const handleEdit = (employee: EmployeeInterface) => {
     setSelectedEmployee(employee);
@@ -43,7 +48,10 @@ export default function ManageEmployee() {
 
   const handleSave = async () => {
     try {
-      await axiosInstance.put(`/employees/${selectedEmployee?.id}`, selectedEmployee);
+      await axiosInstance.put(
+        `/employees/${selectedEmployee?.id}`,
+        selectedEmployee
+      );
       toast.success("Employee updated successfully");
       const updatedEmployees = employees.map((emp) =>
         emp.id === selectedEmployee?.id ? selectedEmployee : emp
@@ -81,7 +89,10 @@ export default function ManageEmployee() {
       Support:
         "bg-[#F0FFF0] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
     };
-    return colors[department as keyof typeof colors] || "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange";
+    return (
+      colors[department as keyof typeof colors] ||
+      "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange"
+    );
   };
 
   return (
@@ -96,7 +107,10 @@ export default function ManageEmployee() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Search className="text-lightMode-secondaryText dark:text-darkMode-secondaryText absolute left-3 top-1/2 -translate-y-1/2" size={18}/>
+          <Search
+            className="text-lightMode-secondaryText dark:text-darkMode-secondaryText absolute left-3 top-1/2 -translate-y-1/2"
+            size={18}
+          />
         </div>
       </div>
       <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary dark:border-borders-secondary overflow-hidden">
@@ -159,20 +173,24 @@ export default function ManageEmployee() {
               >
                 <MoreVertical className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               </button>
-              <button className="" onClick={() => handleDelete(
-                employee.id
-              )}>
+              <button className="" onClick={() => handleDelete(employee.id)}>
                 <Trash className="ml-6 text-red-600" size={18} />
               </button>
             </div>
           </div>
         ))}
       </div>
-      {filteredEmployees.length == 0 && 
-      <div className="flex justify-center items-center h-[50vh]">
-        <img src="/images/empty.svg" alt="No data" className="mt-6 block justify-center" width={400} height={300} />
-      </div>
-      }
+      {filteredEmployees.length == 0 && (
+        <div className="flex justify-center items-center h-[50vh]">
+          <img
+            src="/images/empty.svg"
+            alt="No data"
+            className="mt-6 block justify-center"
+            width={400}
+            height={300}
+          />
+        </div>
+      )}
 
       {isEditing && selectedEmployee && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">

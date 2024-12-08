@@ -100,6 +100,9 @@ export default function Sidebar() {
         <nav className="space-y-1">
         <button
               className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground transition-colors"
+              onClick={()=>{
+                toast.success("Feature coming soon")
+              }}
             >
               <Settings className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
               Settings

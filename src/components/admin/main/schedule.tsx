@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  PlusCircle,
+  CalendarIcon,
+  CalendarCheck,
+  Clock,
+} from "lucide-react";
 import { EventInterface } from "../../../types/admin-dashboard/types";
 import axiosInstance from "../../../api/axios";
 import toast from "react-hot-toast";
@@ -9,22 +16,31 @@ const Schedule: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [events, setEvents] = useState<EventInterface[]>([])
+  const [events, setEvents] = useState<EventInterface[]>([]);
+  const [userEmails, setUserEmails] = useState<string[]>(
+    localStorage.getItem("emails")
+      ? JSON.parse(localStorage.getItem("emails")!)
+      : []
+  );
   const [newEvent, setNewEvent] = useState<EventInterface>({
     id: "",
     date: "",
     name: "",
     description: "",
     time: "",
+    assignedTo: "",
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const response=await axiosInstance.get("/events");
+      const response = await axiosInstance.get("/events");
       setEvents(response.data);
       const lastEvent = response.data[response.data.length - 1];
-      setNewEvent((prev) => ({ ...prev, id: String(Number(lastEvent.id) + 1) }));
-    }
+      setNewEvent((prev) => ({
+        ...prev,
+        id: String(Number(lastEvent.id) + 1),
+      }));
+    };
     fetchData();
   }, []);
 
@@ -47,14 +63,19 @@ const Schedule: React.FC = () => {
 
   const addEvent = async () => {
     if (selectedDate && newEvent.name.trim()) {
-      const eventDate = new Date(Date.UTC(
-        selectedDate.getUTCFullYear(),
-        selectedDate.getUTCMonth(),
-        selectedDate.getUTCDate()
-      ));
-      setEvents((prev) => [...prev, { ...newEvent, date: eventDate.toDateString() }]);
+      const eventDate = new Date(
+        Date.UTC(
+          selectedDate.getUTCFullYear(),
+          selectedDate.getUTCMonth(),
+          selectedDate.getUTCDate()
+        )
+      );
+      setEvents((prev) => [
+        ...prev,
+        { ...newEvent, date: eventDate.toDateString() },
+      ]);
       const toBeAddedEvent = { ...newEvent, date: eventDate.toDateString() };
-      const response=await axiosInstance.post("/events", toBeAddedEvent);
+      const response = await axiosInstance.post("/events", toBeAddedEvent);
       console.log(response.data);
       toast.success("Event added successfully");
       setModalOpen(false);
@@ -62,12 +83,10 @@ const Schedule: React.FC = () => {
     }
   };
 
-  const handleDateClick = (day: number|string) => {
-    const selected = new Date(Date.UTC(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      Number(day)
-    ));
+  const handleDateClick = (day: number | string) => {
+    const selected = new Date(
+      Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), Number(day))
+    );
     setSelectedDate(selected);
     setModalOpen(true);
     // setNewEvent({ date: "", name: "", description: "", time: "" });
@@ -91,7 +110,9 @@ const Schedule: React.FC = () => {
 
   const handleAddEventButtonClick = () => {
     const now = new Date();
-    setSelectedDate(new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())));
+    setSelectedDate(
+      new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()))
+    );
     setModalOpen(true);
   };
 
@@ -99,17 +120,20 @@ const Schedule: React.FC = () => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         setModalOpen(false);
       }
     }
 
     if (modalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalOpen]);
 
@@ -117,7 +141,7 @@ const Schedule: React.FC = () => {
     <div className="flex flex-col h-screen p-6 overflow-y-scroll bg-white dark:bg-black">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-blue-500 dark:bg-blue-600 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-blue-600 rounded-lg flex items-center justify-center">
             <CalendarIcon className="w-6 h-6 text-white" />
           </div>
           <div className="ml-2">
@@ -138,7 +162,6 @@ const Schedule: React.FC = () => {
         </button>
       </div>
 
-      {/* Calendar */}
       <div className="bg-lightMode-background dark:bg-darkMode-secondaryBackground rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
@@ -183,7 +206,9 @@ const Schedule: React.FC = () => {
               <div
                 key={index}
                 className={`min-h-[120px] p-2 border-r border-b last:border-r-0 dark:border-gray-700 cursor-pointer hover:bg-white dark:bg-black duration-300 transform ${
-                  !day.isCurrentMonth ? "bg-gray-50 dark:bg-gray-800" : ""
+                  !day.isCurrentMonth
+                    ? "bg-gray-50 dark:bg-darkMode-secondaryBackground"
+                    : ""
                 }`}
                 onClick={() => day.isCurrentMonth && handleDateClick(day.day)}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -230,7 +255,10 @@ const Schedule: React.FC = () => {
 
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div ref={modalRef} className="bg-white dark:bg-black p-8 rounded-lg shadow-lg w-[32rem] max-w-full">
+          <div
+            ref={modalRef}
+            className="bg-white dark:bg-black p-8 rounded-lg shadow-lg w-[32rem] max-w-full"
+          >
             <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
               Add Event
             </h2>
@@ -245,12 +273,16 @@ const Schedule: React.FC = () => {
                 <input
                   id="eventDate"
                   type="date"
-                  value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+                  value={
+                    selectedDate ? selectedDate.toISOString().split("T")[0] : ""
+                  }
                   onChange={(e) => {
-                    const [year, month, day] = e.target.value.split('-').map(Number);
+                    const [year, month, day] = e.target.value
+                      .split("-")
+                      .map(Number);
                     setSelectedDate(new Date(Date.UTC(year, month - 1, day)));
                   }}
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded resize-none dark:text-white focus:outline-none"
                 />
               </div>
               <div>
@@ -267,14 +299,14 @@ const Schedule: React.FC = () => {
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, name: e.target.value })
                   }
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded resize-none dark:text-white focus:outline-none"
                   placeholder="Enter event name"
                 />
               </div>
               <div>
                 <label
                   htmlFor="eventDescription"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium mb-1 text-lightMode-secondaryText dark:text-darkMode-secondaryText"
                 >
                   Description
                 </label>
@@ -284,7 +316,7 @@ const Schedule: React.FC = () => {
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, description: e.target.value })
                   }
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 h-24 resize-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded h-24 resize-none dark:text-white focus:outline-none"
                   placeholder="Enter event description"
                 />
               </div>
@@ -303,13 +335,38 @@ const Schedule: React.FC = () => {
                     onChange={(e) =>
                       setNewEvent({ ...newEvent, time: e.target.value })
                     }
-                    className="w-full p-2 pl-8 border rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded pl-8 resize-none dark:text-white focus:outline-none"
                   />
                   <Clock
                     className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400"
                     size={16}
                   />
                 </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="assignedTo"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >
+                  Assigned To
+                </label>
+                <select
+                  id="assignedTo"
+                  value={newEvent.assignedTo}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, assignedTo: e.target.value })
+                  }
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded resize-none dark:text-white focus:outline-none"
+                >
+                  <option value="" disabled>
+                    Select assigned person
+                  </option>
+                  {userEmails.map((email) => (
+                    <option key={email} value={email}>
+                      {email}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-6">
@@ -320,7 +377,7 @@ const Schedule: React.FC = () => {
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                className="px-4 py-2 bg-lightMode-accentBlue text-white rounded hover:bg-blue-600 transition-colors"
                 onClick={addEvent}
               >
                 Save
@@ -334,4 +391,3 @@ const Schedule: React.FC = () => {
 };
 
 export default Schedule;
-

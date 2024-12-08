@@ -57,6 +57,28 @@ export default function Payrolls() {
       setPayrolls(updatedPayrolls);
     }
   };
+  const updateAllStatuses = async (status: "Paid" | "Unpaid") => {
+    const updatedPayrolls = payrolls.map((payroll) => ({
+      ...payroll,
+      status,
+    }));
+  
+    try {
+      await Promise.all(
+        updatedPayrolls.map((payroll) =>
+          axiosInstance.put(`/employee_payrolls/${payroll.id}`, payroll)
+        )
+      );
+  
+      setPayrolls(updatedPayrolls);
+  
+      toast.success("All payrolls updated successfully");
+    } catch (error) {
+      console.error("Error updating payrolls:", error);
+      toast.error("Failed to update payrolls. Please try again.");
+    }
+  };
+  
 
   return (
     <div className="p-6 bg-lightMode-background dark:bg-darkMode-background min-h-screen">
@@ -84,7 +106,9 @@ export default function Payrolls() {
             />
             Export
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue  rounded-lg hover:bg-opacity-90">
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-lightMode-accentBlue  rounded-lg hover:bg-opacity-90"
+          onClick={() => updateAllStatuses("Paid")}
+          >
             <CircleArrowOutUpRight size={18} className="" />
             Pay All Invoices
           </button>

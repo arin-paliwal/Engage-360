@@ -61,4 +61,5 @@ export interface EventInterface {
   name: string;
   description: string;
   time: string;
+  assignedTo: string;
 }
