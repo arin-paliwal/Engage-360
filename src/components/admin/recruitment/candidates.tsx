@@ -125,7 +125,7 @@ export default function CandidatesPage() {
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="h-10 px-4 rounded-lg bg-lightMode-accentBlue dark:bg-darkMode-accentBlue text-white flex items-center gap-2 hover:opacity-90"
+            className="h-10 px-4 rounded-lg bg-lightMode-accentBlue text-white flex items-center gap-2 hover:opacity-90"
           >
             <Plus className="w-4 h-4" />
             Add Candidate
@@ -135,7 +135,7 @@ export default function CandidatesPage() {
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[60vw]">
+          <div className="bg-white dark:bg-black p-6 rounded-lg shadow-lg w-[60vw]">
             <h3 className="text-xl font-semibold mb-4">Add New Candidate</h3>
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="mb-4">
@@ -148,7 +148,7 @@ export default function CandidatesPage() {
                   name="name"
                   value={newCandidate.name}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                   required
                 />
               </div>
@@ -162,7 +162,7 @@ export default function CandidatesPage() {
                   name="email"
                   value={newCandidate.email}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                   required
                 />
               </div>
@@ -176,7 +176,7 @@ export default function CandidatesPage() {
                   name="profile"
                   value={newCandidate.profile}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                 />
               </div>
               <div className="mb-4">
@@ -192,7 +192,7 @@ export default function CandidatesPage() {
                   name="appliedBeforeTimes"
                   value={newCandidate.appliedBeforeTimes}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                 />
               </div>
               <div className="mb-4">
@@ -204,7 +204,7 @@ export default function CandidatesPage() {
                   name="status"
                   value={newCandidate.status}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                 >
                   <option value="Sourced">Sourced</option>
                   <option value="In-Progress">In Progress</option>
@@ -223,20 +223,20 @@ export default function CandidatesPage() {
                   name="rating"
                   value={newCandidate.rating}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border-2 border-borders-primary dark:border-borders-secondary rounded"
                 />
               </div>
               <div className="flex justify-end gap-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="bg-gray-400 text-white p-2 rounded"
+                  className="border-2 border-borders-primary dark:border-borders-secondary p-2 rounded-md"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddCandidate}
-                  className="bg-blue-500 text-white p-2 rounded"
+                  className="border-2 border-lightMode-accentBlue bg-lightMode-accentBlue text-white p-2 rounded"
                 >
                   Add Candidate
                 </button>
