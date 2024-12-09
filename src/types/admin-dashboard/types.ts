@@ -63,3 +63,9 @@ export interface EventInterface {
   time: string;
   assignedTo: string;
 }
+export interface OrganisationEmployee {
+  name: string;
+  role: string;
+  department?: string;
+  children?: OrganisationEmployee[];
+}

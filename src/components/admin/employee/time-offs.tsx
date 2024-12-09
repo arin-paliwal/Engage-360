@@ -4,6 +4,7 @@ import { getRandomNumber } from "./organisational-chart";
 import InitialAvatar from "../../../utility/initialAvatar";
 import axiosInstance from "../../../api/axios";
 import toast from "react-hot-toast";
+import { leaveTypeStyles, statusStyles } from "../../../utility/get-detp-color";
 
 interface TimeOffRequest {
   id: number;
@@ -14,19 +15,7 @@ interface TimeOffRequest {
   days: number;
   status: "Pending" | "Approved" | "Rejected";
 }
-const leaveTypeStyles = {
-  "Annual Leave":
-    "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
-  "Sick Leave":
-    "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
-};
-const statusStyles = {
-  Pending:
-    "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
-  Approved:
-    "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
-  Rejected: "bg-[#FFEBED] text-red-500 dark:bg-red-500/20 dark:text-red-500",
-};
+
 export default function Timeoff() {
   const [openPopupId, setOpenPopupId] = useState<number | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -55,7 +44,6 @@ export default function Timeoff() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   const handleMoreClick = (id: number) => {
     setOpenPopupId(openPopupId === id ? null : id);
   };
@@ -87,7 +75,6 @@ export default function Timeoff() {
       console.error("Error updating status:", error);
     }
   };
-
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);

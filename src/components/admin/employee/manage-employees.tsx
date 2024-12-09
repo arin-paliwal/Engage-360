@@ -5,6 +5,7 @@ import { EmployeeInterface } from "../../../types/common";
 import axiosInstance from "../../../api/axios";
 import AddUserForm from "./add-employee-form";
 import toast from "react-hot-toast";
+import { getDepartmentColor } from "../../../utility/get-detp-color";
 
 export default function ManageEmployee() {
   const [employees, setEmployees] = useState<EmployeeInterface[]>([]);
@@ -73,27 +74,7 @@ export default function ManageEmployee() {
       toast.error("Something went wrong. Please try again later");
     }
   };
-  const getDepartmentColor = (department: string) => {
-    const colors = {
-      Design:
-        "bg-[#E2F9F3] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
-      Development:
-        "bg-[#E5F3FF] text-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue/20 dark:text-darkMode-accentLightBlue",
-      HR: "bg-[#F4E8FF] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
-      Management:
-        "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange",
-      Sales:
-        "bg-[#FFF0F0] text-lightMode-accentPurple dark:bg-darkMode-accentPurple/20 dark:text-darkMode-accentPurple",
-      Marketing:
-        "bg-[#F0F0FF] text-lightMode-accentBlue dark:bg-darkMode-accentBlue/20 dark:text-darkMode-accentBlue",
-      Support:
-        "bg-[#F0FFF0] text-lightMode-accentGreen dark:bg-darkMode-accentGreen/20 dark:text-darkMode-accentGreen",
-    };
-    return (
-      colors[department as keyof typeof colors] ||
-      "bg-[#FFF4E5] text-lightMode-accentOrange dark:bg-darkMode-accentOrange/20 dark:text-darkMode-accentOrange"
-    );
-  };
+
 
   return (
     <div>

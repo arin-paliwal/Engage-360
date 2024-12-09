@@ -1,84 +1,14 @@
-
-
 import React from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import { Edit2, EditIcon, ZoomIn, ZoomOut } from "lucide-react";
 import { useTheme } from "next-themes";
 import InitialAvatar from "../../../utility/initialAvatar";
+import { orgData } from "../../../data/admin-dashboard";
+import { OrganisationEmployee } from "../../../types/admin-dashboard/types";
 
-interface Employee {
-  name: string;
-  role: string;
-  department?: string;
-  children?: Employee[];
-}
-
-const orgData: Employee = {
-  name: "Cameron Williamson",
-  role: "Founder - CEO",
-  children: [
-    {
-      name: "Leslie Alexander",
-      role: "Head of Project Manager",
-          department: "Business and Marketing",
-      children: [
-        {
-          name: "Cody Firmansyah",
-          role: "Senior Project Manager",
-                },
-        {
-          name: "Jenni William",
-          role: "Project Manager",
-                },
-      ],
-    },
-    {
-      name: "Brooklyn Simmons",
-      role: "Creative Director",
-          department: "Design",
-      children: [
-        {
-          name: "Ralph Edwards",
-          role: "Senior UX Designer",
-                },
-        {
-          name: "Brooklyn Hehe",
-          role: "Senior Graphic Design",
-                },
-        {
-          name: "Vidi Gutierrezz",
-          role: "UX Designer",
-                },
-        {
-          name: "Pablo Hive",
-          role: "Graphic Design",
-                },
-      ],
-    },
-    {
-      name: "Cody Fisher",
-      role: "Head of Development",
-          department: "Development",
-      children: [
-        {
-          name: "Asther Mulyani",
-          role: "Senior Front-End",
-                },
-        {
-          name: "Jenny Wilson",
-          role: "QA Engineering",
-                },
-        {
-          name: "Eden Khoiruddin",
-          role: "Back-End",
-                },
-      ],
-    },
-  ],
-};
-
-
-const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
+const EmployeeNode: React.FC<{ employee: OrganisationEmployee }> = ({
+  employee,
+}) => (
   <div className="flex flex-col items-center">
     <div className="relative flex flex-col items-center">
       <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-black rounded-lg border-2 border-borders-primary dark:border-borders-secondary shadow-sm min-w-[200px]">
@@ -92,7 +22,7 @@ const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
   </div>
 );
 
-const renderTree = (data: Employee): React.ReactNode => (
+const renderTree = (data: OrganisationEmployee): React.ReactNode => (
   <TreeNode label={<EmployeeNode employee={data} />}>
     {data.children?.map((child, index) => (
       <React.Fragment key={index}>{renderTree(child)}</React.Fragment>
@@ -101,22 +31,13 @@ const renderTree = (data: Employee): React.ReactNode => (
 );
 
 export default function OrganizationalChart() {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-lightMode-primaryText dark:text-darkMode-primaryText">
           Organisational Chart
         </h2>
-        {/* <div className="flex items-center gap-4">
-          <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border-2  rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground border-borders-primary dark:border-borders-secondary">
-            <EditIcon
-              className="text-lightMode-primaryText dark:text-darkMode-primaryText"
-              size={18}
-            />
-            Edit Organisation
-          </button>
-        </div> */}
       </div>
       <div
         className="flex w-[calc(100vw-19.5rem)]
