@@ -12,22 +12,8 @@ import InitialAvatar from "../../../utility/initialAvatar";
 import { candidateInterface } from "../../../types/admin-dashboard/types";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../api/axios";
+import { statusStyles } from "../../../utility/recruit-helper";
 
-enum StatusColors {
-  SOURCED = "bg-lightMode-accentOrange/30",
-  INPROGRESS = "bg-lightMode-accentGreen/30",
-  INTERVIEWED = "bg-lightMode-accentBlue/30",
-  HIRED = "bg-lightMode-accentLightBlue/30",
-  REJECTED = "bg-lightMode-accentPurple/30",
-}
-
-const statusStyles = {
-  SOURCED: StatusColors.SOURCED,
-  INPROGRESS: StatusColors.INPROGRESS,
-  INTERVIEWED: StatusColors.INTERVIEWED,
-  HIRED: StatusColors.HIRED,
-  REJECTED: StatusColors.REJECTED,
-};
 
 export default function CandidatesPage() {
   const [searchQuery, setSearchQuery] = useState("");
