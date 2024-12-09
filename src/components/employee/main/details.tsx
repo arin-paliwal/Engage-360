@@ -26,6 +26,7 @@ import InitialAvatar from "../../../utility/initialAvatar";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { EmployeeInterface } from "../../../types/common";
+import { appointments, documents, payrolls } from "../../../data/employee-dashboard";
 
 export default function Details() {
   const [userData, setUserData] = useState<EmployeeInterface>(
@@ -57,82 +58,7 @@ export default function Details() {
   }, []);
 
   const progressOffset = ((100 - progress) / 100) * circumference;
-  const appointments = [
-    {
-      date: "12 Aug 2023",
-      action: "Interview Status Passed",
-      perfomed_by: "HR Department",
-    },
-    {
-      date: "12 Nov 2023",
-      action: "Prohabation Period Started",
-      perfomed_by: "HR Department",
-    },
-    {
-      date: "29 Nov 2023",
-      action: "Deployed on Project",
-      perfomed_by: "Software Department",
-    },
-  ];
-  const payrolls = [
-    {
-      id: 1,
-      type: "Bank Transfer",
-      invoice: "INV-458",
-      amount: "₹15000",
-      status: "Paid",
-    },
-    {
-      id: 2,
-      type: "Bank Transfer",
-      invoice: "INV-459",
-      amount: "₹18700",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      type: "Bank Transfer",
-      invoice: "INV-460",
-      amount: "₹23000",
-      status: "Paid",
-    },
-    {
-      id: 4,
-      type: "Bank Transfer",
-      invoice: "INV-461",
-      amount: "₹17800",
-      status: "Paid",
-    },
-    {
-      id: 5,
-      type: "Bank Transfer",
-      invoice: "INV-462",
-      amount: "₹15000",
-      status: "Pending",
-    },
-  ];
-  const documents = [
-    {
-      name: "Offer_Letter.pdf",
-      size: "1.2 MB",
-    },
-    {
-      name: "ID_Card.pdf",
-      size: "1.2 MB",
-    },
-    {
-      name: "Resume.pdf",
-      size: "1.2 MB",
-    },
-    {
-      name: "NDA.pdf",
-      size: "1.2 MB",
-    },
-    {
-      name: "Bank_Details.pdf",
-      size: "1.2 MB",
-    },
-  ];
+
   return (
     <div className="h-screen overflow-auto p-6 flex flex-col gap-6">
       <div className="flex items-center gap-2">

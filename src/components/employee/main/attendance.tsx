@@ -18,40 +18,8 @@ import {
 } from "lucide-react";
 import { EmployeeInterface } from "../../../types/common";
 import exportAsCsv from "../../admin/common/export";
+import { attendanceDataHistory } from "../../../data/employee-dashboard";
 
-const attendanceData = [
-  {
-    date: "March 08 2023",
-    status: "On Time",
-    checkIn: "08:53",
-    checkOut: "17:15",
-  },
-  {
-    date: "March 07 2023",
-    status: "Late",
-    checkIn: "08:27",
-    checkOut: "17:09",
-  },
-  { date: "March 06 2023", status: "Absent", checkIn: "-", checkOut: "-" },
-  {
-    date: "March 05 2023",
-    status: "On Time",
-    checkIn: "08:55",
-    checkOut: "17:10",
-  },
-  {
-    date: "March 04 2023",
-    status: "On Time",
-    checkIn: "08:58",
-    checkOut: "17:06",
-  },
-  {
-    date: "March 03 2023",
-    status: "Late",
-    checkIn: "08:40",
-    checkOut: "17:02",
-  },
-];
 
 export default function Attendance() {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
@@ -60,7 +28,7 @@ export default function Attendance() {
   const handleDownloadInfo = () => {
     const data = {
       ...userData,
-      attendanceData
+      attendanceDataHistory
     }
     console.log(data);
     exportAsCsv([data], 'attendance-info');
@@ -201,7 +169,7 @@ export default function Attendance() {
           <div
             className={`grid ${viewType === "grid" ? "grid-cols-3" : "grid-cols-1"} gap-4`}
           >
-            {attendanceData.map((record, index) => (
+            {attendanceDataHistory.map((record, index) => (
               <AttendanceCard key={index} {...record} />
             ))}
           </div>
