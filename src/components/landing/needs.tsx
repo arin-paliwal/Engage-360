@@ -7,7 +7,7 @@ export default function Needs() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === testimonials_data.length - 1 ? 0 : prevIndex + 1
+        prevIndex === testimonials_data.length - 1 ? 0 : prevIndex + 1,
       );
     }, 3500);
 
@@ -16,7 +16,7 @@ export default function Needs() {
 
   const currentTestimonial = testimonials_data[currentIndex];
 
-  const handleDotClick = (index:number) => {
+  const handleDotClick = (index: number) => {
     setCurrentIndex(index);
   };
 
@@ -41,7 +41,9 @@ export default function Needs() {
             <div className="flex items-center gap-4">
               <div>
                 <p className="font-semibold">{currentTestimonial.name}</p>
-                <p className="text-gray-400">{currentTestimonial.designation}</p>
+                <p className="text-gray-400">
+                  {currentTestimonial.designation}
+                </p>
               </div>
             </div>
           </div>

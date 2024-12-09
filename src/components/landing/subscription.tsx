@@ -54,7 +54,8 @@ export default function Subscription() {
               key={plan.name}
               className={`bg-white flex flex-col justify-between p-8 rounded-lg border transition-all ${
                 selectedPlan === index
-                  ? "ring-4 ring-lightMode-accentBlue scale-105":""
+                  ? "ring-4 ring-lightMode-accentBlue scale-105"
+                  : ""
               }`}
               onClick={() => setSelectedPlan(index)}
             >

@@ -14,19 +14,20 @@ import { EmployeeInterface } from "../../../types/common";
 import exportAsCsv from "../../admin/common/export";
 import { attendanceDataHistory } from "../../../data/employee-dashboard";
 
-
 export default function Attendance() {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
-  const userData: EmployeeInterface = JSON.parse(localStorage.getItem('currentUser') || '{}') as EmployeeInterface;
+  const userData: EmployeeInterface = JSON.parse(
+    localStorage.getItem("currentUser") || "{}",
+  ) as EmployeeInterface;
 
   const handleDownloadInfo = () => {
     const data = {
       ...userData,
-      attendanceDataHistory
-    }
+      attendanceDataHistory,
+    };
     console.log(data);
-    exportAsCsv([data], 'attendance-info');
-  }
+    exportAsCsv([data], "attendance-info");
+  };
 
   return (
     <div className="h-screen text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -46,8 +47,9 @@ export default function Attendance() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4"
-            onClick={handleDownloadInfo}
+            <div
+              className="flex items-center gap-4"
+              onClick={handleDownloadInfo}
             >
               <button className="flex items-center gap-2 px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg">
                 <Download className="w-4 h-4" />
@@ -57,51 +59,43 @@ export default function Attendance() {
           </div>
           <div className="flex items-center gap-8 mt-6">
             <div className="flex">
-            <img
-              src="https://avatar.iran.liara.run/public/33"
-              alt="Profile"
-              className="w-20 h-20 rounded-full"
-            />
+              <img
+                src="https://avatar.iran.liara.run/public/33"
+                alt="Profile"
+                className="w-20 h-20 rounded-full"
+              />
             </div>
             <div className="flex items-center gap-8">
-            <div className="flex flex-col">
-              <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Name
-              </h1>
-              <h2 className="text-xl font-semibold">
-                {userData.name}
-              </h2>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Employee Code
-              </h1>
-              <h2 className="text-xl font-semibold">{userData.employeeId}</h2>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Role
-              </h1>
-              <h2 className="text-xl font-semibold">
-                {userData.jobTitle}
-              </h2>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Phone
-              </h1>
-              <h2 className="text-xl font-semibold">
-                {userData.phone}
-              </h2>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                Email
-              </h1>
-              <h2 className="text-xl font-semibold">
-                {userData.email}
-              </h2>
-            </div>
+              <div className="flex flex-col">
+                <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  Name
+                </h1>
+                <h2 className="text-xl font-semibold">{userData.name}</h2>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  Employee Code
+                </h1>
+                <h2 className="text-xl font-semibold">{userData.employeeId}</h2>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  Role
+                </h1>
+                <h2 className="text-xl font-semibold">{userData.jobTitle}</h2>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  Phone
+                </h1>
+                <h2 className="text-xl font-semibold">{userData.phone}</h2>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                  Email
+                </h1>
+                <h2 className="text-xl font-semibold">{userData.email}</h2>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4 mt-8">
@@ -156,7 +150,6 @@ export default function Attendance() {
                   <List className="w-5 h-5" />
                 </button>
               </div>
-              
             </div>
           </div>
 

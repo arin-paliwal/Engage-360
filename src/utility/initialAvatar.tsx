@@ -2,18 +2,38 @@ import { useEffect, useState } from "react";
 
 interface InitialAvatarProps {
   name: string;
-  size?: "sm" | "md"
+  size?: "sm" | "md";
   borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
 }
 
 const satisfyingColors = [
-  "#A3D5FF", "#FFD4A3", "#C2E8C2", "#FFB5B5", "#D9CFE8",
-  "#C8B8A6", "#F5CCDA", "#E0E0E0", "#E3EAB3", "#A6F2F2",
-  "#FFD4C2", "#F9B3B3", "#D7A6A6", "#AD94A3", "#B5C2E0",
-  "#B5E0CC", "#A6D3E8", "#D3A6E8", "#FFC9A3", "#E8BFA6",
+  "#A3D5FF",
+  "#FFD4A3",
+  "#C2E8C2",
+  "#FFB5B5",
+  "#D9CFE8",
+  "#C8B8A6",
+  "#F5CCDA",
+  "#E0E0E0",
+  "#E3EAB3",
+  "#A6F2F2",
+  "#FFD4C2",
+  "#F9B3B3",
+  "#D7A6A6",
+  "#AD94A3",
+  "#B5C2E0",
+  "#B5E0CC",
+  "#A6D3E8",
+  "#D3A6E8",
+  "#FFC9A3",
+  "#E8BFA6",
 ];
 
-export default function InitialAvatar({ name, size = "md",borderRadius="md" }: InitialAvatarProps) {
+export default function InitialAvatar({
+  name,
+  size = "md",
+  borderRadius = "md",
+}: InitialAvatarProps) {
   const [initials, setInitials] = useState<string>();
   const [color, setColor] = useState<string>();
   const [textColor, setTextColor] = useState<string>();
@@ -37,9 +57,9 @@ export default function InitialAvatar({ name, size = "md",borderRadius="md" }: I
   useEffect(() => {
     if (!name) return;
 
-    const names = name.split(" ").map(
-      (n) => n.charAt(0).toUpperCase() + n.slice(1)
-    );
+    const names = name
+      .split(" ")
+      .map((n) => n.charAt(0).toUpperCase() + n.slice(1));
 
     setInitials(names.length > 1 ? names[0][0] + names[1][0] : names[0][0]);
 

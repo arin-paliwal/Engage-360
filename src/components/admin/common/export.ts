@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-export default function exportAsCsv(data: any[],fileName:string) {
+export default function exportAsCsv(data: any[], fileName: string) {
   if (!data || data.length === 0) {
     return;
   }
@@ -15,7 +15,7 @@ export default function exportAsCsv(data: any[],fileName:string) {
           }
           return `"${String(value).replace(/"/g, '""')}"`;
         })
-        .join(",")
+        .join(","),
     )
     .join("\n");
 
@@ -30,5 +30,5 @@ export default function exportAsCsv(data: any[],fileName:string) {
   link.click();
 
   URL.revokeObjectURL(url);
-  toast.success(`Exported ${data.length} records to ${fileName}.csv`); 
+  toast.success(`Exported ${data.length} records to ${fileName}.csv`);
 }

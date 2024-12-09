@@ -19,7 +19,7 @@ export default function ProjectManagement() {
   const [workflowSteps, setWorkflowSteps] = useState<WorkflowInterface[]>([]);
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
   const [selectedProject, setSelectedProject] = useState<ProjectInterface>(
-    {} as ProjectInterface
+    {} as ProjectInterface,
   );
   useEffect(() => {
     const fetchWorkflow = async () => {
@@ -65,7 +65,7 @@ export default function ProjectManagement() {
     setExpandedTasks((prev) =>
       prev.includes(stepIndex)
         ? prev.filter((i) => i !== stepIndex)
-        : [...prev, stepIndex]
+        : [...prev, stepIndex],
     );
   };
 

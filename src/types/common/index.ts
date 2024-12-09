@@ -1,6 +1,6 @@
 export interface EmployeeInterface {
   id: number | string;
-  password: string | number
+  password: string | number;
   employeeId: string;
   name: string;
   email: string;
@@ -36,11 +36,11 @@ export interface EmployeeInterface {
     averageStartTime: string;
     averageEndTime: string;
   };
-  timeline?:{
+  timeline?: {
     hired: string;
     prohabation: string;
     permanent: string;
-  }
+  };
   performanceRating: number | null;
   probationStatus: string;
   projectsAssigned: string[];

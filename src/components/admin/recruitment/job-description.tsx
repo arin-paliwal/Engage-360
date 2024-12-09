@@ -22,7 +22,7 @@ export default function JobDescription({
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [job, setJob] = useState<Job>(
-    JSON.parse(localStorage.getItem("selectedJob") || "{}")
+    JSON.parse(localStorage.getItem("selectedJob") || "{}"),
   );
 
   const handleEditDescription = () => {

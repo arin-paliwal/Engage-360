@@ -23,16 +23,16 @@ export default function Navbar() {
         </a> */}
       </div>
       <div className="flex items-center gap-4">
-      <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground hover:dark:bg-darkMode-secondaryBackground"
-          >
-            {theme === "dark" ? (
-              <Sun className="" size={18} />
-            ) : (
-              <Moon className="" size={18} />
-            )}
-          </button>
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground hover:dark:bg-darkMode-secondaryBackground"
+        >
+          {theme === "dark" ? (
+            <Sun className="" size={18} />
+          ) : (
+            <Moon className="" size={18} />
+          )}
+        </button>
         <button className="bg-lightMode-accentBlue px-4 py-2 text-white rounded-md text-sm">
           Get Started
         </button>

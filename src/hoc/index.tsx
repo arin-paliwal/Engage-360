@@ -4,7 +4,7 @@ import { TOKEN_DELIMITER, TOKEN_KEY } from "../config";
 
 const withAuthCheck = <P extends object>(
   WrappedComponent: ComponentType<P>,
-  roleID: number
+  roleID: number,
 ) => {
   const HOC: React.FC<P> = (props) => {
     const navigate = useNavigate();

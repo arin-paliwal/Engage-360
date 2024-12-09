@@ -66,18 +66,18 @@ Managers and Employees share similar responsibilities, with managers having addi
 
 ### **Platform Features by Role**
 
-| Feature               | Admin                        | Generic Role (Manager & Employee) |
-| --------------------- | ---------------------------- | --------------------------------- |
-| Dashboards            | Employee Management, Recruitment, Payroll, Schedule | Role-Specific Analytics          |
-| Recognition System    | Oversight & Moderation       | Send & Track Recognition         |
-| Feedback Mechanism    | Monitor Org Feedback Trends  | Submit/Analyze Feedback          |
-| Assistant Simulation  | Configure FAQ Responses      | Use Assistant for Queries        |
-| Event Management      | Create & Manage Events       | Organize/Participate in Events   |
-| Resource Hub          | Upload & Manage Resources    | Share/Access Resources           |
-| Attendance            |                              | Log & Approve Attendance         |
-| To-Do List            |                              | Manage Tasks & Track Progress    |
-| Project Management    |                              | Manage & Track Project Progress  |
-| Schedule Management   | Set Up & Monitor Schedules   | View & Manage Work Schedules     |
+| Feature              | Admin                                               | Generic Role (Manager & Employee) |
+| -------------------- | --------------------------------------------------- | --------------------------------- |
+| Dashboards           | Employee Management, Recruitment, Payroll, Schedule | Role-Specific Analytics           |
+| Recognition System   | Oversight & Moderation                              | Send & Track Recognition          |
+| Feedback Mechanism   | Monitor Org Feedback Trends                         | Submit/Analyze Feedback           |
+| Assistant Simulation | Configure FAQ Responses                             | Use Assistant for Queries         |
+| Event Management     | Create & Manage Events                              | Organize/Participate in Events    |
+| Resource Hub         | Upload & Manage Resources                           | Share/Access Resources            |
+| Attendance           |                                                     | Log & Approve Attendance          |
+| To-Do List           |                                                     | Manage Tasks & Track Progress     |
+| Project Management   |                                                     | Manage & Track Project Progress   |
+| Schedule Management  | Set Up & Monitor Schedules                          | View & Manage Work Schedules      |
 
 ---
 

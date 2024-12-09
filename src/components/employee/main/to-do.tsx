@@ -67,7 +67,7 @@ export default function TodoComponent() {
   const [assignedTodosState, setAssignedTodos] =
     useState<Todo[]>(assignedTodos);
   const userEmail = JSON.parse(
-    localStorage.getItem("currentUser") || "{}"
+    localStorage.getItem("currentUser") || "{}",
   ).email;
   const [openAddTodo, setOpenAddTodo] = useState(false);
 
@@ -78,16 +78,21 @@ export default function TodoComponent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get(`/employees_todo?id=${userEmail}`);
+        const response = await axiosInstance.get(
+          `/employees_todo?id=${userEmail}`,
+        );
         const allTodos = response.data
-          .filter((user: any) => user.id === userEmail) 
-          .flatMap((user: any) => user.todos); 
-        const uniqueTodos = allTodos.reduce((acc: Todo[], currentTodo: Todo) => {
-          const exists = acc.some(todo => todo.id === currentTodo.id);
-          if (!exists) acc.push(currentTodo);
-          return acc;
-        }, []);
-        setTodos(uniqueTodos); 
+          .filter((user: any) => user.id === userEmail)
+          .flatMap((user: any) => user.todos);
+        const uniqueTodos = allTodos.reduce(
+          (acc: Todo[], currentTodo: Todo) => {
+            const exists = acc.some((todo) => todo.id === currentTodo.id);
+            if (!exists) acc.push(currentTodo);
+            return acc;
+          },
+          [],
+        );
+        setTodos(uniqueTodos);
         console.log(uniqueTodos);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -95,7 +100,6 @@ export default function TodoComponent() {
     };
     fetchData();
   }, [userEmail]);
-  
 
   const incompleteTodos = todos.filter((todo) => !todo.completed);
   const completedTodos = todos.filter((todo) => todo.completed);
@@ -106,9 +110,9 @@ export default function TodoComponent() {
         `/employees_todo/${userEmail}`,
         {
           todos: todos.map((todo) =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo,
           ),
-        }
+        },
       );
       toast.remove();
       toast.success("Todo updated successfully.");
@@ -120,16 +124,16 @@ export default function TodoComponent() {
 
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     );
   };
 
   const handleCompleteAssigned = (id: string) => {
     setAssignedTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     );
   };
 
@@ -138,8 +142,8 @@ export default function TodoComponent() {
       prev.map((todo) =>
         todo.id === droppedTodo.id
           ? { ...todo, completed: !todo.completed }
-          : todo
-      )
+          : todo,
+      ),
     );
   };
 
@@ -152,7 +156,9 @@ export default function TodoComponent() {
       completed: false,
       tags: tags.split(",").map((tag) => tag.trim()),
     };
-    const isTodoDuplicate = todos.some((todo) => todo.title === newTodo.title && todo.date === newTodo.date);
+    const isTodoDuplicate = todos.some(
+      (todo) => todo.title === newTodo.title && todo.date === newTodo.date,
+    );
 
     if (isTodoDuplicate) {
       toast.error("This todo already exists.");
@@ -175,7 +181,6 @@ export default function TodoComponent() {
       toast.error("Failed to add todo.");
     }
   };
-  
 
   return (
     <div className="min-h-screen text-lightMode-primaryText dark:text-darkMode-primaryText">
@@ -231,14 +236,19 @@ export default function TodoComponent() {
       </div>
       {openAddTodo && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          
-          <form onSubmit={addTodo} className="bg-white p-6 rounded-lg shadow-lg w-96">
-          <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
-            Add Todo
-          </h1>
-          <X className="cursor-pointer" onClick={() => setOpenAddTodo(false)} />
-          </div>
+          <form
+            onSubmit={addTodo}
+            className="bg-white p-6 rounded-lg shadow-lg w-96"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
+                Add Todo
+              </h1>
+              <X
+                className="cursor-pointer"
+                onClick={() => setOpenAddTodo(false)}
+              />
+            </div>
             <div className="mb-4">
               <label
                 htmlFor="title"

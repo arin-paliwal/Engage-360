@@ -61,7 +61,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -73,7 +73,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
   const handleNestedChange = (
     category: string,
     field: string,
-    value: string | number
+    value: string | number,
   ) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -84,14 +84,17 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
     }));
   };
 
-  const handleSubmit =async  (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        const response = await axiosInstance.post("/employees",JSON.stringify(formData));
-        console.log(response);
-        toast.success("Employee added successfully");
-        setIsAddingEmployee(false);
-        window.location.reload();
+      const response = await axiosInstance.post(
+        "/employees",
+        JSON.stringify(formData),
+      );
+      console.log(response);
+      toast.success("Employee added successfully");
+      setIsAddingEmployee(false);
+      window.location.reload();
     } catch (error) {
       toast.error("Error adding employee");
     }
@@ -216,7 +219,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
-                value={formData.address?.street}
+              value={formData.address?.street}
               type="text"
               placeholder="Street"
               onChange={(e) =>
@@ -236,7 +239,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             <input
               type="text"
               placeholder="State"
-                value={formData.address?.state}
+              value={formData.address?.state}
               onChange={(e) =>
                 handleNestedChange("address", "state", e.target.value)
               }
@@ -245,7 +248,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             <input
               type="text"
               placeholder="Postal Code"
-                value={formData.address?.postalCode}
+              value={formData.address?.postalCode}
               onChange={(e) =>
                 handleNestedChange("address", "postalCode", e.target.value)
               }
@@ -254,7 +257,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             <input
               type="text"
               placeholder="Country"
-                value={formData.address?.country}
+              value={formData.address?.country}
               onChange={(e) =>
                 handleNestedChange("address", "country", e.target.value)
               }
@@ -281,7 +284,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             <input
               type="tel"
               placeholder="Phone"
-                value={formData.emergencyContact?.phone}
+              value={formData.emergencyContact?.phone}
               onChange={(e) =>
                 handleNestedChange("emergencyContact", "phone", e.target.value)
               }
@@ -289,13 +292,13 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             />
             <input
               type="text"
-                value={formData.emergencyContact?.relation}
+              value={formData.emergencyContact?.relation}
               placeholder="Relation"
               onChange={(e) =>
                 handleNestedChange(
                   "emergencyContact",
                   "relation",
-                  e.target.value
+                  e.target.value,
                 )
               }
               className="w-full px-4 py-2 rounded border border-borders-primary dark:border-borders-secondary bg-lightMode-background dark:bg-darkMode-background"
@@ -311,13 +314,13 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="number"
-                value={formData.salary?.amount}
+              value={formData.salary?.amount}
               placeholder="Amount"
               onChange={(e) =>
                 handleNestedChange(
                   "salary",
                   "amount",
-                  parseFloat(e.target.value)
+                  parseFloat(e.target.value),
                 )
               }
               className="w-full px-4 py-2 rounded border border-borders-primary dark:border-borders-secondary bg-lightMode-background dark:bg-darkMode-background"
@@ -374,7 +377,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             type="number"
             name="managerId"
             placeholder="Manager ID"
-            value={formData.managerId||""}
+            value={formData.managerId || ""}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded border border-borders-primary dark:border-borders-secondary bg-lightMode-background dark:bg-darkMode-background"
           />
@@ -392,7 +395,7 @@ const AddUserForm: React.FC<AddUserReactProps> = ({ setIsAddingEmployee }) => {
             type="number"
             name="performanceRating"
             placeholder="Performance Rating"
-            value={formData.performanceRating||""}
+            value={formData.performanceRating || ""}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded border border-borders-primary dark:border-borders-secondary bg-lightMode-background dark:bg-darkMode-background"
           />

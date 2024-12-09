@@ -20,7 +20,7 @@ const Schedule: React.FC = () => {
   const [userEmails, setUserEmails] = useState<string[]>(
     localStorage.getItem("emails")
       ? JSON.parse(localStorage.getItem("emails")!)
-      : []
+      : [],
   );
   const [newEvent, setNewEvent] = useState<EventInterface>({
     id: "",
@@ -67,8 +67,8 @@ const Schedule: React.FC = () => {
         Date.UTC(
           selectedDate.getUTCFullYear(),
           selectedDate.getUTCMonth(),
-          selectedDate.getUTCDate()
-        )
+          selectedDate.getUTCDate(),
+        ),
       );
       setEvents((prev) => [
         ...prev,
@@ -85,7 +85,7 @@ const Schedule: React.FC = () => {
 
   const handleDateClick = (day: number | string) => {
     const selected = new Date(
-      Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), Number(day))
+      Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), Number(day)),
     );
     setSelectedDate(selected);
     setModalOpen(true);
@@ -111,7 +111,7 @@ const Schedule: React.FC = () => {
   const handleAddEventButtonClick = () => {
     const now = new Date();
     setSelectedDate(
-      new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()))
+      new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())),
     );
     setModalOpen(true);
   };
@@ -169,7 +169,7 @@ const Schedule: React.FC = () => {
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               onClick={() =>
                 setCurrentDate(
-                  new Date(currentDate.setMonth(currentDate.getMonth() - 1))
+                  new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
                 )
               }
             >
@@ -179,7 +179,7 @@ const Schedule: React.FC = () => {
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               onClick={() =>
                 setCurrentDate(
-                  new Date(currentDate.setMonth(currentDate.getMonth() + 1))
+                  new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
                 )
               }
             >
@@ -235,8 +235,8 @@ const Schedule: React.FC = () => {
                         new Date(
                           currentDate.getFullYear(),
                           currentDate.getMonth(),
-                          Number(day.day)
-                        ).toDateString()
+                          Number(day.day),
+                        ).toDateString(),
                     )
                     .map((event, idx) => (
                       <div

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import TypewriterComponent from "typewriter-effect";
 
 export default function Hero() {
-  const  navigate  = useNavigate();
+  const navigate = useNavigate();
   const words = [
     "Businesses",
     "Startups",
@@ -13,19 +13,17 @@ export default function Hero() {
     "SMEs",
     "Corporations",
   ];
-  const {theme, setTheme} = useTheme();
+  const { theme, setTheme } = useTheme();
   useEffect(() => {
     setTheme("light");
   }, []);
-  
+
   return (
     <section className="relative flex bg-dots-pattern-hero flex-row h-screen items-center justify-center">
       <div className="absolute top-0 left-0 p-6 text-2xl">
         <h1 className="text-3xl font-semibold">Enagage360</h1>
       </div>
-      <div className="absolute top-0 right-1/2 p-6 text-2xl">
-      
-      </div>
+      <div className="absolute top-0 right-1/2 p-6 text-2xl"></div>
       <div className="w-1/2 flex justify-center">
         <div className="flex flex-col justify-center gap-2">
           <div className="text-4xl tracking-wide md:text-6xl mb-3">
@@ -33,14 +31,14 @@ export default function Hero() {
             <br /> Reliable Solution for
             <br />
             <span className="text-gray-600">
-            <TypewriterComponent
-            options={{
-              strings: words,
-              autoStart: true,
-              loop: true,
-              deleteSpeed: 0.2,
-            }}
-          />
+              <TypewriterComponent
+                options={{
+                  strings: words,
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 0.2,
+                }}
+              />
             </span>
           </div>
           <p className="text-gray-600 mb-8">
@@ -48,8 +46,9 @@ export default function Hero() {
             help businesses grow and prosper.
           </p>
           <div className="flex items-center gap-2 mb-6">
-            <button className="border-2 border-lightMode-accentBlue bg-lightMode-accentBlue p-3 text-sm w-[12rem] text-white rounded-md flex items-center gap-2 justify-center"
-            onClick={()=>navigate("/login")}
+            <button
+              className="border-2 border-lightMode-accentBlue bg-lightMode-accentBlue p-3 text-sm w-[12rem] text-white rounded-md flex items-center gap-2 justify-center"
+              onClick={() => navigate("/login")}
             >
               Get Started Now
               <ChevronRight size={16} />
@@ -76,16 +75,16 @@ export default function Hero() {
             </div>
             <div className="flex flex-col">
               <div className="flex items-center">
-              {Array(5)
-                .fill(null)
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    size={16}
-                    fill="#71717a"
-                    className="text-lightMode-secondaryText"
-                  />
-                ))}
+                {Array(5)
+                  .fill(null)
+                  .map((_, i) => (
+                    <StarIcon
+                      key={i}
+                      size={16}
+                      fill="#71717a"
+                      className="text-lightMode-secondaryText"
+                    />
+                  ))}
               </div>
               <h1 className="text-sm text-gray-600">
                 Trusted by 2k+ Businesses

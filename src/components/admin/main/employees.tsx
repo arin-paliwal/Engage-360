@@ -18,7 +18,7 @@ import axiosInstance from "../../../api/axios";
 
 export default function Employee() {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("activeTab") || "manage"
+    localStorage.getItem("activeTab") || "manage",
   );
   const [isAddingEmployee, setIsAddingEmployee] = useState(false);
   const tabs = [

@@ -4,7 +4,7 @@ const Footer = () => {
   const handleEmailClick = () => {
     const emailAddress = "info@engage360.com";
     const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(
-      emailAddress
+      emailAddress,
     )}`;
 
     window.open(gmailComposeUrl, "_blank");
@@ -30,7 +30,9 @@ const Footer = () => {
                   </h1>
                   <hr className="w-full h-[0.1rem] my-4 bg-secondary border-0 rounded" />
                   <h1 className="text-[#b1b1b1]">
-                    Manage your workforce efficiently with Engage360, the ultimate HR dashboard for employee management, performance tracking, and more.
+                    Manage your workforce efficiently with Engage360, the
+                    ultimate HR dashboard for employee management, performance
+                    tracking, and more.
                   </h1>
                 </div>
                 <iframe
@@ -77,7 +79,8 @@ const Footer = () => {
       <div className="bg-[#202020] flex sm:flex-row flex-col h-auto w-full text-[#b1b1b1] gap-6 p-3">
         <div className="sm:w-1/2 flex items-center justify-center h-full ">
           <h1 className="flex items-center">
-            2024 Engage360 &nbsp;<Copyright size={16} /> &nbsp;All Rights Reserved
+            2024 Engage360 &nbsp;
+            <Copyright size={16} /> &nbsp;All Rights Reserved
           </h1>
         </div>
         <div className="sm:w-1/2 flex items-center justify-center h-full ">
@@ -85,9 +88,7 @@ const Footer = () => {
         </div>
         <div className="sm:w-1/2 flex items-center justify-center h-full cursor-pointer ">
           <div className="sm:px-4 flex sm:flex-row flex-col gap-8 w-full items-center justify-center">
-            <div>
-              Terms&nbsp;&&nbsp;Conditions
-            </div>
+            <div>Terms&nbsp;&&nbsp;Conditions</div>
             <div className="" onClick={() => window.scrollTo(0, 0)}>
               <h1>Back to Top</h1>
             </div>

@@ -39,9 +39,7 @@ export default function FAQs() {
 
   const toggleAccordion = (index: number) => {
     setOpenIndexes((prev) =>
-      prev.includes(index)
-        ? prev.filter((i) => i !== index)
-        : [...prev, index]
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
 
@@ -70,9 +68,7 @@ export default function FAQs() {
                 />
               </div>
               {openIndexes.includes(index) && (
-                <div className="p-4 border-t text-gray-600">
-                  {faq.answer}
-                </div>
+                <div className="p-4 border-t text-gray-600">{faq.answer}</div>
               )}
             </div>
           ))}

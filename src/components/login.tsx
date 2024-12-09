@@ -1,11 +1,4 @@
-import {
-  ChevronLeft,
-  Moon,
-  Shield,
-  Sun,
-  Unlock,
-  User2,
-} from "lucide-react";
+import { ChevronLeft, Moon, Shield, Sun, Unlock, User2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +25,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const response = await axiosInstance.get(
-        `/employees?employeeId=${formData.employeeCode}&password=${formData.password}`
+        `/employees?employeeId=${formData.employeeCode}&password=${formData.password}`,
       );
 
       const matchedEmployee = response.data[0];
@@ -43,10 +36,14 @@ export default function Login() {
         toast.success(
           matchedEmployee.isAdmin
             ? "Admin login successful."
-            : "Employee login successful."
+            : "Employee login successful.",
         );
         setTimeout(() => {
-          navigate(matchedEmployee.isAdmin ? "/admin/dashboard" : "/employee/dashboard");
+          navigate(
+            matchedEmployee.isAdmin
+              ? "/admin/dashboard"
+              : "/employee/dashboard",
+          );
         }, 1000);
       } else {
         toast.error("Invalid employee code or password.");
@@ -56,7 +53,6 @@ export default function Login() {
       toast.error("Failed to log in. Please try again.");
     }
   };
-  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,11 +75,7 @@ export default function Login() {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground hover:dark:bg-darkMode-secondaryBackground"
           >
-            {theme === "dark" ? (
-              <Sun size={18} />
-            ) : (
-              <Moon size={18} />
-            )}
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
         <div className="max-w-md w-full">
@@ -129,12 +121,13 @@ export default function Login() {
               />
             </div>
 
-
             <div className="text-sm flex items-center justify-between pt-4">
               <button
                 type="submit"
                 className="px-4 py-2 border-2 border-borders-primary dark:border-borders-secondary rounded-lg flex items-center gap-3 w-[10rem] justify-center"
-                onClick={()=>setFormData({employeeCode:"EMP001",password:""})}
+                onClick={() =>
+                  setFormData({ employeeCode: "EMP001", password: "" })
+                }
               >
                 Admin Login
                 <Shield size={16} />

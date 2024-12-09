@@ -34,7 +34,7 @@ export default function Payrolls() {
     };
   }, [searchQuery]);
   const filteredPayrolls = payrolls?.filter((payroll) =>
-    payroll.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+    payroll.name.toLowerCase().includes(debouncedQuery.toLowerCase()),
   );
 
   const updateStatus = async (id: string, status: "Paid" | "Unpaid") => {
@@ -65,8 +65,8 @@ export default function Payrolls() {
     try {
       await Promise.all(
         updatedPayrolls.map((payroll) =>
-          axiosInstance.put(`/employee_payrolls/${payroll.id}`, payroll)
-        )
+          axiosInstance.put(`/employee_payrolls/${payroll.id}`, payroll),
+        ),
       );
 
       setPayrolls(updatedPayrolls);

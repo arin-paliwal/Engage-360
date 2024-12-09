@@ -6,8 +6,6 @@ import toast from "react-hot-toast";
 import { leaveTypeStyles, statusStyles } from "../../../utility/get-detp-color";
 import { TimeOffRequest } from "../../../types/admin-dashboard/types";
 
-
-
 export default function Timeoff() {
   const [openPopupId, setOpenPopupId] = useState<number | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -44,8 +42,8 @@ export default function Timeoff() {
       await axiosInstance.patch(`timeOffs/${id}`, { status: "Approved" });
       setTimeOffRequests((prevRequests) =>
         prevRequests.map((request) =>
-          request.id === id ? { ...request, status: "Approved" } : request
-        )
+          request.id === id ? { ...request, status: "Approved" } : request,
+        ),
       );
       setOpenPopupId(null);
       toast.success("Request approved");
@@ -58,8 +56,8 @@ export default function Timeoff() {
       await axiosInstance.patch(`timeOffs/${id}`, { status: "Rejected" });
       setTimeOffRequests((prevRequests) =>
         prevRequests.map((request) =>
-          request.id === id ? { ...request, status: "Rejected" } : request
-        )
+          request.id === id ? { ...request, status: "Rejected" } : request,
+        ),
       );
       setOpenPopupId(null);
       toast.success("Request rejected");
@@ -71,13 +69,13 @@ export default function Timeoff() {
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);
     }, 500);
-  
+
     return () => {
       clearTimeout(handler);
     };
   }, [searchQuery]);
   const filteredTimeOffs = timeOffRequests.filter((employee) =>
-    employee.employee.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+    employee.employee.name.toLowerCase().includes(debouncedQuery.toLowerCase()),
   );
 
   return (
@@ -185,11 +183,17 @@ export default function Timeoff() {
           </div>
         ))}
       </div>
-      {filteredTimeOffs.length == 0 && 
-      <div className="flex justify-center items-center h-[50vh]">
-        <img src="/images/empty.svg" alt="No data" className="mt-6 block justify-center" width={400} height={300} />
-      </div>
-      }
+      {filteredTimeOffs.length == 0 && (
+        <div className="flex justify-center items-center h-[50vh]">
+          <img
+            src="/images/empty.svg"
+            alt="No data"
+            className="mt-6 block justify-center"
+            width={400}
+            height={300}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -38,7 +38,7 @@ const AddJobForm: FC<componenentProps> = ({
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setJob((prevJob) => ({ ...prevJob, [name]: value }));

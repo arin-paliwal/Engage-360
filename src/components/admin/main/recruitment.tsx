@@ -9,7 +9,7 @@ import AddJobForm from "../recruitment/create-job";
 export default function Recruitment() {
   const [isOpen, setIsOpen] = useState(false);
   const [subState, setSubState] = useState(
-    localStorage.getItem("recruitmentSubState") || "Active Jobs"
+    localStorage.getItem("recruitmentSubState") || "Active Jobs",
   );
   const [activeJobState, setActiveJobState] = useState("Active Jobs");
 
@@ -45,18 +45,18 @@ export default function Recruitment() {
       setFetchedJobs(response.data);
       setOpenJobs(
         response.data.filter(
-          (job: Job) => new Date(job.activeUntil) > new Date()
-        )
+          (job: Job) => new Date(job.activeUntil) > new Date(),
+        ),
       );
       setJobs(
         response.data.filter(
-          (job: Job) => new Date(job.activeUntil) > new Date()
-        )
+          (job: Job) => new Date(job.activeUntil) > new Date(),
+        ),
       );
       setClosedJobs(
         response.data.filter(
-          (job: Job) => new Date(job.activeUntil) < new Date()
-        )
+          (job: Job) => new Date(job.activeUntil) < new Date(),
+        ),
       );
       console.log(response.data);
     };
@@ -135,9 +135,10 @@ export default function Recruitment() {
                     </button>
                   </div>
                 )}
-                <button className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-lightMode-accentBlue text-white rounded-lg hover:opacity-90"
-                onClick={() => setOpenAddJobModal(true)}>
-                
+                <button
+                  className="px-4 py-[.6rem] text-sm flex items-center gap-2 bg-lightMode-accentBlue dark:bg-lightMode-accentBlue text-white rounded-lg hover:opacity-90"
+                  onClick={() => setOpenAddJobModal(true)}
+                >
                   <Plus size={18} />
                   <span>Create New Job</span>
                 </button>
@@ -189,11 +190,11 @@ export default function Recruitment() {
       ) : (
         <JobDescription subState={subState} setSubState={setSubState} />
       )}
-      {openAddJobModal &&
-      <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-        <AddJobForm setOpenAddJobModal={setOpenAddJobModal} />
-      </div>
-      }
+      {openAddJobModal && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+          <AddJobForm setOpenAddJobModal={setOpenAddJobModal} />
+        </div>
+      )}
     </>
   );
 }

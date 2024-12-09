@@ -11,11 +11,11 @@
   box-sizing: border-box;
 }
 .bg-dots-pattern {
-  background-image: radial-gradient(circle, gray .5px, transparent .9px);
+  background-image: radial-gradient(circle, gray 0.5px, transparent 0.9px);
   background-size: 20px 20px;
 }
 .bg-dots-pattern-hero {
-  background-image: radial-gradient(circle, gray .5px, transparent .5px);
+  background-image: radial-gradient(circle, gray 0.5px, transparent 0.5px);
   background-size: 20px 20px;
 }
 .componentScroll {

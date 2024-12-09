@@ -1,5 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, PlusCircle, CalendarIcon, CalendarCheck, Clock, View, Info } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  PlusCircle,
+  CalendarIcon,
+  CalendarCheck,
+  Clock,
+  View,
+  Info,
+} from "lucide-react";
 import { EventInterface } from "../../../types/admin-dashboard/types";
 import axiosInstance from "../../../api/axios";
 
@@ -8,19 +17,19 @@ const Schedule: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [events, setEvents] = useState<EventInterface[]>([])
+  const [events, setEvents] = useState<EventInterface[]>([]);
   const [userEmail, setUserEmail] = useState<string>(
-    JSON.parse(localStorage.getItem("currentUser") || "{}").email
+    JSON.parse(localStorage.getItem("currentUser") || "{}").email,
   );
 
   useEffect(() => {
-    const fetchData= async () => {
-      const response=await axiosInstance.get(`/events`, {
+    const fetchData = async () => {
+      const response = await axiosInstance.get(`/events`, {
         params: { assignedTo: userEmail },
       });
       setEvents(response.data);
       console.log(response.data);
-    }
+    };
     fetchData();
   }, [userEmail]);
 
@@ -41,7 +50,6 @@ const Schedule: React.FC = () => {
     year: "numeric",
   });
 
-
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDay = getFirstDayOfMonth(currentDate);
@@ -58,22 +66,24 @@ const Schedule: React.FC = () => {
     return days;
   };
 
-
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         setModalOpen(false);
       }
     }
 
     if (modalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalOpen]);
 
@@ -93,7 +103,6 @@ const Schedule: React.FC = () => {
             </p>
           </div>
         </div>
-        
       </div>
 
       {/* Calendar */}
@@ -104,7 +113,7 @@ const Schedule: React.FC = () => {
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               onClick={() =>
                 setCurrentDate(
-                  new Date(currentDate.setMonth(currentDate.getMonth() - 1))
+                  new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
                 )
               }
             >
@@ -114,7 +123,7 @@ const Schedule: React.FC = () => {
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               onClick={() =>
                 setCurrentDate(
-                  new Date(currentDate.setMonth(currentDate.getMonth() + 1))
+                  new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
                 )
               }
             >
@@ -167,8 +176,8 @@ const Schedule: React.FC = () => {
                         new Date(
                           currentDate.getFullYear(),
                           currentDate.getMonth(),
-                          Number(day.day)
-                        ).toDateString()
+                          Number(day.day),
+                        ).toDateString(),
                     )
                     .map((event, idx) => (
                       <div
@@ -189,4 +198,3 @@ const Schedule: React.FC = () => {
 };
 
 export default Schedule;
-

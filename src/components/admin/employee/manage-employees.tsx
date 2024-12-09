@@ -19,7 +19,7 @@ export default function ManageEmployee() {
       setEmployees(response.data);
       const emails = response.data
         .filter(
-          (employee: { email: string; isAdmin: boolean }) => !employee.isAdmin
+          (employee: { email: string; isAdmin: boolean }) => !employee.isAdmin,
         )
         .map((employee: { email: string }) => employee.email);
 
@@ -38,7 +38,7 @@ export default function ManageEmployee() {
     };
   }, [searchQuery]);
   const filteredEmployees = employees?.filter((employee) =>
-    employee.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+    employee.name.toLowerCase().includes(debouncedQuery.toLowerCase()),
   );
 
   const handleEdit = (employee: EmployeeInterface) => {
@@ -50,11 +50,11 @@ export default function ManageEmployee() {
     try {
       await axiosInstance.put(
         `/employees/${selectedEmployee?.id}`,
-        selectedEmployee
+        selectedEmployee,
       );
       toast.success("Employee updated successfully");
       const updatedEmployees = employees.map((emp) =>
-        emp.id === selectedEmployee?.id ? selectedEmployee : emp
+        emp.id === selectedEmployee?.id ? selectedEmployee : emp,
       );
       setEmployees(updatedEmployees);
       setIsEditing(false);
@@ -73,7 +73,6 @@ export default function ManageEmployee() {
       toast.error("Something went wrong. Please try again later");
     }
   };
-
 
   return (
     <div>

@@ -1,25 +1,18 @@
 import { useState, useEffect } from "react";
-import {
-  Search,
-  Plus,
-  Clock,
-  PersonStanding,
-  Star,
-} from "lucide-react";
+import { Search, Plus, Clock, PersonStanding, Star } from "lucide-react";
 import InitialAvatar from "../../../utility/initialAvatar";
 import { candidateInterface } from "../../../types/admin-dashboard/types";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../api/axios";
 import { statusStyles } from "../../../utility/recruit-helper";
 
-
 export default function CandidatesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedJob, setSelectedJob] = useState(
-    JSON.parse(localStorage.getItem("selectedJob") || "{}")
+    JSON.parse(localStorage.getItem("selectedJob") || "{}"),
   );
   const [candidates, setCandidates] = useState<candidateInterface[]>(
-    JSON.parse(localStorage.getItem("selectedJob") || "[]").candidates
+    JSON.parse(localStorage.getItem("selectedJob") || "[]").candidates,
   );
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,7 +36,7 @@ export default function CandidatesPage() {
   }, [searchQuery]);
 
   const filteredEmployees = candidates.filter((candidate) =>
-    candidate.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+    candidate.name.toLowerCase().includes(debouncedQuery.toLowerCase()),
   );
 
   const groupedCandidates = filteredEmployees.reduce(
@@ -55,11 +48,11 @@ export default function CandidatesPage() {
       acc[normalizedStatus].push(candidate);
       return acc;
     },
-    {} as Record<string, candidateInterface[]>
+    {} as Record<string, candidateInterface[]>,
   );
 
   const handleAddCandidate = async () => {
-    if(!newCandidate.name || !newCandidate.email) {
+    if (!newCandidate.name || !newCandidate.email) {
       toast.error("Name and Email are required");
       return;
     }
@@ -69,7 +62,7 @@ export default function CandidatesPage() {
       updatedJob.candidates.push(newCandidate);
       const newJob = await axiosInstance.put(
         `/jobs/${selectedJob.id}`,
-        updatedJob
+        updatedJob,
       );
       setSelectedJob(newJob.data);
       toast.success("Candidate added successfully");
@@ -84,7 +77,7 @@ export default function CandidatesPage() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setNewCandidate({
       ...newCandidate,

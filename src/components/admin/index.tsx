@@ -6,7 +6,7 @@ import Recruitment from "./main/recruitment";
 import Schedule from "./main/schedule";
 
 const AdminDashboardComponent = () => {
-  const { state } = useAppContext(); 
+  const { state } = useAppContext();
 
   const renderComponent = () => {
     switch (state.adminState) {
@@ -20,17 +20,13 @@ const AdminDashboardComponent = () => {
         return <Payrolls />;
       case "Schedule":
         return <Schedule />;
-      
+
       default:
         return <div>Please select a valid admin state.</div>;
     }
   };
 
-  return (
-    <div>
-      {renderComponent()}
-    </div>
-  );
+  return <div>{renderComponent()}</div>;
 };
 
 export default AdminDashboardComponent;

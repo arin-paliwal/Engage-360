@@ -26,21 +26,35 @@ import InitialAvatar from "../../../utility/initialAvatar";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { EmployeeInterface } from "../../../types/common";
-import { appointments, documents, payrolls } from "../../../data/employee-dashboard";
+import {
+  appointments,
+  documents,
+  payrolls,
+} from "../../../data/employee-dashboard";
 
 export default function Details() {
   const [userData, setUserData] = useState<EmployeeInterface>(
-    JSON.parse(localStorage.getItem("currentUser") || "{}") as EmployeeInterface
+    JSON.parse(
+      localStorage.getItem("currentUser") || "{}",
+    ) as EmployeeInterface,
   );
   const currentDate = new Date();
-  const firstDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const firstDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1,
+  );
+  const lastDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0,
+  );
   const formattedDate = firstDate.toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
-  const remainingDays = Math.max(0, (lastDate.getDate() - currentDate.getDate()));
+  const remainingDays = Math.max(0, lastDate.getDate() - currentDate.getDate());
   const { theme } = useTheme();
   const [progress, setProgress] = useState(0);
   const size = 100;
@@ -183,7 +197,8 @@ export default function Details() {
                     Work Schedule
                   </p>
                   <p className="text-lightMode-primaryText dark:text-darkMode-primaryText">
-                    {userData.workSchedule.startTime} - {userData.workSchedule.endTime}
+                    {userData.workSchedule.startTime} -{" "}
+                    {userData.workSchedule.endTime}
                   </p>
                 </div>
               </div>
@@ -232,7 +247,9 @@ export default function Details() {
                 <div className="flex flex-col mt-8">
                   <h1 className="">{userData.employeeId}</h1>
                   <h1 className="text-gray-200">{userData.name}</h1>
-                  <h1 className="text-gray-200">DOJ : {userData.dateOfJoining}</h1>
+                  <h1 className="text-gray-200">
+                    DOJ : {userData.dateOfJoining}
+                  </h1>
                 </div>
                 <div className="flex flex-col">
                   <h1 className="text-end">Valid upto</h1>

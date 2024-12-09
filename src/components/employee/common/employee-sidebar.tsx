@@ -8,23 +8,25 @@ import {
   Workflow,
   CalendarCheck,
   FolderKanban,
-} from "lucide-react"
-import { useTheme } from "next-themes"
-import { useAppContext } from "../../../context"
-import toast from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+} from "lucide-react";
+import { useTheme } from "next-themes";
+import { useAppContext } from "../../../context";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function EmployeeSidebar() {
-  const { state, dispatch } = useAppContext()
-  const { theme, setTheme } = useTheme()
-  const navigate = useNavigate()
+  const { state, dispatch } = useAppContext();
+  const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <div className="fixed w-64 border-r border-borders-primary dark:border-borders-secondary h-screen z-50 bg-lightMode-background dark:bg-darkMode-background rounded-md">
       <div className="p-4 border-b border-borders-primary dark:border-borders-secondary">
         <div className="flex items-center gap-2">
           <img src="/logos/logo-icon.png" alt="logo" className="w-8 h-10" />
-          <span className="font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">Engage360</span>
+          <span className="font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
+            Engage360
+          </span>
           <div className="flex items-center gap-2 ml-auto">
             {theme === "dark" ? (
               <Sun
@@ -79,11 +81,27 @@ export default function EmployeeSidebar() {
         </div>
         <nav className="space-y-1">
           {[
-            { name: "Business and Marketing", color: "bg-lightMode-accentBlue dark:bg-darkMode-accentBlue" },
-            { name: "Design", color: "bg-lightMode-accentGreen dark:bg-darkMode-accentGreen" },
-            { name: "Project Manager", color: "bg-lightMode-accentOrange dark:bg-darkMode-accentOrange" },
-            { name: "Human Resource", color: "bg-lightMode-accentPurple dark:bg-darkMode-accentPurple" },
-            { name: "Development", color: "bg-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue" },
+            {
+              name: "Business and Marketing",
+              color: "bg-lightMode-accentBlue dark:bg-darkMode-accentBlue",
+            },
+            {
+              name: "Design",
+              color: "bg-lightMode-accentGreen dark:bg-darkMode-accentGreen",
+            },
+            {
+              name: "Project Manager",
+              color: "bg-lightMode-accentOrange dark:bg-darkMode-accentOrange",
+            },
+            {
+              name: "Human Resource",
+              color: "bg-lightMode-accentPurple dark:bg-darkMode-accentPurple",
+            },
+            {
+              name: "Development",
+              color:
+                "bg-lightMode-accentLightBlue dark:bg-darkMode-accentLightBlue",
+            },
           ].map((item) => (
             <button
               key={item.name}
@@ -98,28 +116,25 @@ export default function EmployeeSidebar() {
           OTHER
         </div>
         <nav className="space-y-1">
-        <button
-              className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground transition-colors"
-            >
-              <Settings className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
-              Settings
-            </button>
-            <button
-              className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-red-600 hover:text-white transition-colors"
-              onClick={()=>{
-                localStorage.clear();
-                toast.success("Logged out successfully")
-                setTimeout(() => {
-                  navigate("/login")
-                }, 1000);
-              }}
-            >
-              <LogOutIcon className="" size={18} />
-              Logout
-            </button>
+          <button className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground transition-colors">
+            <Settings className="w-5 h-5 text-lightMode-secondaryText dark:text-darkMode-secondaryText" />
+            Settings
+          </button>
+          <button
+            className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg text-lightMode-primaryText dark:text-darkMode-primaryText hover:bg-red-600 hover:text-white transition-colors"
+            onClick={() => {
+              localStorage.clear();
+              toast.success("Logged out successfully");
+              setTimeout(() => {
+                navigate("/login");
+              }, 1000);
+            }}
+          >
+            <LogOutIcon className="" size={18} />
+            Logout
+          </button>
         </nav>
       </div>
     </div>
-  )
+  );
 }
-
