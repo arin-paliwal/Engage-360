@@ -32,7 +32,7 @@ const Brands = () => {
                 src={image.src}
                 height="100"
                 width="250"
-                alt=""
+                alt="Brands"
                 className="bg-white dark:bg-black"
               />
             </div>
