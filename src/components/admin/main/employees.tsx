@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DownloadCloudIcon,
   Plus,
@@ -12,13 +12,14 @@ import OrganisationChart from "../employee/organisational-chart";
 import Timeoff from "../employee/time-offs";
 import ManageEmployee from "../employee/manage-employees";
 import { TabProps } from "../../../types/admin-dashboard/types";
-import AddUserForm from "../employee/add-employee-form";
 import exportAsCsv from "../common/export";
 import axiosInstance from "../../../api/axios";
 
+const AddUserForm = React.lazy(() => import("../employee/add-employee-form"));
+
 export default function Employee() {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("activeTab") || "manage",
+    localStorage.getItem("activeTab") || "manage"
   );
   const [isAddingEmployee, setIsAddingEmployee] = useState(false);
   const tabs = [
@@ -104,7 +105,9 @@ export default function Employee() {
       </div>
       {isAddingEmployee && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          <AddUserForm setIsAddingEmployee={setIsAddingEmployee} />
+          <React.Suspense fallback="Loading...">
+            <AddUserForm setIsAddingEmployee={setIsAddingEmployee} />
+          </React.Suspense>
         </div>
       )}
     </div>
