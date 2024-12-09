@@ -81,7 +81,7 @@ const Schedule: React.FC = () => {
     <div className="flex flex-col h-screen p-6 overflow-y-scroll bg-white dark:bg-black">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-blue-500 dark:bg-blue-600 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-lightMode-accentBlue rounded-lg flex items-center justify-center">
             <CalendarIcon className="w-6 h-6 text-white" />
           </div>
           <div className="ml-2">
