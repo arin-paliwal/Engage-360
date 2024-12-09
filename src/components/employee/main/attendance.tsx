@@ -1,12 +1,7 @@
 import { useState } from "react";
 import {
-  ArrowLeft,
-  ArrowRight,
   Badge,
-  ChevronDownIcon,
-  CircleArrowOutDownLeft,
   Clock,
-  ClockAlert,
   Download,
   List,
   LogIn,
@@ -14,7 +9,6 @@ import {
   Sigma,
   SquareIcon,
   Timer,
-  User,
 } from "lucide-react";
 import { EmployeeInterface } from "../../../types/common";
 import exportAsCsv from "../../admin/common/export";

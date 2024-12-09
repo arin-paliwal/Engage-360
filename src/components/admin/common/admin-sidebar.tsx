@@ -1,5 +1,4 @@
 import {
-  Users,
   UserPlus,
   DollarSign,
   Calendar,
@@ -46,7 +45,6 @@ export default function Sidebar() {
         </div>
         <nav className="space-y-1">
           {[
-            // { name: "Dashboard", icon: BarChart3 },
             { name: "Employee", icon: BriefcaseBusiness },
             { name: "Recruitment", icon: UserPlus },
             { name: "Payroll", icon: DollarSign },

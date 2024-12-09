@@ -69,3 +69,13 @@ export interface OrganisationEmployee {
   department?: string;
   children?: OrganisationEmployee[];
 }
+
+export interface TimeOffRequest {
+  id: number;
+  employee: { name: string; avatar: string };
+  leaveType: "Annual Leave" | "Sick Leave";
+  leaveFrom: string;
+  leaveTo: string;
+  days: number;
+  status: "Pending" | "Approved" | "Rejected";
+}

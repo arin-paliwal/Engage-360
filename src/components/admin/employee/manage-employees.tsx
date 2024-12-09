@@ -3,7 +3,6 @@ import { Search, MoreVertical, Trash } from "lucide-react";
 import InitialAvatar from "../../../utility/initialAvatar";
 import { EmployeeInterface } from "../../../types/common";
 import axiosInstance from "../../../api/axios";
-import AddUserForm from "./add-employee-form";
 import toast from "react-hot-toast";
 import { getDepartmentColor } from "../../../utility/get-detp-color";
 

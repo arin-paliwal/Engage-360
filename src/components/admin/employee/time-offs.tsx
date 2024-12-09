@@ -1,20 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MoreVertical, Search, Check, X } from "lucide-react";
-import { getRandomNumber } from "./organisational-chart";
 import InitialAvatar from "../../../utility/initialAvatar";
 import axiosInstance from "../../../api/axios";
 import toast from "react-hot-toast";
 import { leaveTypeStyles, statusStyles } from "../../../utility/get-detp-color";
+import { TimeOffRequest } from "../../../types/admin-dashboard/types";
 
-interface TimeOffRequest {
-  id: number;
-  employee: { name: string; avatar: string };
-  leaveType: "Annual Leave" | "Sick Leave";
-  leaveFrom: string;
-  leaveTo: string;
-  days: number;
-  status: "Pending" | "Approved" | "Rejected";
-}
+
 
 export default function Timeoff() {
   const [openPopupId, setOpenPopupId] = useState<number | null>(null);

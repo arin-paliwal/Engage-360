@@ -1,6 +1,5 @@
 import React from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
-import { Edit2, EditIcon, ZoomIn, ZoomOut } from "lucide-react";
 import { useTheme } from "next-themes";
 import InitialAvatar from "../../../utility/initialAvatar";
 import { orgData } from "../../../data/admin-dashboard";

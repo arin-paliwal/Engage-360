@@ -7,6 +7,7 @@ import {
   Plus,
   SlidersHorizontal,
   Workflow,
+  X,
 } from "lucide-react";
 import { TodoList } from "../todo/to-do-list";
 import { AssignedTodoList } from "../todo/assigned-todo";
@@ -232,9 +233,12 @@ export default function TodoComponent() {
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
           
           <form onSubmit={addTodo} className="bg-white p-6 rounded-lg shadow-lg w-96">
-          <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText mb-6">
+          <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
             Add Todo
           </h1>
+          <X className="cursor-pointer" onClick={() => setOpenAddTodo(false)} />
+          </div>
             <div className="mb-4">
               <label
                 htmlFor="title"

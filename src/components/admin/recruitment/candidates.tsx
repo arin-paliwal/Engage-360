@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import {
-  ArrowLeft,
   Search,
   Plus,
   Clock,
-  Users,
   PersonStanding,
   Star,
 } from "lucide-react";
