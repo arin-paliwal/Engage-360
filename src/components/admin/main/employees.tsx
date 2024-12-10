@@ -19,7 +19,7 @@ const AddUserForm = React.lazy(() => import("../employee/add-employee-form"));
 
 export default function Employee() {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("activeTab") || "manage"
+    localStorage.getItem("activeTab") || "manage",
   );
   const [isAddingEmployee, setIsAddingEmployee] = useState(false);
   const tabs = [

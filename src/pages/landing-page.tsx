@@ -5,7 +5,7 @@ import Subscription from "../components/landing/subscription";
 import FAQs from "../components/landing/faqs";
 import React from "react";
 
-const LazyFooter=React.lazy(()=>import('../components/landing/footer'))
+const LazyFooter = React.lazy(() => import("../components/landing/footer"));
 
 export default function LandingPage() {
   return (
