@@ -122,7 +122,7 @@ export default function ManageEmployee() {
                   {employee.name}
                 </div>
                 <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                  {employee.email}
+                  <h1 className="w-48 truncate cursor-pointer" title={employee.email}>{employee.email}</h1>
                 </div>
               </div>
             </div>
