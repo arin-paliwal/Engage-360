@@ -1,0 +1,2736 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "isAdmin": true,
+      "password": 123456,
+      "employeeId": "EMP001",
+      "name": "Brooklyn Simmons",
+      "email": "brooklyn.simmons@example.com",
+      "phone": "+1-202-555-0173",
+      "department": "Design",
+      "jobTitle": "Creative Director",
+      "contractType": "Full-time",
+      "avatar": null,
+      "dateOfJoining": "2022-01-15",
+      "dateOfBirth": "1985-04-12",
+      "managerId": null,
+      "skills": [
+        "Photoshop",
+        "Illustrator",
+        "UX Design",
+        "Creative Direction"
+      ],
+      "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10001",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Sarah Simmons",
+        "phone": "+1-202-555-0100",
+        "relation": "Sister"
+      },
+      "salary": {
+        "amount": 95000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "09:00",
+        "endTime": "17:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "averageStartTime": "09:00",
+        "averageEndTime": "17:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Completed",
+      "projectsAssigned": [
+        "Design Overhaul",
+        "Branding Campaign"
+      ],
+      "notes": "Highly creative and innovative."
+    },
+    {
+      "id": "3",
+      "password": 123456,
+      "employeeId": "EMP003",
+      "name": "Ralph Edwards",
+      "email": "ralph.edwards@example.com",
+      "phone": "+1-202-555-0136",
+      "department": "Design",
+      "jobTitle": "Senior UX Designer",
+      "contractType": "Contract",
+      "avatar": null,
+      "dateOfJoining": "2021-03-25",
+      "dateOfBirth": "1990-02-15",
+      "managerId": "1",
+      "skills": [
+        "UX Research",
+        "Wireframing",
+        "Figma",
+        "User Testing"
+      ],
+      "address": {
+        "street": "789 Pine St",
+        "city": "Los Angeles",
+        "state": "CA",
+        "postalCode": "90001",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Oliver Edwards",
+        "phone": "+1-202-555-0177",
+        "relation": "Father"
+      },
+      "salary": {
+        "amount": 85000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "08:30",
+        "endTime": "16:30",
+        "workingDays": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ],
+        "averageStartTime": "09:00",
+        "averageEndTime": "17:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Ongoing",
+      "projectsAssigned": [
+        "Mobile App Redesign",
+        "User Experience Improvement"
+      ],
+      "notes": "Highly skilled in user-centered design."
+    },
+    {
+      "id": "4",
+      "password": 123456,
+      "employeeId": "EMP004",
+      "name": "Bessie Cooper",
+      "email": "bessie.cooper@example.com",
+      "phone": "+1-202-555-0147",
+      "department": "HR",
+      "jobTitle": "HR Manager",
+      "contractType": "Full-time",
+      "avatar": null,
+      "dateOfJoining": "2019-11-30",
+      "dateOfBirth": "1982-09-10",
+      "managerId": null,
+      "skills": [
+        "Recruitment",
+        "Employee Relations",
+        "HR Policies",
+        "Talent Acquisition"
+      ],
+      "address": {
+        "street": "321 Maple Ave",
+        "city": "Chicago",
+        "state": "IL",
+        "postalCode": "60611",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "John Cooper",
+        "phone": "+1-202-555-0188",
+        "relation": "Husband"
+      },
+      "salary": {
+        "amount": 95000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "09:00",
+        "endTime": "17:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "averageStartTime": "09:00",
+        "averageEndTime": "17:00"
+      },
+      "performanceRating": 3,
+      "probationStatus": "Completed",
+      "projectsAssigned": [
+        "Talent Search",
+        "Employee Wellness Program"
+      ],
+      "notes": "Great with employee relations and retention."
+    },
+    {
+      "id": "5",
+      "password": 123456,
+      "employeeId": "EMP005",
+      "name": "Leslie Alexander",
+      "email": "leslie.alexander@example.com",
+      "phone": "+1-202-555-0158",
+      "department": "Management",
+      "jobTitle": "Project Manager",
+      "contractType": "Full-time",
+      "avatar": null,
+      "dateOfJoining": "2021-07-14",
+      "dateOfBirth": "1987-05-20",
+      "managerId": 2,
+      "skills": [
+        "Agile Methodology",
+        "Team Management",
+        "Scrum",
+        "Risk Management"
+      ],
+      "address": {
+        "street": "654 Cedar Blvd",
+        "city": "Austin",
+        "state": "TX",
+        "postalCode": "73301",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Frank Alexander",
+        "phone": "+1-202-555-0199",
+        "relation": "Brother"
+      },
+      "salary": {
+        "amount": 110000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "09:00",
+        "endTime": "17:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "averageStartTime": "09:00",
+        "averageEndTime": "17:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Completed",
+      "projectsAssigned": [
+        "Agile Transformation",
+        "Customer Engagement Platform"
+      ],
+      "notes": "Excellent at managing cross-functional teams."
+    },
+    {
+      "id": "6",
+      "password": 123456,
+      "employeeId": "EMP006",
+      "name": "Kathryn Murphy",
+      "email": "kathryn.murphy@example.com",
+      "phone": "+1-202-555-0169",
+      "department": "Development",
+      "jobTitle": "Software Engineer",
+      "contractType": "Full-time",
+      "avatar": null,
+      "dateOfJoining": "2022-02-02",
+      "dateOfBirth": "1993-01-11",
+      "managerId": 2,
+      "skills": [
+        "Python",
+        "Django",
+        "API Development",
+        "Database Management"
+      ],
+      "address": {
+        "street": "987 Birch Rd",
+        "city": "Seattle",
+        "state": "WA",
+        "postalCode": "98101",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "James Murphy",
+        "phone": "+1-202-555-0210",
+        "relation": "Father"
+      },
+      "salary": {
+        "amount": 95000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "10:00",
+        "endTime": "18:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "averageStartTime": "10:00",
+        "averageEndTime": "18:00"
+      },
+      "performanceRating": 5,
+      "probationStatus": "Completed",
+      "projectsAssigned": [
+        "Backend Infrastructure",
+        "API Optimization"
+      ],
+      "notes": "Exceptional technical abilities with a focus on backend systems."
+    },
+    {
+      "id": "7",
+      "password": 123456,
+      "employeeId": "EMP007",
+      "name": "Eleanor Pena",
+      "email": "eleanor.pena@example.com",
+      "phone": "+1-202-555-0180",
+      "department": "Sales",
+      "jobTitle": "Sales Representative",
+      "contractType": "Part-time",
+      "avatar": null,
+      "dateOfJoining": "2023-05-20",
+      "dateOfBirth": "1995-06-30",
+      "managerId": 4,
+      "skills": [
+        "CRM Software",
+        "Sales Negotiation",
+        "Lead Generation"
+      ],
+      "address": {
+        "street": "111 Red Oak St",
+        "city": "Miami",
+        "state": "FL",
+        "postalCode": "33101",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Carlos Pena",
+        "phone": "+1-202-555-0221",
+        "relation": "Brother"
+      },
+      "salary": {
+        "amount": 55000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "09:00",
+        "endTime": "14:00",
+        "workingDays": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ],
+        "averageStartTime": "09:00",
+        "averageEndTime": "14:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Ongoing",
+      "projectsAssigned": [
+        "Client Acquisition",
+        "Quarterly Sales Targets"
+      ],
+      "notes": "Strong at lead generation and client relationships."
+    },
+    {
+      "id": "8",
+      "password": 123456,
+      "employeeId": "EMP008",
+      "name": "Jacob Jones",
+      "email": "jacob.jones@example.com",
+      "phone": "+1-202-555-0191",
+      "department": "Development",
+      "jobTitle": "Backend Developer",
+      "contractType": "Full-time",
+      "avatar": null,
+      "dateOfJoining": "2021-09-10",
+      "dateOfBirth": "1991-10-02",
+      "managerId": 2,
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "RESTful APIs"
+      ],
+      "address": {
+        "street": "456 Pinehill St",
+        "city": "Dallas",
+        "state": "TX",
+        "postalCode": "75201",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Amelia Jones",
+        "phone": "+1-202-555-0205",
+        "relation": "Wife"
+      },
+      "salary": {
+        "amount": 105000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "10:00",
+        "endTime": "18:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "averageStartTime": "10:00",
+        "averageEndTime": "18:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Completed",
+      "projectsAssigned": [
+        "Server Migration",
+        "API Development"
+      ],
+      "notes": "Strong experience in backend systems."
+    },
+    {
+      "id": "9",
+      "password": 123456,
+      "employeeId": "EMP009",
+      "name": "Darlene Robertson",
+      "email": "darlene.robertson@example.com",
+      "phone": "+1-202-555-0202",
+      "department": "Marketing",
+      "jobTitle": "Digital Marketing Specialist",
+      "contractType": "Internship",
+      "avatar": null,
+      "dateOfJoining": "2023-06-01",
+      "dateOfBirth": "1999-07-17",
+      "managerId": 3,
+      "skills": [
+        "SEO",
+        "Google Analytics",
+        "Content Marketing"
+      ],
+      "address": {
+        "street": "312 Elm St",
+        "city": "Austin",
+        "state": "TX",
+        "postalCode": "73301",
+        "country": "USA"
+      },
+      "emergencyContact": {
+        "name": "Roger Robertson",
+        "phone": "+1-202-555-0234",
+        "relation": "Father"
+      },
+      "salary": {
+        "amount": 30000,
+        "currency": "USD"
+      },
+      "workSchedule": {
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "workingDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday"
+        ],
+        "averageStartTime": "10:00",
+        "averageEndTime": "16:00"
+      },
+      "performanceRating": 4,
+      "probationStatus": "Ongoing",
+      "projectsAssigned": [
+        "SEO Campaign",
+        "Content Strategy"
+      ],
+      "notes": "Great potential and enthusiasm in digital marketing."
+    }
+  ],
+  "schedules": [
+    {
+      "id": "1",
+      "employeeId": 1,
+      "date": "2024-12-06",
+      "shift": "Morning"
+    },
+    {
+      "id": "2",
+      "employeeId": 2,
+      "date": "2024-12-06",
+      "shift": "Evening"
+    }
+  ],
+  "payrolls": [
+    {
+      "id": "1",
+      "employeeId": 1,
+      "salary": 6000,
+      "currency": "USD"
+    },
+    {
+      "id": "2",
+      "employeeId": 2,
+      "salary": 4500,
+      "currency": "USD"
+    }
+  ],
+  "workflowSteps": [
+    {
+      "title": "Project Preparation",
+      "tasks": [
+        {
+          "name": "Requirements Collection",
+          "completed": true,
+          "assignee": "Rustam Musaiev",
+          "timestamp": "2 weeks ago",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Sarah Lee",
+              "timestamp": "2 weeks ago"
+            },
+            {
+              "action": "Created requirement document",
+              "employee": "Rustam Musaiev",
+              "timestamp": "1 week ago"
+            }
+          ]
+        },
+        {
+          "name": "Home Page Prototype",
+          "completed": true,
+          "assignee": "Rustam Musaiev",
+          "timestamp": "1 week ago",
+          "actions": [
+            {
+              "action": "Created prototype",
+              "employee": "Rustam Musaiev",
+              "timestamp": "1 week ago"
+            },
+            {
+              "action": "Added files",
+              "employee": "Rustam Musaiev",
+              "timestamp": "1 week ago"
+            }
+          ]
+        },
+        {
+          "name": "Prototypes Of All Pages",
+          "completed": true,
+          "assignee": "Rustam Musaiev",
+          "timestamp": "1 week ago",
+          "actions": [
+            {
+              "action": "Created prototypes",
+              "employee": "Rustam Musaiev",
+              "timestamp": "1 week ago"
+            }
+          ]
+        }
+      ],
+      "id": "ee90"
+    },
+    {
+      "title": "UX/UI",
+      "tasks": [
+        {
+          "name": "Home Page Prototype",
+          "completed": true,
+          "assignee": "Sergey Lopatin",
+          "timestamp": "5 days ago",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Rustam Musaiev",
+              "timestamp": "6 days ago"
+            },
+            {
+              "action": "Created design",
+              "employee": "Sergey Lopatin",
+              "timestamp": "5 days ago"
+            }
+          ]
+        },
+        {
+          "name": "Prototypes Of All Pages",
+          "completed": true,
+          "assignee": "Sergey Lopatin",
+          "timestamp": "1 day ago",
+          "actions": [
+            {
+              "action": "Created design",
+              "employee": "Sergey Lopatin",
+              "timestamp": "1 day ago"
+            }
+          ]
+        }
+      ],
+      "id": "5356"
+    },
+    {
+      "title": "Development",
+      "tasks": [
+        {
+          "name": "Backend Setup",
+          "completed": false,
+          "assignee": "Alex Johnson",
+          "timestamp": "In progress",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Sergey Lopatin",
+              "timestamp": "3 days ago"
+            },
+            {
+              "action": "Started backend setup",
+              "employee": "Alex Johnson",
+              "timestamp": "3 days ago"
+            }
+          ]
+        },
+        {
+          "name": "Frontend Implementation",
+          "completed": false,
+          "assignee": "Sarah Lee",
+          "timestamp": "Not started",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Rustam Musaiev",
+              "timestamp": "2 days ago"
+            }
+          ]
+        }
+      ],
+      "id": "a01e"
+    },
+    {
+      "title": "Testing",
+      "tasks": [
+        {
+          "name": "Unit Testing",
+          "completed": false,
+          "assignee": "Mike Brown",
+          "timestamp": "Not started",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Sarah Lee",
+              "timestamp": "1 day ago"
+            }
+          ]
+        },
+        {
+          "name": "Integration Testing",
+          "completed": false,
+          "assignee": "Lisa Wang",
+          "timestamp": "Not started",
+          "actions": [
+            {
+              "action": "Assigned task",
+              "employee": "Mike Brown",
+              "timestamp": "1 day ago"
+            }
+          ]
+        }
+      ],
+      "id": "3644"
+    }
+  ],
+  "initialProjects": [
+    {
+      "id": "1",
+      "name": "StrataScratch",
+      "description": "StrataScratch is a data science interview platform with over 900+ real interview questions from top companies. Questions span SQL, Python, statistics, probability, modeling, product sense, and system design.",
+      "lead": "John Doe",
+      "duration": "3 months",
+      "timeNeeded": "400 hours",
+      "dateStarted": "2024-01-15",
+      "attachedFiles": [
+        {
+          "name": "Project Plan",
+          "type": "pdf"
+        },
+        {
+          "name": "Meeting Notes",
+          "type": "docx"
+        },
+        {
+          "name": "Design Mockups",
+          "type": "pdf"
+        },
+        {
+          "name": "User Stories",
+          "type": "csv"
+        },
+        {
+          "name": "Database Schema",
+          "type": "sql"
+        },
+        {
+          "name": "API Documentation",
+          "type": "pdf"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "HealthBridge",
+      "description": "HealthBridge is a telehealth platform connecting patients with licensed medical professionals, enabling consultations, prescriptions, and health monitoring through a secure app.",
+      "lead": "Jane Smith",
+      "duration": "6 months",
+      "timeNeeded": "800 hours",
+      "dateStarted": "2023-09-10",
+      "attachedFiles": [
+        {
+          "name": "Project Plan",
+          "type": "pdf"
+        },
+        {
+          "name": "Market Research",
+          "type": "docx"
+        },
+        {
+          "name": "Telemedicine Guidelines",
+          "type": "pdf"
+        },
+        {
+          "name": "API Endpoints",
+          "type": "json"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "GreenTech Insights",
+      "description": "A sustainability-focused analytics tool providing businesses insights into their carbon footprint and suggesting actionable strategies to achieve net-zero emissions.",
+      "lead": "Michael Johnson",
+      "duration": "4 months",
+      "timeNeeded": "600 hours",
+      "dateStarted": "2023-11-01",
+      "attachedFiles": [
+        {
+          "name": "Project Charter",
+          "type": "pdf"
+        },
+        {
+          "name": "Carbon Footprint Model",
+          "type": "xlsx"
+        },
+        {
+          "name": "Sustainability Guidelines",
+          "type": "pdf"
+        },
+        {
+          "name": "API Documentation",
+          "type": "pdf"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "EduMentor AI",
+      "description": "An AI-driven personalized education platform offering students tailored lesson plans, interactive quizzes, and progress tracking for academic success.",
+      "lead": "Sophia Lee",
+      "duration": "5 months",
+      "timeNeeded": "700 hours",
+      "dateStarted": "2024-02-01",
+      "attachedFiles": [
+        {
+          "name": "Curriculum Overview",
+          "type": "docx"
+        },
+        {
+          "name": "AI Algorithm Specifications",
+          "type": "pdf"
+        },
+        {
+          "name": "Interactive Quizzes",
+          "type": "zip"
+        },
+        {
+          "name": "Progress Tracker",
+          "type": "xlsx"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "CityWorks 360",
+      "description": "A civic engagement app where citizens can report issues, track municipal projects, and engage with city officials for better urban governance.",
+      "lead": "Emma Brown",
+      "duration": "3 months",
+      "timeNeeded": "500 hours",
+      "dateStarted": "2024-03-15",
+      "attachedFiles": [
+        {
+          "name": "App Design",
+          "type": "pdf"
+        },
+        {
+          "name": "User Flow Diagrams",
+          "type": "svg"
+        },
+        {
+          "name": "API Documentation",
+          "type": "json"
+        },
+        {
+          "name": "Issue Reporting Guidelines",
+          "type": "docx"
+        }
+      ]
+    }
+  ],
+  "timeOffs": [
+    {
+      "id": "2",
+      "employee": {
+        "name": "Ralph Edwards"
+      },
+      "leaveType": "Sick Leave",
+      "leaveFrom": "Jan 23, 2024",
+      "leaveTo": "Jan 27, 2024",
+      "days": 4,
+      "status": "Rejected"
+    },
+    {
+      "id": "3",
+      "employee": {
+        "name": "Leslie Alexander"
+      },
+      "leaveType": "Annual Leave",
+      "leaveFrom": "Jan 12, 2024",
+      "leaveTo": "Jan 14, 2024",
+      "days": 2,
+      "status": "Rejected"
+    },
+    {
+      "id": "4",
+      "employee": {
+        "name": "Cody Fisher"
+      },
+      "leaveType": "Sick Leave",
+      "leaveFrom": "Jan 04, 2024",
+      "leaveTo": "Jan 06, 2024",
+      "days": 2,
+      "status": "Rejected"
+    },
+    {
+      "id": "5",
+      "employee": {
+        "name": "Arlene McCoy"
+      },
+      "leaveType": "Annual Leave",
+      "leaveFrom": "Jan 03, 2024",
+      "leaveTo": "Jan 08, 2024",
+      "days": 5,
+      "status": "Approved"
+    },
+    {
+      "id": "6",
+      "employee": {
+        "name": "Kathryn Murphy"
+      },
+      "leaveType": "Maternity Leave",
+      "leaveFrom": "Feb 01, 2024",
+      "leaveTo": "May 01, 2024",
+      "days": 90,
+      "status": "Approved"
+    },
+    {
+      "id": "7",
+      "employee": {
+        "name": "Devon Lane"
+      },
+      "leaveType": "Paternity Leave",
+      "leaveFrom": "Mar 15, 2024",
+      "leaveTo": "Mar 20, 2024",
+      "days": 5,
+      "status": "Approved"
+    },
+    {
+      "id": "8",
+      "employee": {
+        "name": "Jane Cooper"
+      },
+      "leaveType": "Sick Leave",
+      "leaveFrom": "Feb 10, 2024",
+      "leaveTo": "Feb 12, 2024",
+      "days": 2,
+      "status": "Pending"
+    },
+    {
+      "id": "9",
+      "employee": {
+        "name": "Marvin McKinney"
+      },
+      "leaveType": "Annual Leave",
+      "leaveFrom": "Feb 22, 2024",
+      "leaveTo": "Feb 28, 2024",
+      "days": 6,
+      "status": "Approved"
+    },
+    {
+      "id": "10",
+      "employee": {
+        "name": "Esther Howard"
+      },
+      "leaveType": "Unpaid Leave",
+      "leaveFrom": "Mar 01, 2024",
+      "leaveTo": "Mar 10, 2024",
+      "days": 9,
+      "status": "Pending"
+    },
+    {
+      "id": "11",
+      "employee": {
+        "name": "Darlene Robertson"
+      },
+      "leaveType": "Sick Leave",
+      "leaveFrom": "Mar 18, 2024",
+      "leaveTo": "Mar 20, 2024",
+      "days": 2,
+      "status": "Rejected"
+    },
+    {
+      "id": "12",
+      "employee": {
+        "name": "Jerome Bell"
+      },
+      "leaveType": "Sick Leave`",
+      "leaveFrom": "Mar 25, 2024",
+      "leaveTo": "Mar 30, 2024",
+      "days": 5,
+      "status": "Approved"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-001",
+      "activeUntil": "2025-01-31",
+      "title": "UI/UX Designer",
+      "description": "Design and develop user-friendly interfaces for B2B SaaS products.",
+      "role": "Designer",
+      "type": "Full Time",
+      "aboutCompany": "We craft digital products for businesses in achieving user goals by providing intuitive solutions. We have worked with clients in industries such as construction, health, and real estate.",
+      "techStack": [
+        "Figma",
+        "Sketch",
+        "Adobe XD",
+        "HTML",
+        "CSS"
+      ],
+      "requirements": [
+        "3+ years of experience in UI/UX design",
+        "Strong UX and UI portfolio",
+        "Proficient in Figma",
+        "Experience in conducting user research",
+        "Ability to work in a fast-paced environment"
+      ],
+      "location": "Onsite Indonesia, Jakarta",
+      "candidates": [
+        {
+          "name": "Alice Johnson",
+          "email": "alice.johnson@example.com",
+          "profile": "UI/UX Designer with 4 years of experience in SaaS products.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.5
+        },
+        {
+          "name": "John Doe",
+          "email": "john.doe@example.com",
+          "profile": "Creative designer skilled in Sketch and prototyping tools.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Sophia Lee",
+          "email": "sophia.lee@example.com",
+          "profile": "UX researcher and interface designer with 3+ years of experience.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.8
+        },
+        {
+          "name": "Ethan Brown",
+          "email": "ethan.brown@example.com",
+          "profile": "Recent design graduate specializing in interactive media.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Olivia Davis",
+          "email": "olivia.davis@example.com",
+          "profile": "UI designer with a knack for creating intuitive solutions.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "James Wilson",
+          "email": "james.wilson@example.com",
+          "profile": "Experienced product designer with strong documentation skills.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.7
+        },
+        {
+          "name": "Mia Clark",
+          "email": "mia.clark@example.com",
+          "profile": "Self-taught UI/UX enthusiast with a passion for design systems.",
+          "appliedBeforeTimes": 0,
+          "status": "InProgress",
+          "rating": 4.3
+        },
+        {
+          "name": "Daniel Martinez",
+          "email": "daniel.martinez@example.com",
+          "profile": "Seasoned UX designer with 5+ years of experience.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.7
+        },
+        {
+          "name": "Charlotte White",
+          "email": "charlotte.white@example.com",
+          "profile": "Junior designer with experience in mobile-first designs.",
+          "appliedBeforeTimes": 1,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "Michael Thompson",
+          "email": "michael.thompson@example.com",
+          "profile": "Lead designer specializing in accessibility and usability.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "id": "job-002",
+      "activeUntil": "2025-02-15",
+      "title": "Software Developer",
+      "description": "Develop high-quality software solutions using modern technologies.",
+      "role": "Developer",
+      "type": "Full Time",
+      "aboutCompany": "A leading software company focused on building scalable and secure applications.",
+      "techStack": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "AWS"
+      ],
+      "requirements": [
+        "3+ years of experience in software development",
+        "Proficient in JavaScript and TypeScript",
+        "Experience with React and Node.js",
+        "Knowledge of cloud platforms (AWS/GCP)",
+        "Strong problem-solving skills"
+      ],
+      "location": "Remote",
+      "candidates": [
+        {
+          "name": "Emily Robinson",
+          "email": "emily.robinson@example.com",
+          "profile": "Full-stack developer with expertise in JavaScript.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.5
+        },
+        {
+          "name": "William Anderson",
+          "email": "william.anderson@example.com",
+          "profile": "Experienced backend developer with Node.js skills.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.7
+        },
+        {
+          "name": "Sarah Carter",
+          "email": "sarah.carter@example.com",
+          "profile": "Frontend developer specializing in React and CSS animations.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Benjamin Scott",
+          "email": "benjamin.scott@example.com",
+          "profile": "JavaScript developer with a passion for open-source projects.",
+          "appliedBeforeTimes": 0,
+          "status": "InProgress",
+          "rating": 4.3
+        },
+        {
+          "name": "Grace Hall",
+          "email": "grace.hall@example.com",
+          "profile": "Recent graduate in Computer Science with internship experience in web development.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Daniel Parker",
+          "email": "daniel.parker@example.com",
+          "profile": "Experienced full-stack developer with cloud expertise.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.8
+        },
+        {
+          "name": "Hannah Nelson",
+          "email": "hannah.nelson@example.com",
+          "profile": "Frontend engineer specializing in responsive web design.",
+          "appliedBeforeTimes": 1,
+          "status": "Rejected",
+          "rating": 3.9
+        },
+        {
+          "name": "Ryan Adams",
+          "email": "ryan.adams@example.com",
+          "profile": "Backend developer with a focus on API design and optimization.",
+          "appliedBeforeTimes": 3,
+          "status": "InProgress",
+          "rating": 4.4
+        },
+        {
+          "name": "Sophia Baker",
+          "email": "sophia.baker@example.com",
+          "profile": "Full-stack engineer skilled in TypeScript and AWS services.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Jack Lewis",
+          "email": "jack.lewis@example.com",
+          "profile": "DevOps enthusiast with hands-on experience in CI/CD pipelines.",
+          "appliedBeforeTimes": 2,
+          "status": "Rejected",
+          "rating": 3.5
+        },
+        {
+          "name": "Arin Paliwal",
+          "email": "arin@gmail.com",
+          "profile": "www.linked.in",
+          "appliedBeforeTimes": "4",
+          "status": "Interviewed",
+          "rating": "4"
+        },
+        {
+          "name": "Arin Paliwal",
+          "email": "arin@gmail.com",
+          "profile": "www.linkedin.com/arinpaliwal",
+          "appliedBeforeTimes": 4,
+          "status": "Sourced",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": "job-003",
+      "activeUntil": "2025-03-01",
+      "title": "Digital Marketing Specialist",
+      "description": "Plan, execute, and optimize digital marketing campaigns to drive customer engagement.",
+      "role": "Marketing",
+      "type": "Full Time",
+      "aboutCompany": "A fast-growing startup specializing in AI-driven marketing solutions for various industries.",
+      "techStack": [
+        "Google Ads",
+        "Facebook Ads",
+        "HubSpot",
+        "SEO",
+        "Analytics"
+      ],
+      "requirements": [
+        "2+ years of experience in digital marketing",
+        "Proficient in SEO and SEM strategies",
+        "Familiar with analytics tools like Google Analytics",
+        "Strong understanding of content marketing",
+        "Ability to multitask in a fast-paced environment"
+      ],
+      "location": "Onsite, London, UK",
+      "candidates": [
+        {
+          "name": "Liam Bennett",
+          "email": "liam.bennett@example.com",
+          "profile": "SEO specialist with a focus on technical optimizations.",
+          "appliedBeforeTimes": 1,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Emma Carter",
+          "email": "emma.carter@example.com",
+          "profile": "Content marketer with experience in creating viral campaigns.",
+          "appliedBeforeTimes": 0,
+          "status": "Interviewed",
+          "rating": 4.7
+        },
+        {
+          "name": "Noah King",
+          "email": "noah.king@example.com",
+          "profile": "Experienced in running successful Facebook Ads campaigns.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "Ava Foster",
+          "email": "ava.foster@example.com",
+          "profile": "Digital marketing intern turned specialist in HubSpot.",
+          "appliedBeforeTimes": 2,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Oliver Scott",
+          "email": "oliver.scott@example.com",
+          "profile": "Analytics expert with a passion for data-driven marketing.",
+          "appliedBeforeTimes": 0,
+          "status": "InProgress",
+          "rating": 4.5
+        },
+        {
+          "name": "Isabella Harris",
+          "email": "isabella.harris@example.com",
+          "profile": "Content writer turned digital strategist.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.6
+        },
+        {
+          "name": "Elijah White",
+          "email": "elijah.white@example.com",
+          "profile": "SEO consultant with a track record of increasing traffic.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Charlotte Gray",
+          "email": "charlotte.gray@example.com",
+          "profile": "Recent marketing graduate with a specialization in PPC.",
+          "appliedBeforeTimes": 1,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "James Walker",
+          "email": "james.walker@example.com",
+          "profile": "Social media strategist with 3 years of experience.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.7
+        },
+        {
+          "name": "Lucas Taylor",
+          "email": "lucas.taylor@example.com",
+          "profile": "Freelance marketer skilled in email campaigns.",
+          "appliedBeforeTimes": 2,
+          "status": "InProgress",
+          "rating": 4.3
+        }
+      ]
+    },
+    {
+      "id": "job-004",
+      "activeUntil": "2025-02-28",
+      "title": "HR Manager",
+      "description": "Manage employee relations, recruitment, and organizational development.",
+      "role": "HR",
+      "type": "Full Time",
+      "aboutCompany": "A multinational company specializing in innovative tech solutions with a strong emphasis on employee growth and welfare.",
+      "techStack": [
+        "Workday",
+        "BambooHR",
+        "HRIS",
+        "Microsoft Office"
+      ],
+      "requirements": [
+        "5+ years of experience in HR management",
+        "Strong understanding of labor laws and HR best practices",
+        "Proficient in HR software like Workday",
+        "Excellent communication and interpersonal skills",
+        "Ability to manage a team and multiple priorities"
+      ],
+      "location": "Onsite, Sydney, Australia",
+      "candidates": [
+        {
+          "name": "Sophia Miller",
+          "email": "sophia.miller@example.com",
+          "profile": "HR professional with 7 years of experience in recruitment.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.8
+        },
+        {
+          "name": "Ethan Garcia",
+          "email": "ethan.garcia@example.com",
+          "profile": "HR generalist with a focus on employee engagement.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.3
+        },
+        {
+          "name": "Olivia Hernandez",
+          "email": "olivia.hernandez@example.com",
+          "profile": "HR manager with expertise in policy creation.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Mason Martinez",
+          "email": "mason.martinez@example.com",
+          "profile": "Experienced recruiter and HRIS administrator.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Ava Robinson",
+          "email": "ava.robinson@example.com",
+          "profile": "HR executive specializing in organizational development.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.6
+        },
+        {
+          "name": "Isabella Clark",
+          "email": "isabella.clark@example.com",
+          "profile": "HR professional focused on employee training.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Liam Rodriguez",
+          "email": "liam.rodriguez@example.com",
+          "profile": "HR consultant with experience in compliance.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.5
+        },
+        {
+          "name": "Lucas Walker",
+          "email": "lucas.walker@example.com",
+          "profile": "HR assistant with a background in onboarding.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "Mia Hall",
+          "email": "mia.hall@example.com",
+          "profile": "HR intern with strong organizational skills.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Noah Lewis",
+          "email": "noah.lewis@example.com",
+          "profile": "HR lead with experience in remote team management.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.7
+        },
+        {
+          "name": "",
+          "email": "",
+          "profile": "",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 0
+        }
+      ]
+    },
+    {
+      "id": "job-005",
+      "activeUntil": "2025-03-15",
+      "title": "Finance Analyst",
+      "description": "Analyze financial data to provide actionable insights for the organization.",
+      "role": "Finance",
+      "type": "Full Time",
+      "aboutCompany": "An established firm offering financial solutions to Fortune 500 companies.",
+      "techStack": [
+        "Excel",
+        "SAP",
+        "Tableau",
+        "Power BI"
+      ],
+      "requirements": [
+        "2+ years of experience in financial analysis",
+        "Proficient in data visualization tools like Tableau",
+        "Strong analytical and problem-solving skills",
+        "Knowledge of accounting principles",
+        "Ability to communicate financial insights effectively"
+      ],
+      "location": "Remote",
+      "candidates": [
+        {
+          "name": "Emma Martinez",
+          "email": "emma.martinez@example.com",
+          "profile": "Finance analyst with 3 years of experience in budgeting.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.6
+        },
+        {
+          "name": "James Brown",
+          "email": "james.brown@example.com",
+          "profile": "Analyst specializing in forecasting and reporting.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Charlotte Davis",
+          "email": "charlotte.davis@example.com",
+          "profile": "Entry-level analyst skilled in Power BI.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Benjamin Taylor",
+          "email": "benjamin.taylor@example.com",
+          "profile": "Senior finance analyst with extensive SAP expertise.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.9
+        },
+        {
+          "name": "Lucas Gonzalez",
+          "email": "lucas.gonzalez@example.com",
+          "profile": "Analyst with a focus on investment strategies.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.4
+        },
+        {
+          "name": "Liam Adams",
+          "email": "liam.adams@example.com",
+          "profile": "Financial consultant with strong modeling skills.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.3
+        },
+        {
+          "name": "Mason Allen",
+          "email": "mason.allen@example.com",
+          "profile": "Analyst specializing in cost optimization.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.5
+        },
+        {
+          "name": "Sophia Green",
+          "email": "sophia.green@example.com",
+          "profile": "Junior analyst with a background in audit.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "Ella Scott",
+          "email": "ella.scott@example.com",
+          "profile": "Finance intern with strong presentation skills.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "Logan Young",
+          "email": "logan.young@example.com",
+          "profile": "Seasoned analyst experienced in global markets.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Arin Paliwal",
+          "email": "arin@gmail.com",
+          "profile": "www.linkedin.com/arinpaliwal",
+          "appliedBeforeTimes": 4,
+          "status": "In-Progress",
+          "rating": 3
+        },
+        {
+          "name": "Arin Paliwal",
+          "email": "arin@gmail.com",
+          "profile": "www.linkedin.com/arinpaliwal",
+          "appliedBeforeTimes": 4,
+          "status": "Sourced",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": "job-006",
+      "activeUntil": "2024-03-20",
+      "title": "Marketing Specialist",
+      "description": "Develop and execute marketing strategies to enhance brand visibility and customer engagement.",
+      "role": "Marketing",
+      "type": "Full Time",
+      "aboutCompany": "A top-tier digital marketing agency specializing in innovative campaigns for diverse industries.",
+      "techStack": [
+        "Google Ads",
+        "SEO",
+        "Content Marketing",
+        "HubSpot",
+        "Social Media Tools"
+      ],
+      "requirements": [
+        "2+ years of experience in marketing",
+        "Proficient in Google Ads and SEO",
+        "Strong understanding of social media platforms",
+        "Excellent communication skills",
+        "Ability to analyze marketing data and trends"
+      ],
+      "location": "Onsite, New York, USA",
+      "candidates": [
+        {
+          "name": "Sophia Adams",
+          "email": "sophia.adams@example.com",
+          "profile": "Marketing strategist with a focus on social campaigns.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "Liam Brown",
+          "email": "liam.brown@example.com",
+          "profile": "SEO specialist with 4 years of experience.",
+          "appliedBeforeTimes": 2,
+          "status": "Rejected",
+          "rating": 3.7
+        },
+        {
+          "name": "Olivia Davis",
+          "email": "olivia.davis@example.com",
+          "profile": "Digital marketer with a passion for content creation.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.6
+        },
+        {
+          "name": "Noah Garcia",
+          "email": "noah.garcia@example.com",
+          "profile": "Social media manager with viral campaign experience.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Mason Clark",
+          "email": "mason.clark@example.com",
+          "profile": "Marketing intern with a knack for audience targeting.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "Ava Hall",
+          "email": "ava.hall@example.com",
+          "profile": "Marketing executive specializing in analytics.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.5
+        },
+        {
+          "name": "Ethan White",
+          "email": "ethan.white@example.com",
+          "profile": "Content marketer with 2 years of experience.",
+          "appliedBeforeTimes": 0,
+          "status": "Interviewed",
+          "rating": 4.4
+        },
+        {
+          "name": "Isabella Lewis",
+          "email": "isabella.lewis@example.com",
+          "profile": "SEO content strategist and copywriter.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 4.8
+        },
+        {
+          "name": "Lucas Young",
+          "email": "lucas.young@example.com",
+          "profile": "Freelance digital marketer specializing in PPC.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.9
+        },
+        {
+          "name": "Charlotte Taylor",
+          "email": "charlotte.taylor@example.com",
+          "profile": "Entry-level marketer with a flair for creative ads.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.3
+        }
+      ]
+    },
+    {
+      "id": "job-007",
+      "activeUntil": "2024-04-01",
+      "title": "Sales Executive",
+      "description": "Drive revenue growth by identifying leads and closing deals.",
+      "role": "Sales",
+      "type": "Full Time",
+      "aboutCompany": "A global leader in providing SaaS solutions to mid and large enterprises.",
+      "techStack": [
+        "CRM Tools",
+        "Salesforce",
+        "HubSpot",
+        "Excel"
+      ],
+      "requirements": [
+        "3+ years of experience in sales",
+        "Strong negotiation skills",
+        "Proficient in CRM tools like Salesforce",
+        "Excellent communication skills",
+        "Ability to build and maintain client relationships"
+      ],
+      "location": "Remote",
+      "candidates": [
+        {
+          "name": "Emily Gonzalez",
+          "email": "emily.gonzalez@example.com",
+          "profile": "Sales professional with expertise in SaaS products.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "James Wilson",
+          "email": "james.wilson@example.com",
+          "profile": "Account executive with a focus on B2B sales.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.5
+        },
+        {
+          "name": "Charlotte Lee",
+          "email": "charlotte.lee@example.com",
+          "profile": "Sales intern with excellent customer relationship skills.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Benjamin Martinez",
+          "email": "benjamin.martinez@example.com",
+          "profile": "Senior sales executive with proven track record in revenue growth.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Ava Hernandez",
+          "email": "ava.hernandez@example.com",
+          "profile": "Entry-level sales assistant with knowledge of CRMs.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Lucas Hall",
+          "email": "lucas.hall@example.com",
+          "profile": "Sales specialist with a knack for closing deals.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.6
+        },
+        {
+          "name": "Noah Allen",
+          "email": "noah.allen@example.com",
+          "profile": "Sales lead with experience in international markets.",
+          "appliedBeforeTimes": 2,
+          "status": "InProgress",
+          "rating": 4.7
+        },
+        {
+          "name": "Mia Adams",
+          "email": "mia.adams@example.com",
+          "profile": "Recent graduate with internship experience in B2C sales.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "William Scott",
+          "email": "william.scott@example.com",
+          "profile": "Experienced sales representative skilled in lead generation.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.8
+        },
+        {
+          "name": "Sophia Baker",
+          "email": "sophia.baker@example.com",
+          "profile": "Sales consultant specializing in tech solutions.",
+          "appliedBeforeTimes": 2,
+          "status": "Rejected",
+          "rating": 3.6
+        }
+      ]
+    },
+    {
+      "id": "job-008",
+      "activeUntil": "2025-03-10",
+      "title": "IT Support Specialist",
+      "description": "Provide technical support and resolve IT-related issues for the organization.",
+      "role": "IT Support",
+      "type": "Full Time",
+      "aboutCompany": "A fast-growing tech company delivering cutting-edge IT solutions to startups and enterprises.",
+      "techStack": [
+        "Windows",
+        "MacOS",
+        "Linux",
+        "Networking Tools",
+        "Troubleshooting Tools"
+      ],
+      "requirements": [
+        "2+ years of experience in IT support",
+        "Proficient in troubleshooting hardware and software issues",
+        "Strong knowledge of networking concepts",
+        "Excellent problem-solving skills",
+        "Good communication skills"
+      ],
+      "location": "Onsite, Berlin, Germany",
+      "candidates": [
+        {
+          "name": "Ethan Anderson",
+          "email": "ethan.anderson@example.com",
+          "profile": "IT technician with expertise in networking.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.8
+        },
+        {
+          "name": "Emma Carter",
+          "email": "emma.carter@example.com",
+          "profile": "Technical support specialist with a focus on customer service.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Arin Paliwal",
+          "email": "arin@gmail.com",
+          "profile": "www.linkedin.com/arinpaliwal",
+          "appliedBeforeTimes": 4,
+          "status": "Rejected",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": "job-009",
+      "activeUntil": "2025-03-31",
+      "title": "Product Manager",
+      "description": "Oversee product development from conception to launch, ensuring it aligns with business goals.",
+      "role": "Manager",
+      "type": "Full Time",
+      "aboutCompany": "A leader in SaaS solutions, empowering businesses to optimize their operations with intuitive software tools.",
+      "techStack": [
+        "JIRA",
+        "Confluence",
+        "Agile",
+        "Scrum",
+        "UX Design Principles"
+      ],
+      "requirements": [
+        "5+ years of experience in product management",
+        "Strong understanding of Agile and Scrum methodologies",
+        "Experience in stakeholder management",
+        "Excellent problem-solving and decision-making skills",
+        "Ability to work closely with development teams and clients"
+      ],
+      "location": "Hybrid, Toronto, Canada",
+      "candidates": [
+        {
+          "name": "Sophia Lee",
+          "email": "sophia.lee@example.com",
+          "profile": "Product manager with a strong SaaS background.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 4.9
+        },
+        {
+          "name": "James Walker",
+          "email": "james.walker@example.com",
+          "profile": "Experienced in launching large-scale enterprise software.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.7
+        },
+        {
+          "name": "Isabella Clark",
+          "email": "isabella.clark@example.com",
+          "profile": "Junior product manager with a focus on user-centric design.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.3
+        },
+        {
+          "name": "Lucas Martinez",
+          "email": "lucas.martinez@example.com",
+          "profile": "Seasoned PM with extensive experience in Agile frameworks.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.9
+        },
+        {
+          "name": "Emma Robinson",
+          "email": "emma.robinson@example.com",
+          "profile": "PM intern with a background in customer analytics.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "Liam Johnson",
+          "email": "liam.johnson@example.com",
+          "profile": "Product strategist skilled in roadmap planning.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.5
+        },
+        {
+          "name": "Charlotte Scott",
+          "email": "charlotte.scott@example.com",
+          "profile": "PM specializing in collaboration between design and development teams.",
+          "appliedBeforeTimes": 0,
+          "status": "Interviewed",
+          "rating": 4.4
+        },
+        {
+          "name": "Mason Young",
+          "email": "mason.young@example.com",
+          "profile": "Product lead for a fintech startup.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 4.8
+        },
+        {
+          "name": "Benjamin White",
+          "email": "benjamin.white@example.com",
+          "profile": "Experienced in gathering and refining customer feedback.",
+          "appliedBeforeTimes": 1,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Ava Wilson",
+          "email": "ava.wilson@example.com",
+          "profile": "Senior product manager with experience in global launches.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.7
+        }
+      ]
+    },
+    {
+      "id": "job-010",
+      "activeUntil": "2025-04-15",
+      "title": "DevOps Engineer",
+      "description": "Build and maintain efficient CI/CD pipelines to support agile software development teams.",
+      "role": "Developer",
+      "type": "Full Time",
+      "aboutCompany": "An innovative cloud-based technology provider enabling seamless scaling for global businesses.",
+      "techStack": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Jenkins",
+        "Terraform",
+        "Ansible"
+      ],
+      "requirements": [
+        "3+ years of experience in DevOps engineering",
+        "Proficiency in CI/CD tools like Jenkins and Docker",
+        "Strong knowledge of cloud platforms like AWS or Azure",
+        "Experience with IaC tools such as Terraform",
+        "Excellent scripting skills in Python or Bash"
+      ],
+      "location": "Onsite, San Francisco, USA",
+      "candidates": [
+        {
+          "name": "Noah Gonzalez",
+          "email": "noah.gonzalez@example.com",
+          "profile": "DevOps engineer with expertise in Kubernetes.",
+          "appliedBeforeTimes": 2,
+          "status": "Hired",
+          "rating": 5
+        },
+        {
+          "name": "Mia Adams",
+          "email": "mia.adams@example.com",
+          "profile": "Cloud specialist experienced with AWS and Azure.",
+          "appliedBeforeTimes": 1,
+          "status": "Interviewed",
+          "rating": 4.6
+        },
+        {
+          "name": "Lucas Johnson",
+          "email": "lucas.johnson@example.com",
+          "profile": "Entry-level DevOps engineer with Terraform experience.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.2
+        },
+        {
+          "name": "Charlotte Baker",
+          "email": "charlotte.baker@example.com",
+          "profile": "CI/CD expert with a focus on Jenkins pipelines.",
+          "appliedBeforeTimes": 1,
+          "status": "InProgress",
+          "rating": 4.4
+        },
+        {
+          "name": "Emma Hall",
+          "email": "emma.hall@example.com",
+          "profile": "DevOps engineer skilled in Docker orchestration.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.1
+        },
+        {
+          "name": "Sophia Brown",
+          "email": "sophia.brown@example.com",
+          "profile": "Cloud-native systems engineer.",
+          "appliedBeforeTimes": 3,
+          "status": "Rejected",
+          "rating": 3.8
+        },
+        {
+          "name": "Ethan Lee",
+          "email": "ethan.lee@example.com",
+          "profile": "Automation expert specializing in Python scripting.",
+          "appliedBeforeTimes": 2,
+          "status": "Interviewed",
+          "rating": 4.5
+        },
+        {
+          "name": "Benjamin Carter",
+          "email": "benjamin.carter@example.com",
+          "profile": "Network engineer transitioning to DevOps roles.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4
+        },
+        {
+          "name": "Ava Davis",
+          "email": "ava.davis@example.com",
+          "profile": "DevOps professional with experience in hybrid cloud setups.",
+          "appliedBeforeTimes": 1,
+          "status": "Hired",
+          "rating": 4.8
+        },
+        {
+          "name": "Liam Martinez",
+          "email": "liam.martinez@example.com",
+          "profile": "Intern with hands-on experience in cloud projects.",
+          "appliedBeforeTimes": 0,
+          "status": "Sourced",
+          "rating": 4.3
+        }
+      ]
+    },
+    {
+      "id": "J1023",
+      "activeUntil": "2024-12-31",
+      "title": "Frontend Developer",
+      "description": "We are looking for a skilled frontend developer to join our team and contribute to building responsive and scalable web applications.",
+      "role": "Developer",
+      "type": "Full Time",
+      "aboutCompany": "TechCorp is an industry leader in software solutions, delivering cutting-edge products to a global client base.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "CSS",
+        "Redux"
+      ],
+      "requirements": [
+        "Proficiency in React and TypeScript",
+        "Strong knowledge of modern JavaScript (ES6+)",
+        "Experience with state management libraries like Redux",
+        "Understanding of responsive design principles",
+        "Ability to work in a fast-paced, collaborative environment"
+      ],
+      "location": "Remote",
+      "candidates": []
+    }
+  ],
+  "employee_payrolls": [
+    {
+      "id": "1",
+      "name": "Brooklyn Simmons",
+      "payrollId": "#6515726",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 22,
+      "amount": 2020,
+      "status": "Paid"
+    },
+    {
+      "id": "2",
+      "name": "Jonny Gateway",
+      "payrollId": "#6518926",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 20,
+      "amount": 1400,
+      "status": "Unpaid"
+    },
+    {
+      "id": "3",
+      "name": "Savannah Nguyen",
+      "payrollId": "#6515728",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 30,
+      "amount": 2500,
+      "status": "Paid"
+    },
+    {
+      "id": "4",
+      "name": "Darlene Robertson",
+      "payrollId": "#6515729",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 18,
+      "amount": 1500,
+      "status": "Unpaid"
+    },
+    {
+      "id": "5",
+      "name": "Wade Warren",
+      "payrollId": "#6515730",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 40,
+      "amount": 3500,
+      "status": "Paid"
+    },
+    {
+      "id": "6",
+      "name": "Esther Howard",
+      "payrollId": "#6515731",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 25,
+      "amount": 2200,
+      "status": "Paid"
+    },
+    {
+      "id": "7",
+      "name": "Eleanor Pena",
+      "payrollId": "#6515732",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 20,
+      "amount": 1800,
+      "status": "Unpaid"
+    },
+    {
+      "id": "8",
+      "name": "Marvin McKinney",
+      "payrollId": "#6515733",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 15,
+      "amount": 1400,
+      "status": "Paid"
+    },
+    {
+      "id": "9",
+      "name": "Kathryn Murphy",
+      "payrollId": "#6515734",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 35,
+      "amount": 3200,
+      "status": "Paid"
+    },
+    {
+      "id": "10",
+      "name": "Ralph Edwards",
+      "payrollId": "#6515735",
+      "startDate": "Dec 29, 2023",
+      "endDate": "Jan 28, 2024",
+      "hours": 28,
+      "amount": 2400,
+      "status": "Paid"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "date": "Tue Oct 01 2024",
+      "name": "Product Launch Planning",
+      "description": "Initial meeting for new product launch",
+      "time": "09:30",
+      "assignedTo": "brooklyn.simmons@example.com"
+    },
+    {
+      "id": "2",
+      "date": "Thu Oct 03 2024",
+      "name": "Team Brainstorming Session",
+      "description": "Creative ideas for next quarter's projects",
+      "time": "14:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "3",
+      "date": "Sun Oct 06 2024",
+      "name": "Client Meeting",
+      "description": "Discuss project requirements and expectations",
+      "time": "11:00",
+      "assignedTo": "bessie.cooper@example.com"
+    },
+    {
+      "id": "4",
+      "date": "Wed Oct 09 2024",
+      "name": "Weekly Check-In",
+      "description": "Team progress update",
+      "time": "10:00",
+      "assignedTo": "leslie.alexander@example.com"
+    },
+    {
+      "id": "5",
+      "date": "Sat Oct 12 2024",
+      "name": "Team Building Activity",
+      "description": "Outdoor event for team bonding",
+      "time": "13:00",
+      "assignedTo": "kathryn.murphy@example.com"
+    },
+    {
+      "id": "6",
+      "date": "Tue Oct 15 2024",
+      "name": "Budget Review",
+      "description": "Review and approve budget allocations for Q4",
+      "time": "16:00",
+      "assignedTo": "eleanor.pena@example.com"
+    },
+    {
+      "id": "7",
+      "date": "Sun Oct 20 2024",
+      "name": "Company Town Hall",
+      "description": "Quarterly updates from leadership",
+      "time": "09:00",
+      "assignedTo": "jacob.jones@example.com"
+    },
+    {
+      "id": "8",
+      "date": "Wed Oct 23 2024",
+      "name": "Strategy Session",
+      "description": "Discuss long-term strategic goals",
+      "time": "14:00",
+      "assignedTo": "darlene.robertson@example.com"
+    },
+    {
+      "id": "9",
+      "date": "Fri Oct 25 2024",
+      "name": "Product Demo",
+      "description": "Showcase the new product features",
+      "time": "11:00",
+      "assignedTo": "brooklyn.simmons@example.com"
+    },
+    {
+      "id": "10",
+      "date": "Sun Oct 27 2024",
+      "name": "Internal Training",
+      "description": "Skill development session for employees",
+      "time": "10:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "11",
+      "date": "Sun Nov 03 2024",
+      "name": "Marketing Campaign Kickoff",
+      "description": "Launch of new marketing initiative",
+      "time": "10:00",
+      "assignedTo": "bessie.cooper@example.com"
+    },
+    {
+      "id": "12",
+      "date": "Thu Nov 07 2024",
+      "name": "Client Follow-Up Call",
+      "description": "Check-in with client after initial meeting",
+      "time": "15:00",
+      "assignedTo": "leslie.alexander@example.com"
+    },
+    {
+      "id": "13",
+      "date": "Tue Nov 12 2024",
+      "name": "Departmental Meeting",
+      "description": "Monthly departmental review",
+      "time": "14:00",
+      "assignedTo": "kathryn.murphy@example.com"
+    },
+    {
+      "id": "14",
+      "date": "Thu Nov 14 2024",
+      "name": "Product Testing",
+      "description": "Test new product version with select users",
+      "time": "09:00",
+      "assignedTo": "eleanor.pena@example.com"
+    },
+    {
+      "id": "15",
+      "date": "Sun Nov 17 2024",
+      "name": "Staff Appraisal Discussions",
+      "description": "Discuss performance and growth for employees",
+      "time": "13:00",
+      "assignedTo": "jacob.jones@example.com"
+    },
+    {
+      "id": "16",
+      "date": "Tue Nov 19 2024",
+      "name": "Compliance Review",
+      "description": "Annual review of compliance policies",
+      "time": "11:00",
+      "assignedTo": "darlene.robertson@example.com"
+    },
+    {
+      "id": "17",
+      "date": "Fri Nov 22 2024",
+      "name": "Team Happy Hour",
+      "description": "Casual social event to unwind",
+      "time": "17:30",
+      "assignedTo": "brooklyn.simmons@example.com"
+    },
+    {
+      "id": "18",
+      "date": "Tue Nov 26 2024",
+      "name": "Customer Feedback Session",
+      "description": "Gather customer feedback on recent updates",
+      "time": "16:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "19",
+      "date": "Sun Dec 01 2024",
+      "name": "Holiday Party Planning",
+      "description": "Initial planning for the company holiday party",
+      "time": "10:00",
+      "assignedTo": "bessie.cooper@example.com"
+    },
+    {
+      "id": "20",
+      "date": "Thu Dec 05 2024",
+      "name": "Vendor Negotiation",
+      "description": "Finalize contracts with suppliers",
+      "time": "14:00",
+      "assignedTo": "leslie.alexander@example.com"
+    },
+    {
+      "id": "21",
+      "date": "Fri Dec 06 2024",
+      "name": "Team Building Exercise",
+      "description": "Collaborative activity to enhance teamwork",
+      "time": "13:00",
+      "assignedTo": "kathryn.murphy@example.com"
+    },
+    {
+      "id": "23",
+      "date": "Thu Dec 12 2024",
+      "name": "Company-wide Survey Launch",
+      "description": "Launch of employee satisfaction survey",
+      "time": "09:00",
+      "assignedTo": "eleanor.pena@example.com"
+    },
+    {
+      "id": "24",
+      "date": "Mon Dec 15 2024",
+      "name": "Performance Review Meetings",
+      "description": "One-on-one performance reviews with employees",
+      "time": "14:00",
+      "assignedTo": "jacob.jones@example.com"
+    },
+    {
+      "id": "25",
+      "date": "Thu Dec 18 2024",
+      "name": "New Year Strategy Session",
+      "description": "Plan strategies for the upcoming year",
+      "time": "11:00",
+      "assignedTo": "darlene.robertson@example.com"
+    },
+    {
+      "id": "26",
+      "date": "Tue Dec 23 2024",
+      "name": "Project Wrap-Up Meeting",
+      "description": "Wrap up final tasks for ongoing projects",
+      "time": "15:00",
+      "assignedTo": "brooklyn.simmons@example.com"
+    },
+    {
+      "id": "27",
+      "date": "Mon Jan 05 2025",
+      "name": "Kickoff Meeting for New Year",
+      "description": "Set priorities for the new year",
+      "time": "09:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "28",
+      "date": "Thu Jan 09 2025",
+      "name": "Team Kickoff",
+      "description": "Begin work on new initiatives for Q1",
+      "time": "10:00",
+      "assignedTo": "bessie.cooper@example.com"
+    },
+    {
+      "id": "29",
+      "date": "Wed Jan 15 2025",
+      "name": "Client Presentation",
+      "description": "Present project updates and outcomes to client",
+      "time": "13:00",
+      "assignedTo": "leslie.alexander@example.com"
+    },
+    {
+      "id": "30",
+      "date": "Tue Jan 21 2025",
+      "name": "Internal Audits",
+      "description": "Conduct internal audits for ongoing projects",
+      "time": "10:00",
+      "assignedTo": "kathryn.murphy@example.com"
+    },
+    {
+      "id": "31",
+      "date": "Fri Jan 23 2025",
+      "name": "Team Lunch",
+      "description": "Casual lunch to encourage team interaction",
+      "time": "12:00",
+      "assignedTo": "eleanor.pena@example.com"
+    },
+    {
+      "id": "32",
+      "date": "Mon Jan 27 2025",
+      "name": "Budget Planning for Q2",
+      "description": "Plan budget for upcoming quarter",
+      "time": "09:00",
+      "assignedTo": "jacob.jones@example.com"
+    },
+    {
+      "id": "33",
+      "date": "Thu Jan 30 2025",
+      "name": "Marketing Strategy Workshop",
+      "description": "Workshop to develop new marketing strategies",
+      "time": "11:00",
+      "assignedTo": "darlene.robertson@example.com"
+    },
+    {
+      "id": "34",
+      "date": "Tue Feb 03 2025",
+      "name": "Client Feedback Review",
+      "description": "Review and analyze feedback from clients",
+      "time": "15:00",
+      "assignedTo": "brooklyn.simmons@example.com"
+    },
+    {
+      "id": "35",
+      "date": "Mon Feb 05 2025",
+      "name": "Quarterly Sales Review",
+      "description": "Review of sales performance and strategy adjustments",
+      "time": "09:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "36",
+      "date": "Wed Feb 07 2025",
+      "name": "Product Development Update",
+      "description": "Update on product development status",
+      "time": "11:00",
+      "assignedTo": "bessie.cooper@example.com"
+    },
+    {
+      "id": "37",
+      "date": "Fri Feb 13 2025",
+      "name": "Team Celebration",
+      "description": "Celebration for achieving project milestones",
+      "time": "16:00",
+      "assignedTo": "leslie.alexander@example.com"
+    },
+    {
+      "id": "38",
+      "date": "Thu Feb 18 2025",
+      "name": "Training Workshop",
+      "description": "Skill enhancement training session",
+      "time": "09:00",
+      "assignedTo": "kathryn.murphy@example.com"
+    },
+    {
+      "id": "39",
+      "date": "Tue Feb 23 2025",
+      "name": "Leadership Roundtable",
+      "description": "Leadership discussion on company direction",
+      "time": "14:00",
+      "assignedTo": "eleanor.pena@example.com"
+    },
+    {
+      "id": "41",
+      "date": "Tue Dec 31 2024",
+      "name": "Happy new year",
+      "description": "Happy new year",
+      "time": "00:00",
+      "assignedTo": "darlene.robertson@example.com"
+    },
+    {
+      "id": "42",
+      "date": "Mon Dec 09 2024",
+      "name": "Simpplr Frontend Project Review",
+      "description": "Simpplr Frontend Project Review",
+      "time": "15:00",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "43",
+      "date": "Wed Dec 25 2024",
+      "name": "Christmas Day Celebration",
+      "description": "Christmas Day Celebration",
+      "time": "03:43",
+      "assignedTo": "ralph.edwards@example.com"
+    },
+    {
+      "id": "44",
+      "date": "Tue Dec 31 2024",
+      "name": "New Year",
+      "description": "New Year",
+      "time": "15:39",
+      "assignedTo": "ralph.edwards@example.com"
+    }
+  ],
+  "employees_todo": [
+    {
+      "id": "ralph.edwards@example.com",
+      "todos": [
+        {
+          "id": "1",
+          "title": "Complete project documentation",
+          "date": "2024-12-07",
+          "completed": false,
+          "tags": [
+            "Development",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Plan sprint tasks",
+          "date": "2024-12-10",
+          "completed": false,
+          "tags": [
+            "Planning",
+            "Sprint"
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Review pull requests",
+          "date": "2024-12-12",
+          "completed": true,
+          "tags": [
+            "Code Review",
+            "Development"
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Prepare for client meeting",
+          "date": "2024-12-15",
+          "completed": true,
+          "tags": [
+            "Meeting",
+            "Client"
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Optimize application performance",
+          "date": "2024-12-20",
+          "completed": false,
+          "tags": [
+            "Optimization",
+            "Performance"
+          ]
+        },
+        {
+          "id": "1733695690272",
+          "title": "Simpplr Presentation",
+          "date": "2024-12-09",
+          "completed": true,
+          "tags": [
+            "Frontend",
+            "UI",
+            "Training"
+          ]
+        },
+        {
+          "id": "1733695821135",
+          "title": "Simpplr",
+          "date": "2024-12-09",
+          "completed": true,
+          "tags": [
+            "Arin"
+          ]
+        },
+        {
+          "id": "1733695927778",
+          "title": "Christmas Day Celebration",
+          "date": "2024-12-25",
+          "completed": false,
+          "tags": [
+            "MerryChristmas 2025"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ralph.edwards@example.com",
+      "todos": [
+        {
+          "id": "1",
+          "title": "Complete project documentation",
+          "date": "2024-12-07",
+          "completed": false,
+          "tags": [
+            "Development",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Plan sprint tasks",
+          "date": "2024-12-10",
+          "completed": false,
+          "tags": [
+            "Planning",
+            "Sprint"
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Review pull requests",
+          "date": "2024-12-12",
+          "completed": true,
+          "tags": [
+            "Code Review",
+            "Development"
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Prepare for client meeting",
+          "date": "2024-12-15",
+          "completed": true,
+          "tags": [
+            "Meeting",
+            "Client"
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Optimize application performance",
+          "date": "2024-12-20",
+          "completed": false,
+          "tags": [
+            "Optimization",
+            "Performance"
+          ]
+        },
+        {
+          "id": "1733695690272",
+          "title": "Simpplr Presentation",
+          "date": "2024-12-09",
+          "completed": false,
+          "tags": [
+            "Frontend",
+            "UI",
+            "Training"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ralph.edwards@example.com",
+      "todos": [
+        {
+          "id": "1",
+          "title": "Complete project documentation",
+          "date": "2024-12-07",
+          "completed": false,
+          "tags": [
+            "Development",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Plan sprint tasks",
+          "date": "2024-12-10",
+          "completed": false,
+          "tags": [
+            "Planning",
+            "Sprint"
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Review pull requests",
+          "date": "2024-12-12",
+          "completed": true,
+          "tags": [
+            "Code Review",
+            "Development"
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Prepare for client meeting",
+          "date": "2024-12-15",
+          "completed": true,
+          "tags": [
+            "Meeting",
+            "Client"
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Optimize application performance",
+          "date": "2024-12-20",
+          "completed": false,
+          "tags": [
+            "Optimization",
+            "Performance"
+          ]
+        },
+        {
+          "id": "1733695821135",
+          "title": "Simpplr",
+          "date": "2024-12-09",
+          "completed": false,
+          "tags": [
+            "Arin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ralph.edwards@example.com",
+      "todos": [
+        {
+          "id": "1",
+          "title": "Complete project documentation",
+          "date": "2024-12-07",
+          "completed": false,
+          "tags": [
+            "Development",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Plan sprint tasks",
+          "date": "2024-12-10",
+          "completed": false,
+          "tags": [
+            "Planning",
+            "Sprint"
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Review pull requests",
+          "date": "2024-12-12",
+          "completed": true,
+          "tags": [
+            "Code Review",
+            "Development"
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Prepare for client meeting",
+          "date": "2024-12-15",
+          "completed": true,
+          "tags": [
+            "Meeting",
+            "Client"
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Optimize application performance",
+          "date": "2024-12-20",
+          "completed": false,
+          "tags": [
+            "Optimization",
+            "Performance"
+          ]
+        },
+        {
+          "id": "1733695690272",
+          "title": "Simpplr Presentation",
+          "date": "2024-12-09",
+          "completed": false,
+          "tags": [
+            "Frontend",
+            "UI",
+            "Training"
+          ]
+        },
+        {
+          "id": "1733695821135",
+          "title": "Simpplr",
+          "date": "2024-12-09",
+          "completed": true,
+          "tags": [
+            "Arin"
+          ]
+        },
+        {
+          "id": "1733695927778",
+          "title": "Christmas Day Celebration",
+          "date": "2024-12-25",
+          "completed": false,
+          "tags": [
+            "MerryChristmas 2025"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kathryn.murphy@example.com",
+      "todos": [
+        {
+          "id": "1733724298148",
+          "title": "Simpplr Meeting",
+          "date": "2024-12-09",
+          "completed": false,
+          "tags": [
+            "Frontend",
+            "UI"
+          ]
+        }
+      ]
+    }
+  ]
+}
