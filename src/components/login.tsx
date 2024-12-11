@@ -1,4 +1,12 @@
-import { ChevronLeft, Moon, Shield, Sun, Unlock, User2 } from "lucide-react";
+import {
+  ChevronLeft,
+  LoaderIcon,
+  Moon,
+  Shield,
+  Sun,
+  Unlock,
+  User2,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +16,7 @@ import { create_access_token } from "../utility/access-token";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     employeeCode: "",
     password: "",
@@ -24,8 +33,9 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const response = await axiosInstance.get(
-        `/employees?employeeId=${formData.employeeCode}&password=${formData.password}`,
+        `/employees?employeeId=${formData.employeeCode}&password=${formData.password}`
       );
 
       const matchedEmployee = response.data[0];
@@ -36,21 +46,21 @@ export default function Login() {
         toast.success(
           matchedEmployee.isAdmin
             ? "Admin login successful."
-            : "Employee login successful.",
+            : "Employee login successful."
         );
         setTimeout(() => {
           navigate(
-            matchedEmployee.isAdmin
-              ? "/admin/dashboard"
-              : "/employee/dashboard",
+            matchedEmployee.isAdmin ? "/admin/dashboard" : "/employee/dashboard"
           );
-        }, 1000);
+        }, 0);
       } else {
         toast.error("Invalid employee code or password.");
       }
     } catch (err) {
       console.error("An error occurred during login:", err);
       toast.error("Failed to log in. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,17 +144,17 @@ export default function Login() {
               </button>
               <button
                 type="submit"
+                disabled={loading}
                 className="px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg flex items-center gap-3 w-[8rem] justify-center"
               >
                 Login
-                <Unlock size={16} />
+                {loading ? <LoaderIcon size={16} className="animate-spin" /> : <Unlock size={16} />}
               </button>
             </div>
           </form>
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="hidden md:block md:w-1/2 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30" />
         <img
