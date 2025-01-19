@@ -76,6 +76,7 @@ export default function Login() {
           <button
             onClick={() => navigate("/")}
             className="p-2 bg-lightMode-accentBlue text-white cursor-pointer hover:rotate-180 duration-300 transform rounded-full"
+            aria-label="Go back to the homepage"
           >
             <ChevronLeft size={22} />
           </button>
@@ -84,6 +85,7 @@ export default function Login() {
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 border-2 border-borders-primary dark:border-borders-secondary rounded-full hover:bg-lightMode-secondaryBackground hover:dark:bg-darkMode-secondaryBackground"
+            aria-label="Toggle theme"
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -97,47 +99,63 @@ export default function Login() {
               Employee Login
             </h1>
             <p className="text-lightMode-secondaryText dark:text-darkMode-secondaryText mt-2">
-              Enter your employee code and password to access the Engage360
-              dashboard.
+              Enter your employee code and password to access the Engage360 dashboard.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText mb-1">
+              <label
+                htmlFor="employeeCode"
+                className="block text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText mb-1"
+              >
                 Employee Code*
               </label>
               <input
+                id="employeeCode"
                 type="text"
                 name="employeeCode"
                 value={formData.employeeCode}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-borders-primary dark:border-borders-secondary rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText focus:outline-none focus:ring-2 focus:ring-lightMode-accentBlue dark:focus:ring-darkMode-accentBlue"
                 required
+                aria-describedby="employeeCodeHelp"
               />
+              <small id="employeeCodeHelp" className="text-xs text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                Your unique employee code assigned by the system.
+              </small>
             </div>
 
             <div>
-              <label className="block text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText mb-1"
+              >
                 Password*
               </label>
               <input
+                id="password"
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-borders-primary dark:border-borders-secondary rounded-lg bg-white dark:bg-darkMode-secondaryBackground text-lightMode-primaryText dark:text-darkMode-primaryText focus:outline-none focus:ring-2 focus:ring-lightMode-accentBlue dark:focus:ring-darkMode-accentBlue"
                 required
+                aria-describedby="passwordHelp"
               />
+              <small id="passwordHelp" className="text-xs text-lightMode-secondaryText dark:text-darkMode-secondaryText">
+                Your login password.
+              </small>
             </div>
 
             <div className="text-sm flex items-center justify-between pt-4">
               <button
-                type="submit"
+                type="button"
                 className="px-4 py-2 border-2 border-borders-primary dark:border-borders-secondary rounded-lg flex items-center gap-3 w-[10rem] justify-center"
                 onClick={() =>
                   setFormData({ employeeCode: "EMP001", password: "" })
                 }
+                aria-label="Admin login"
               >
                 Admin Login
                 <Shield size={16} />
@@ -146,6 +164,7 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className="px-4 py-2 bg-lightMode-accentBlue text-white rounded-lg flex items-center gap-3 w-[8rem] justify-center"
+                aria-label="Login"
               >
                 Login
                 {loading ? <LoaderIcon size={16} className="animate-spin" /> : <Unlock size={16} />}

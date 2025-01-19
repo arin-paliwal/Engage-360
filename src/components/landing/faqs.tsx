@@ -60,7 +60,9 @@ export default function FAQs() {
               onClick={() => toggleAccordion(index)}
             >
               <div className="flex justify-between items-center p-4 hover:bg-gray-50">
-                <h3 className="font-medium">{faq.question}</h3>
+                <h3 className="font-medium"
+                
+                >{faq.question}</h3>
                 <ChevronDown
                   className={`w-5 h-5 text-gray-500 transition-transform ${
                     openIndexes.includes(index) ? "rotate-180" : ""

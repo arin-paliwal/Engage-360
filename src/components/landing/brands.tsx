@@ -23,7 +23,7 @@ const Brands = () => {
     },
   ];
   return (
-    <div className="slider-container bg-white dark:bg-black grayscale">
+    <section className="slider-container bg-white dark:bg-black grayscale">
       <div className="slider bg-white dark:bg-black">
         <div className="slide-track bg-white dark:bg-black">
           {images.map((image) => (
@@ -39,7 +39,7 @@ const Brands = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

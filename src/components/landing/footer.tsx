@@ -4,14 +4,14 @@ const Footer = () => {
   const handleEmailClick = () => {
     const emailAddress = "info@engage360.com";
     const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(
-      emailAddress,
+      emailAddress
     )}`;
 
     window.open(gmailComposeUrl, "_blank");
   };
 
   return (
-    <div className="flex flex-col">
+    <footer className="flex flex-col">
       {/* Main Footer Section */}
       <div className="bg-[#181818] text-white">
         <div className="p-6 sm:p-12">
@@ -39,11 +39,12 @@ const Footer = () => {
               {/* Map */}
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30773484.55170563!2d61.0245165611659!3d19.69009515037612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1733263459274!5m2!1sen!2sin"
-                // width="100%"
                 height="300"
                 className="border-0 rounded-md"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                aria-label="Google Maps showing location of India"
+                title="Google Maps showing location of India"
               ></iframe>
             </div>
 
@@ -84,7 +85,8 @@ const Footer = () => {
       <div className="bg-[#202020] flex flex-col sm:flex-row gap-6 sm:gap-0 p-3 text-[#b1b1b1] text-center">
         <div className="sm:w-1/3 flex justify-center">
           <h1 className="flex items-center">
-            2024 Engage360 &nbsp;
+            {new Date().getFullYear()}&nbsp;
+            Engage360 &nbsp;
             <Copyright size={16} />
             &nbsp; All Rights Reserved
           </h1>
@@ -99,7 +101,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

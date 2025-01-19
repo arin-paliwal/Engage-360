@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex flex-col lg:flex-row bg-dots-pattern-hero lg:h-screen items-center justify-center">
+    <main className="relative flex flex-col lg:flex-row bg-dots-pattern-hero lg:h-screen items-center justify-center">
       {/* <div className="absolute top-0 left-0 p-4 text-lg sm:p-6 sm:text-2xl">
     <h1 className="text-2xl sm:text-3xl font-semibold">Enagage360</h1>
   </div> */}
@@ -96,11 +96,11 @@ export default function Hero() {
       </div>
       <div className="w-full lg:w-1/2 flex">
         <img
-          src="/images/hero.jpg"
+          src="/images/hero_11zon.jpg"
           alt="Platform Preview"
           className="object-cover h-48 sm:h-72 lg:h-screen w-full"
         />
       </div>
-    </section>
+    </main>
   );
 }
