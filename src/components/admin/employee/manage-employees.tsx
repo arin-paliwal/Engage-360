@@ -5,28 +5,38 @@ import { EmployeeInterface } from "../../../types/common";
 import axiosInstance from "../../../api/axios";
 import toast from "react-hot-toast";
 import { getDepartmentColor } from "../../../utility/get-detp-color";
+import { useQuery, useQueryClient } from "react-query";
+import { format } from "date-fns";
 
 export default function ManageEmployee() {
-  const [employees, setEmployees] = useState<EmployeeInterface[]>([]);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [selectedEmployee, setSelectedEmployee] =
     useState<EmployeeInterface | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axiosInstance.get("/employees");
-      setEmployees(response.data);
-      const emails = response.data
-        .filter(
-          (employee: { email: string; isAdmin: boolean }) => !employee.isAdmin,
-        )
-        .map((employee: { email: string }) => employee.email);
+  const queryClient = useQueryClient();
 
-      localStorage.setItem("emails", JSON.stringify(emails));
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const response = await axiosInstance.get("/employees");
+    const emails = response.data
+      .filter(
+        (employee: { email: string; isAdmin: boolean }) => !employee.isAdmin
+      )
+      .map((employee: { email: string }) => employee.email);
+
+    localStorage.setItem("emails", JSON.stringify(emails));
+    return response.data;
+  };
+
+  const {
+    data: employees,
+    isLoading,
+    isError,
+    error,
+    isPreviousData,
+  } = useQuery(["employees", searchQuery], fetchData, {
+    keepPreviousData: true,
+  });
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -37,8 +47,9 @@ export default function ManageEmployee() {
       clearTimeout(handler);
     };
   }, [searchQuery]);
-  const filteredEmployees = employees?.filter((employee) =>
-    employee.name.toLowerCase().includes(debouncedQuery.toLowerCase()),
+
+  const filteredEmployees = employees?.filter((employee: EmployeeInterface) =>
+    employee.name.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
 
   const handleEdit = (employee: EmployeeInterface) => {
@@ -50,13 +61,11 @@ export default function ManageEmployee() {
     try {
       await axiosInstance.put(
         `/employees/${selectedEmployee?.id}`,
-        selectedEmployee,
+        selectedEmployee
       );
       toast.success("Employee updated successfully");
-      const updatedEmployees = employees.map((emp) =>
-        emp.id === selectedEmployee?.id ? selectedEmployee : emp,
-      );
-      setEmployees(updatedEmployees);
+
+      queryClient.invalidateQueries("employees");
       setIsEditing(false);
     } catch (error) {
       toast.error("Something went wrong. Please try again later");
@@ -66,9 +75,9 @@ export default function ManageEmployee() {
   const handleDelete = async (id: number | string) => {
     try {
       await axiosInstance.delete(`/employees/${id}`);
-      const updatedEmployees = employees.filter((emp) => emp.id !== id);
-      setEmployees(updatedEmployees);
       toast.success("Employee deleted successfully");
+
+      queryClient.invalidateQueries("employees");
     } catch (error) {
       toast.error("Something went wrong. Please try again later");
     }
@@ -110,7 +119,7 @@ export default function ManageEmployee() {
             </div>
           ))}
         </div>
-        {filteredEmployees.map((employee) => (
+        {filteredEmployees?.map((employee: EmployeeInterface) => (
           <div
             key={employee.id}
             className="text-sm grid grid-cols-[2fr,1.5fr,1fr,1.5fr,1fr,1fr,0.5fr] px-6 py-4 border-b border-borders-primary dark:border-borders-secondary last:border-b-0 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background transition-colors duration-200"
@@ -122,7 +131,12 @@ export default function ManageEmployee() {
                   {employee.name}
                 </div>
                 <div className="text-sm text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-                  <h1 className="w-48 truncate cursor-pointer" title={employee.email}>{employee.email}</h1>
+                  <h1
+                    className="w-48 truncate cursor-pointer"
+                    title={employee.email}
+                  >
+                    {employee.email}
+                  </h1>
                 </div>
               </div>
             </div>
@@ -143,8 +157,10 @@ export default function ManageEmployee() {
               {employee.contractType}
             </div>
             <div className="flex items-center text-lightMode-primaryText dark:text-darkMode-primaryText">
-              {employee.dateOfJoining}
+              {employee.dateOfJoining &&
+                format(new Date(employee.dateOfJoining), "MMM dd, yyyy")}
             </div>
+
             <div className="flex items-center justify-end">
               <button
                 className="p-1 hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-background rounded-full transition-colors duration-200"
@@ -159,7 +175,7 @@ export default function ManageEmployee() {
           </div>
         ))}
       </div>
-      {filteredEmployees.length == 0 && (
+      {filteredEmployees?.length == 0 && (
         <div className="flex justify-center items-center h-[50vh]">
           <img
             src="/images/empty.svg"
