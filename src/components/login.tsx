@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import toast from "react-hot-toast";
 import { create_access_token } from "../utility/access-token";
+import { Button } from "@arin-paliwal/custom-library-button";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -72,6 +73,7 @@ export default function Login() {
   return (
     <div className="h-screen flex flex-wrap bg-lightMode-background dark:bg-darkMode-background">
       <div className="relative bg-dots-pattern-hero w-full md:w-1/2 flex items-center justify-center px-6">
+      {/* <Button>Hi</Button> */}
         <div className="absolute top-4 left-4">
           <button
             onClick={() => navigate("/")}

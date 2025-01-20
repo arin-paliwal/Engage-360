@@ -15,6 +15,7 @@
     "project": "concurrently \"npm run server\" \"npm run dev\" \"npm run test:ui\""
   },
   "dependencies": {
+    "@arin-paliwal/custom-library-button": "^3.0.0",
     "@testing-library/react-hooks": "^8.0.1",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
